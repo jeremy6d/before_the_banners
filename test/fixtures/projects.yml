@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  type: 
+  value: MyString
+  owner: MyString
+  architect: MyString
+  builder: MyString
+  description: MyString
+  starts_at: 2014-07-06 10:33:44
+  ends_at: 2014-07-06 10:33:44
+
+two:
+  name: MyString
+  type: 
+  value: MyString
+  owner: MyString
+  architect: MyString
+  builder: MyString
+  description: MyString
+  starts_at: 2014-07-06 10:33:44
+  ends_at: 2014-07-06 10:33:44

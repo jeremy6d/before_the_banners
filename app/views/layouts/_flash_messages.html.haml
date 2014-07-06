@@ -1,0 +1,3 @@
+%ul#flash
+  - flash.each do |type, msg|
+    %li{ class: type }= msg

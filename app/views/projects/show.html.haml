@@ -1,0 +1,33 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @project.name
+%p
+  %b Type:
+  = @project.type
+%p
+  %b Value:
+  = @project.value
+%p
+  %b Owner:
+  = @project.owner
+%p
+  %b Architect:
+  = @project.architect
+%p
+  %b Builder:
+  = @project.builder
+%p
+  %b Description:
+  = @project.description
+%p
+  %b Starts at:
+  = @project.starts_at
+%p
+  %b Ends at:
+  = @project.ends_at
+
+= link_to 'Edit', edit_project_path(@project)
+\|
+= link_to 'Back', projects_path

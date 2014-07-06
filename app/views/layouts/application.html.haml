@@ -1,0 +1,12 @@
+!!!
+%html
+  %head
+    %title Before the Banners
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    = csrf_meta_tags %>
+  %body
+    / put the header here
+    - unless flash.empty?
+      = render partial: "flash_messages", locals: { flash: flash }
+    = yield
+  = javascript_include_tag 'application', 'data-turbolinks-track' => true
