@@ -1,33 +1,8 @@
-%p#notice= notice
+%h2
+  .title= @project.title.titleize
+  .completion-date== Estimated completion date: #{@project.ends_at.to_s(:month_and_year)}
+%p.description= @project.description
 
-%p
-  %b Name:
-  = @project.name
-%p
-  %b Type:
-  = @project.type
-%p
-  %b Value:
-  = @project.value
-%p
-  %b Owner:
-  = @project.owner
-%p
-  %b Architect:
-  = @project.architect
-%p
-  %b Builder:
-  = @project.builder
-%p
-  %b Description:
-  = @project.description
-%p
-  %b Starts at:
-  = @project.starts_at
-%p
-  %b Ends at:
-  = @project.ends_at
-
-= link_to 'Edit', edit_project_path(@project)
-\|
-= link_to 'Back', projects_path
+%ul.operations
+  %li= link_to 'Edit', edit_project_path(@project)
+  %li= link_to 'Back', projects_path

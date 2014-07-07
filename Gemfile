@@ -7,7 +7,6 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
-gem 'spring',        group: :development
 gem 'inherited_resources'
 gem 'simple_form'
 gem 'haml'
@@ -17,7 +16,7 @@ gem 'bourbon'
 gem 'neat'
 gem 'bitters'
 gem 'refills'
-gem 'mongoid'
+gem 'mongoid', '~> 4.0.0'
 gem 'devise'
 
 group :test do

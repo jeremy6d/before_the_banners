@@ -1,12 +1,24 @@
 class Project
   include Mongoid::Document
-  field :name, type: String
-  field :type, type: String
-  field :value, type: String
-  field :owner, type: String
-  field :architect, type: String
-  field :builder, type: String
-  field :description, type: String
-  field :starts_at, type: Time
-  field :ends_at, type: Time
+  include Mongoid::Timestamps
+
+  field :title,           type: String
+  field :type,            type: String
+  field :value,           type: String
+  field :owner_name,      type: String
+  field :architect_name,  type: String
+  field :builder_name,    type: String
+  field :description,     type: String
+  field :starts_at,       type: Date
+  field :ends_at,         type: Date
+
+  validates_presence_of :title,
+                        :starts_at,
+                        :ends_at
+  validate :date_range_valid?
+
+protected
+  def date_range_valid?
+    starts_at < ends_at
+  end
 end

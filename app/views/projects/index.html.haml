@@ -1,35 +1,9 @@
-%h1 Listing projects
+%h1 Current Projects
 
-%table
-  %tr
-    %th Name
-    %th Type
-    %th Value
-    %th Owner
-    %th Architect
-    %th Builder
-    %th Description
-    %th Starts at
-    %th Ends at
-    %th
-    %th
-    %th
-
+%ul
   - @projects.each do |project|
-    %tr
-      %td= project.name
-      %td= project.type
-      %td= project.value
-      %td= project.owner
-      %td= project.architect
-      %td= project.builder
-      %td= project.description
-      %td= project.starts_at
-      %td= project.ends_at
-      %td= link_to 'Show', project
-      %td= link_to 'Edit', edit_project_path(project)
-      %td= link_to 'Destroy', project, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    %li= link_to project.title, project
 
-%br
 
-= link_to 'New Project', new_project_path
+%ul.operations
+  %li= link_to 'Create new project', new_project_path

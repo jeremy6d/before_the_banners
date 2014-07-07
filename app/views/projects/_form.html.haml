@@ -1,37 +1,13 @@
-= form_for @project do |f|
-  - if @project.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@project.errors.count, "error")} prohibited this project from being saved:"
-      %ul
-        - @project.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :type
-    = f.text_field :type
-  .field
-    = f.label :value
-    = f.text_field :value
-  .field
-    = f.label :owner
-    = f.text_field :owner
-  .field
-    = f.label :architect
-    = f.text_field :architect
-  .field
-    = f.label :builder
-    = f.text_field :builder
-  .field
-    = f.label :description
-    = f.text_field :description
-  .field
-    = f.label :starts_at
-    = f.time_select :starts_at
-  .field
-    = f.label :ends_at
-    = f.time_select :ends_at
-  .actions
-    = f.submit 'Save'
+= simple_form_for @project do |project_form|
+  .form-inputs
+    = project_form.input :title, label: "Project title"
+    = project_form.input :type, label: "Project type"
+    = project_form.input :value, label: "Project value"
+    = project_form.input :owner_name, label: "Owner"
+    = project_form.input :architect_name, label: "Architect"
+    = project_form.input :builder_name, label: "Builder"
+    = project_form.input :description, as: :text, label: "Project description"
+    = project_form.input :starts_at, as: :datepicker, label: "Start date"
+    = project_form.input :ends_at, as: :datepicker, label: "End date"
+  .form-actions
+    = project_form.button :submit, "Save"

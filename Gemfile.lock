@@ -301,7 +301,7 @@ DEPENDENCIES
   minitest-rails-capybara
   minitest-reporters
   mocha
-  mongoid
+  mongoid (~> 4.0.0)
   neat
   quiet_assets
   rails (= 4.1.4)

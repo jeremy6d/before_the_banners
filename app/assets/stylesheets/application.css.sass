@@ -1,3 +1,67 @@
 @import "bourbon/bourbon"
-@import "neat/neat"
 @import "base/base"
+@import "neat/neat"
+@import "header"
+@import "jquery-ui"
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300)
+
+$heavy-blue:    #3D6E9F
+$light-blue:    #5D8ECA
+$yellow:        #FBAD18
+$charcoal:      #575B62
+$gray:          #A2A8B4
+
+
+
+h2
+  text-align: center
+  .title
+    font-size: 34pt 
+  .completion-date
+    font-size: 75%
+    font-weight: 300
+
+body
+  font-family: 'Roboto', sans-serif
+  font-weight: 400
+  
+content
+  @include outer-container
+  @include span-columns(8)
+  @include shift(2)
+
+  .form-actions
+    @include clearfix
+
+  .form-inputs
+    .input
+      @include span-columns(6)
+      @include omega(2n)    
+
+.hint
+  font-weight: 300
+  font-size: 75%
+  font-style: italic
+  line-height: .75em
+
+ul#flash
+  text-align: center
+  li.alert
+    @extend %flash-error
+  li.notice
+    @extend %flash-notice
+
+.error_notification, div.field_with_errors
+  @extend %flash-error
+
+ul.operations
+  li a 
+    float:  right
+    margin-left: 1em
+    @include button($light-blue)
+    font-weight: 300
+
+header ul#navigation-menu
+  li.nav-link 
+    a.sign-in, a.sign-up, a.sign-out
+      @include button(pill, $heavy-blue)
