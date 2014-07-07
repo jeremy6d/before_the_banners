@@ -1,3 +1,5 @@
+- if @update.attachment?
+  =image_tag @update.attachment.thumb.url
 %h2.title= @update.title.titleize
 %p.description= @update.body
 

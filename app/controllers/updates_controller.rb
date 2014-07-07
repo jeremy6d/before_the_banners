@@ -6,6 +6,8 @@ class UpdatesController < ApplicationController
 protected
   def update_params
     params.require(:update).permit :title,
-                                   :body
+                                   :body,
+                                   :attachment,
+                                   :attachment_cache
   end
 end

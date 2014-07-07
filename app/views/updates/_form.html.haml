@@ -3,5 +3,10 @@
   .form-inputs
     = f.input :title
     = f.input :body, as: :text
+    #attachment-area
+      %h3 Attachment
+      = image_tag(@update.attachment.thumb_url) if @update.attachment?
+      = f.input :attachment, as: :file 
+      = f.hidden_field :attachment_cache
   .form-actions
     = f.submit 'Save'

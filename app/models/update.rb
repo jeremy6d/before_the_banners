@@ -8,6 +8,8 @@ class Update
   field :edits,           type: Hash, default: {}
   field :approved_at,     type: Time
 
+  mount_uploader :attachment, MediaUploader
+
   belongs_to :project
   belongs_to :author,   class_name: "User"
   belongs_to :approver, class_name: "User"
