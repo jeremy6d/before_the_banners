@@ -2,7 +2,16 @@
   .title= @project.title.titleize
   .completion-date== Estimated completion date: #{@project.ends_at.to_s(:month_and_year)}
 %p.description= @project.description
+%ul.updates
+  - @project.updates.each do |update|
+    %li
+      %h3= link_to update.title.titleize, [@project, update]
+      %p
+        = truncate(update.body, length: 200) do
+          = link_to "(More)", [@project, update]
+
 
 %ul.operations
+  %li= link_to 'Add update', new_project_update_path(@project)
   %li= link_to 'Edit', edit_project_path(@project)
   %li= link_to 'Back', projects_path

@@ -1,0 +1,6 @@
+%h2.title= @update.title.titleize
+%p.description= @update.body
+
+%ul.operations
+  %li= link_to 'Edit', edit_project_update_path(@project, @update)
+  %li= link_to 'Back', @project

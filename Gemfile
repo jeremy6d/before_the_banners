@@ -18,6 +18,10 @@ gem 'bitters'
 gem 'refills'
 gem 'mongoid', '~> 4.0.0'
 gem 'devise'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'
 
 group :test do
   gem "minitest"

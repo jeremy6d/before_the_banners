@@ -1,4 +1,4 @@
-= simple_form_for @project do |project_form|
+= simple_form_for @project, html: { class: "two-column" } do |project_form|
   .form-inputs
     = project_form.input :title, label: "Project title"
     = project_form.input :type, label: "Project type"

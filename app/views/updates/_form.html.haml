@@ -1,0 +1,7 @@
+= simple_form_for [@project, @update] do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :title
+    = f.input :body, as: :text
+  .form-actions
+    = f.submit 'Save'

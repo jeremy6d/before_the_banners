@@ -12,6 +12,8 @@ class Project
   field :starts_at,       type: Date
   field :ends_at,         type: Date
 
+  has_many :updates
+
   validates_presence_of :title,
                         :starts_at,
                         :ends_at

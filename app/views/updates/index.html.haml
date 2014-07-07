@@ -1,0 +1,18 @@
+%h1 Listing updates
+
+%table
+  %tr
+    %th
+    %th
+    %th
+
+  - @updates.each do |update|
+    %tr
+      %td= link_to 'Show', [@project, @update]
+      %td= link_to 'Edit', edit_project_update_path(@project, @update)
+      %td= link_to 'Destroy', [@project, @update], :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+%ul.operations
+  %li= link_to 'New Update', new_project_update_path(@project)

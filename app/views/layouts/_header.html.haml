@@ -8,10 +8,9 @@
         %li.nav-link
           =link_to "Projects", projects_path
     .navigation-tools
-      %ul#navigation-menu
-        - if user_signed_in?
-          %li.nav-link= link_to "Signed in as #{current_user}", edit_user_registration_path, class: "profile"
-          %li.nav-link= link_to "Sign out", destroy_user_session_path, method: :delete, class: "sign-out"
-        - else
-          %li.nav-link= link_to "Sign in", new_user_session_path, class: "sign-in"
-          %li.nav-link= link_to "Sign up", new_user_registration_path, class: "sign-up"
+      - if user_signed_in?
+        = link_to "Signed in as #{current_user}", edit_user_registration_path, class: "profile"
+        = link_to "Sign out", destroy_user_session_path, method: :delete, class: "sign-out"
+      - else
+        = link_to "Sign in", new_user_session_path, class: "sign-in"
+        = link_to "Sign up", new_user_registration_path, class: "sign-up"

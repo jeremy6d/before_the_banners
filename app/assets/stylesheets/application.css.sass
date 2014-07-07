@@ -30,13 +30,15 @@ content
   @include span-columns(8)
   @include shift(2)
 
-  .form-actions
-    @include clearfix
+  form
+    .form-actions
+      @include clearfix
 
-  .form-inputs
-    .input
-      @include span-columns(6)
-      @include omega(2n)    
+  form.two-column 
+    .form-inputs 
+      .input
+        @include span-columns(6)
+        @include omega(2n)    
 
 .hint
   font-weight: 300
@@ -61,7 +63,14 @@ ul.operations
     @include button($light-blue)
     font-weight: 300
 
-header ul#navigation-menu
-  li.nav-link 
-    a.sign-in, a.sign-up, a.sign-out
+header 
+  margin-bottom: 2em
+  .navigation-tools
+    line-height: 60px
+    a
+      margin-left: 1em
+    a.sign-in, a.sign-up
       @include button(pill, $heavy-blue)
+    a.sign-out
+      @include button(pill, $yellow)
+      

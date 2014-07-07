@@ -1,2 +1,2 @@
 $ ->
-  $("ul#flash").slideUp(5000)
+  $("ul#flash").delay(5000).slideUp(500)
