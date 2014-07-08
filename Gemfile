@@ -51,4 +51,5 @@ group :development, :test do
   gem 'byebug'
 end
 
+gem 'rails_12factor', group: :production
 gem 'sdoc', '~> 0.4.0',          group: :doc
