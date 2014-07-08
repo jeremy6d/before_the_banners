@@ -69,5 +69,3 @@ test:
         retry_interval: 0
 production:
   uri: <%= ENV['MONGOHQ_URL'] %>
-  options:
-    safe: true
