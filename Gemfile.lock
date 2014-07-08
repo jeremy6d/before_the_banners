@@ -1,6 +1,6 @@
 GIT
-  remote: git://github.com/ahoward/mongoid-grid_fs.git
-  revision: 4dbecf14dce0a221888e2f8883c6cfce3c481647
+  remote: git://github.com/jeremy6d/mongoid-grid_fs.git
+  revision: 26a81fb3c97b31183c6c2d5ba8c114cb37702ca8
   specs:
     mongoid-grid_fs (2.1.0)
       mime-types (>= 1.0, < 3.0)
@@ -134,7 +134,7 @@ GEM
     inherited_resources (1.5.0)
       has_scope (~> 0.6.0.rc)
       responders (~> 1.0)
-    jbuilder (2.1.1)
+    jbuilder (2.1.2)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     jquery-rails (3.1.1)
@@ -161,7 +161,7 @@ GEM
     mini_magick (3.7.0)
       subexec (~> 0.2.1)
     mini_portile (0.6.0)
-    minitest (5.3.5)
+    minitest (5.4.0)
     minitest-capybara (0.7.1)
       capybara (~> 2.2)
       minitest (~> 5.0)
