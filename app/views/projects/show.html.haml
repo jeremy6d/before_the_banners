@@ -13,5 +13,6 @@
 
 %ul.operations
   %li= link_to 'Add update', new_project_update_path(@project)
-  %li= link_to 'Edit', edit_project_path(@project)
+  - if current_user.authorized? to: Authorization::ADMINISTER, on: @project
+    %li= link_to 'Edit', edit_project_path(@project)
   %li= link_to 'Back', projects_path

@@ -10,4 +10,8 @@ protected
       devise_parameter_sanitizer.for(type).concat [:first_name, :last_name, :company_name]
     end
   end
+
+  def punt! message = nil
+    redirect_to root_path, alert: (message || "You are not authorized to access that resource.")
+  end
 end
