@@ -1,0 +1,14 @@
+%h1 Invite a new user
+= simple_form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post} do |f|
+  = devise_error_messages!
+  .form-inputs
+    = f.input :email
+    - current_user.projects.authorized_to(Authorization::ADMINISTER).each do |project|
+      = f.input :project_ids, as: :checkbox
+    / = simple_fields_for :authorizations do |auth_fields|
+    /   - Authorization.types.each do |auth_type|
+    /     = auth_fields.input :
+  .form-actions
+    = f.button :submit, "Send invitation"
+
+/ Need to figure out right way to invite to a single project with multiple authorizations (don't forget about Companies, either)

@@ -1,5 +1,3 @@
-ruby '2.1.2'
-
 source 'https://rubygems.org'
 
 gem 'rails', '4.1.4'
@@ -20,6 +18,7 @@ gem 'bitters'
 gem 'refills'
 gem 'mongoid', '~> 4.0.0'
 gem 'devise'
+gem 'devise_invitable', '~> 1.3.4'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
@@ -55,3 +54,5 @@ end
 
 gem 'rails_12factor', group: :production
 gem 'sdoc', '~> 0.4.0',          group: :doc
+
+ruby '2.1.2'

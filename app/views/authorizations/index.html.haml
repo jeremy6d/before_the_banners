@@ -1,4 +1,4 @@
-%h1== Authorization for #{@project.title}
+%h1== Authorization settings for #{@project.title}
 = form_tag authorizations_for_project_path, method: :put do
   %table
     %th Member
@@ -6,7 +6,11 @@
       %th= type.humanize
     - @members.each do |member|
       %tr
-        %td= member.full_name
+        %td
+          - if !!member.invited_by_id && !member.invitation_accepted?
+            == #{member.email} (pending)
+          - else
+            = member.full_name
         - Authorization.types.each do |type|
           %td= check_box_tag "members[#{member.id}][]", type, member.authorized?(to: type, on: @project)
   = submit_tag

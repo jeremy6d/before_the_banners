@@ -5,8 +5,10 @@
     %p.navigation-menu-button#js-mobile-menu MENU
     .nav
       %ul#navigation-menu
-        %li.nav-link
-          =link_to "Projects", projects_path
+        - if user_signed_in?
+          %li.nav-link= link_to "My company", edit_company_path
+          %li.nav-link= link_to "My projects", projects_path
+          %li.nav-link= link_to "Invite new users", new_user_invitation_path
     .navigation-tools
       - if user_signed_in?
         = link_to "Signed in as #{current_user}", edit_user_registration_path, class: "profile"

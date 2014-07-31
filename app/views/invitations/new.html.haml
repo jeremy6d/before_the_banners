@@ -1,0 +1,18 @@
+%h1 Invite a new user
+
+= simple_form_for(@user, url: user_invitation_path) do |invite_form|
+  .form-inputs
+    = invite_form.input :email, hint: "Emails from your company domain will be added to your company automatically"
+  %table.authorizations
+    %th Add to project
+    - Authorization.types.each do |type|
+      %th= type.humanize
+    - current_user.projects.authorized_to(Authorization::ADMINISTER).each do |project|
+      %tr
+        %td
+          %label
+            = check_box_tag("user[project_ids][]", project.to_param, false)
+            = project.title
+        - Authorization.types.each do |type|
+          %td= check_box_tag "project_auth[#{project.to_param}][]", type, false
+  .form-actions= invite_form.button :submit, "Send invitation"

@@ -1,4 +1,5 @@
 = simple_form_for @project, html: { class: "two-column" } do |project_form|
+  = project_form.error :base
   .form-inputs
     = project_form.input :title, label: "Project title"
     = project_form.input :type, label: "Project type"
@@ -11,3 +12,4 @@
     = project_form.input :ends_at, as: :datepicker, label: "End date"
   .form-actions
     = project_form.button :submit, "Save"
+    = link_to "Authorization settings", authorizations_for_project_path(@project), class: "btn" unless @project.new_record?

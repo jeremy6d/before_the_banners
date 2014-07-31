@@ -1,0 +1,16 @@
+%h1 Welcome to Before the Banners
+%p We just need to gather a bit more information about you.
+
+= simple_form_for(@user, url: invitation_path(@user), html: { method: :put }) do |invite_form|
+  = invite_form.error_notification
+  .form-inputs
+    = invite_form.input :invitation_token, as: :hidden
+    = invite_form.input :first_name, required: true, autofocus: true
+    = invite_form.input :last_name, required: true
+    - if @company.new_record?
+      = invite_form.simple_fields_for :company, @company do |company_fields|
+        = company_fields.input :title, label: "Company name"
+    = invite_form.input :password, required: true
+    = invite_form.input :password_confirmation, required: true
+  .form-actions
+    = invite_form.button :submit, "Accept invitation"

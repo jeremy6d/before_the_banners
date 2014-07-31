@@ -1,0 +1,10 @@
+%h1 Edit my company
+
+= simple_form_for @company do |co_form|
+  = co_form.error_notification
+  .form-inputs
+    = co_form.input :title
+    = co_form.input :email_domain
+  .form-actions
+    = co_form.button :submit, "Update"
+    = link_to "Invite fellow employees of #{@company.title}", new_user_invitation_path

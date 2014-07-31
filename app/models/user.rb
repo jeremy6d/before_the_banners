@@ -4,7 +4,7 @@ class User
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, 
          :validatable #,:confirmable
 
@@ -32,20 +32,35 @@ class User
   field :confirmation_sent_at, type: Time
   # field :unconfirmed_email,    type: String # Only if using reconfirmable
 
-  ## Lockable
-  # field :failed_attempts, type: Integer, default: 0 # Only if lock strategy is :failed_attempts
-  # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
-  # field :locked_at,       type: Time
+  ## Invitable
+  field :invitation_token, type: String
+  field :invitation_created_at, type: Time
+  field :invitation_sent_at, type: Time
+  field :invitation_accepted_at, type: Time
+  field :invitation_limit, type: Integer
+
   field :first_name,    type: String
   field :last_name,     type: String
-  field :company_name,  type: String
-
+  
   embeds_many :authorizations, inverse_of: :grantee, cascade_callbacks: true
-  belongs_to :employer, class_name: "User", inverse_of: :employee
+  belongs_to :company
+  accepts_nested_attributes_for :company
   has_and_belongs_to_many :projects, inverse_of: :member, 
-                                     after_remove: :deauthorize_for
+                                     after_remove: :deauthorize_for do
+    def authorized_to(auth_name)
+      project_ids = base.authorizations.where(name: auth_name).pluck(:project_id)
+      where(:_id.in => project_ids)
+    end
+  end
 
-  validates_presence_of :first_name, :last_name
+  validates_presence_of :first_name, :last_name, :company
+
+  index( { invitation_token: 1 },           { background: true} )
+  index( { invitation_by_id: 1 },           { background: true} )
+  index( { "authorizations.project" => 1 })
+  index( { "authorizations.name"    => 1 })
+  index( { "authorizations.project" => 1, 
+           "authorizations.name" => 1 },    { unique: true })
 
   def to_s
     [ first_name, last_name ].join(" ")
@@ -53,12 +68,27 @@ class User
 
   alias_method :full_name, :to_s
 
+  def email_domain
+    read_attribute(:email).split("@").last
+  end
+
   def authorized? to: raise("Must provide name of authorization"), on: raise("Must provide project")
     authorizations.where(name: to, project_id: on.id).exists?
   end
 
   def authorize! to: raise("Must provide name of authorization"), on: raise("Must provide project"), by: nil
     authorizations.create name: to, project_id: on.id, grantor_name: by.try(:full_name)
+    save
+  end
+
+  def deauthorize! to: nil, on: nil
+    query = {}.tap do |q|
+      q[:name] = to if to
+      q[:project_id] = on.id if on
+    end
+
+    authorizations.delete_all query
+
     save
   end
 
