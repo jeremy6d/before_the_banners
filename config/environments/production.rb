@@ -76,4 +76,5 @@ Rails.application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+  default_url_options[:host] = "beforethebanners.herokuapp.com"
 end

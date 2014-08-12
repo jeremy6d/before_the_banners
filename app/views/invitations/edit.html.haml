@@ -1,5 +1,5 @@
 %h1 Welcome to Before the Banners
-%p We just need to gather a bit more information about you.
+%p To create your account, we just need to gather a few more details.
 
 = simple_form_for(@user, url: invitation_path(@user), html: { method: :put }) do |invite_form|
   = invite_form.error_notification
