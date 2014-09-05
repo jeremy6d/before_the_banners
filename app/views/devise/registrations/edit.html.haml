@@ -12,6 +12,11 @@
     = f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false
     = f.input :password_confirmation, required: false
     = f.input :current_password, hint: "we need your current password to confirm your changes", required: true
+  #attachment-area
+    %h3 Avatar
+    = image_tag(resource.avatar.thumb.url) if resource.avatar?
+    = f.input :avatar, as: :file, label: false
+    = f.hidden_field :avatar_cache
   .form-actions
     = f.button :submit, "Update"
 / %h3 Cancel my account

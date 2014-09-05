@@ -41,6 +41,8 @@ class User
 
   field :first_name,    type: String
   field :last_name,     type: String
+
+  mount_uploader :avatar, AvatarUploader
   
   embeds_many :authorizations, inverse_of: :grantee, cascade_callbacks: true
   belongs_to :company

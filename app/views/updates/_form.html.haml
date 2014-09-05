@@ -6,7 +6,7 @@
     #attachment-area
       %h3 Attachment
       = image_tag(@update.attachment.thumb.url) if @update.attachment?
-      = f.input :attachment, as: :file 
+      = f.input :attachment, as: :file, label: false
       = f.hidden_field :attachment_cache
   .form-actions
     = f.submit 'Save'

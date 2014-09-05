@@ -14,7 +14,7 @@
   #attachment-area
     %h3 Logo
     = image_tag(@project.logo.thumb.url) if @project.logo?
-    = project_form.input :logo, as: :file, label: nil
+    = project_form.input :logo, as: :file, label: false
     = project_form.hidden_field :logo_cache
   .form-actions
     = project_form.button :submit, "Save"

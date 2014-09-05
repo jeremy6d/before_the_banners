@@ -12,6 +12,8 @@ protected
                                                    :email,
                                                    :password,
                                                    :password_confirmation,
+                                                   :avatar,
+                                                   :avatar_cache,
                                                    company_attributes: [ :title ]]
     end
 
