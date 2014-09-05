@@ -54,7 +54,7 @@ class User
   end
 
   validates_presence_of :first_name, :last_name, :company
-  validate :no_duplicate_company, if: Proc.new { |u| u.company.new_record? }
+  validate :no_duplicate_company, if: Proc.new { |u| u.company.try :new_record? }
 
   index( { invitation_token: 1 },           { background: true} )
   index( { invitation_by_id: 1 },           { background: true} )
