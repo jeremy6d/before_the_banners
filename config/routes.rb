@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get "/media/*path" => "grid_fs#serve"
+  get "/widgets/:project_id" => "widgets#basic"
 
   devise_for :users, controllers: { registrations: "registrations", invitations: "invitations" }
   # devise_scope(:users) do
