@@ -2,19 +2,20 @@
   = project_form.error :base
   .form-inputs
     = project_form.input :title, label: "Project title"
+    = project_form.input :address
     = project_form.input :type, label: "Project type"
     = project_form.input :value, label: "Project value"
-    = project_form.input :owner_name, label: "Owner"
-    = project_form.input :architect_name, label: "Architect"
-    = project_form.input :builder_name, label: "Builder"
+    = project_form.association :owner, label_method: :full_name, collection: @project.members
+    = project_form.association :architect, label_method: :full_name, collection: @project.members
+    = project_form.association :builder, label_method: :full_name, collection: @project.members
     = project_form.input :description, as: :text, label: "Project description"
     = project_form.input :starts_at, as: :datepicker, label: "Start date"
     = project_form.input :ends_at, as: :datepicker, label: "End date"
-    #attachment-area
-      %h3 Logo
-      = image_tag(@project.logo.thumb.url) if @project.logo?
-      = project_form.input :logo, as: :file, label: nil
-      = project_form.hidden_field :logo_cache
+  #attachment-area
+    %h3 Logo
+    = image_tag(@project.logo.thumb.url) if @project.logo?
+    = project_form.input :logo, as: :file, label: nil
+    = project_form.hidden_field :logo_cache
   .form-actions
     = project_form.button :submit, "Save"
     = link_to "Authorization settings", authorizations_for_project_path(@project), class: "btn" unless @project.new_record?

@@ -2,14 +2,35 @@
   .title= image_tag @project.logo.url(:formatted), title: @project.title.titleize
   .completion-date== Estimated completion date: #{@project.ends_at.to_s(:month_and_year)}
 %p.description= @project.description
+%dl.details
+  - if @project.address
+    %dt Location
+    %dd= @project.address
+  - if @project.value
+    %dt Contract value
+    %dd= number_to_currency @project.value
+  - unless @project.type.blank?
+    %dt Project type
+    %dd= @project.type
+  - unless @project.owner_title.blank?
+    %dt Owner
+    %dd= @project.owner_title
+  - unless @project.architect_title.blank?
+    %dt Architect
+    %dd= @project.architect_title
+  - unless @project.builder_title.blank?
+    %dt Builder
+    %dd= @project.builder_title
+
 %ul.updates
-  - @project.updates.each do |update|
+  - @project.updates.desc(:created_at).each do |update|
     %li
+      .thumbnail= image_tag update.attachment.url(:thumb)
       %h3= link_to update.title.titleize, [@project, update]
       %p
         = truncate(update.body, length: 200) do
           = link_to "(More)", [@project, update]
-
+      .tagline== Posted #{update.created_at.to_s(:verbose)} by #{update.author.full_name}
 
 %ul.operations
   %li= link_to 'Add update', new_project_update_path(@project)

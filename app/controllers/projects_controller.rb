@@ -26,7 +26,10 @@ protected
                                     :starts_at,
                                     :ends_at,
                                     :logo,
-                                    :logo_cache
+                                    :logo_cache,
+                                    :owner_id,
+                                    :architect_id,
+                                    :builder_id
   end
 
   def collection
