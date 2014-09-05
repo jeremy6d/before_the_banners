@@ -10,7 +10,7 @@ class Company
   validates_presence_of   :title, :email_domain
   validates_uniqueness_of :title, :email_domain
 
-  before_validation :set_email_domain, if: Proc.new { |c| c.email_domain.blank? }
+  before_validation :set_email_domain, if: Proc.new { |c| c.email_domain.blank? && employees.exists? }
 
 protected
   def set_email_domain

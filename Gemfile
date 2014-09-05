@@ -49,7 +49,7 @@ end
 group :development, :test do
   gem 'quiet_assets'
   gem 'letter_opener'
-  gem 'byebug'
+  gem 'pry-rails'
 end
 
 gem 'rails_12factor', group: :production

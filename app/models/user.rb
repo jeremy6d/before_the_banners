@@ -54,6 +54,7 @@ class User
   end
 
   validates_presence_of :first_name, :last_name, :company
+  validate :no_duplicate_company, if: Proc.new { |u| u.company.new_record? }
 
   index( { invitation_token: 1 },           { background: true} )
   index( { invitation_by_id: 1 },           { background: true} )
@@ -110,4 +111,11 @@ class User
 
     elem_match authorizations: query
   }
+
+protected
+  def no_duplicate_company
+    if Company.where(email_domain: company.email_domain).exists?
+      errors[:base] << "This company already exists; request an invitation from the account manager."
+    end
+  end
 end

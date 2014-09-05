@@ -15,7 +15,7 @@ class InvitationsController < Devise::InvitationsController
       @user = User.invite! attrs, current_user
     end
 
-    redirect_to root_path, notice: "You have added #{@user.email} to this project."
+    redirect_to root_path, notice: "Your invitation was sent."
   end
 
   def edit
