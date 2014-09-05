@@ -10,6 +10,11 @@
     = project_form.input :description, as: :text, label: "Project description"
     = project_form.input :starts_at, as: :datepicker, label: "Start date"
     = project_form.input :ends_at, as: :datepicker, label: "End date"
+    #attachment-area
+      %h3 Logo
+      = image_tag(@project.logo.thumb.url) if @project.logo?
+      = project_form.input :logo, as: :file, label: nil
+      = project_form.hidden_field :logo_cache
   .form-actions
     = project_form.button :submit, "Save"
     = link_to "Authorization settings", authorizations_for_project_path(@project), class: "btn" unless @project.new_record?

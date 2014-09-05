@@ -1,7 +1,6 @@
 require_relative './feature_test_helper'
 
-feature "Project photo uploads" do
-focus
+feature "Project management" do
   scenario "Upload photo while creating project" do
     user = sign_up_user!
     click_on "My projects"
@@ -15,9 +14,14 @@ focus
     fill_in "Project description", with: attrs[:description]
     pick_date "Start date", attrs[:starts_at]
     pick_date "End date", attrs[:ends_at]
-screenshot!
-    attach_file "Project logo", File.join(Rails.root, "test", "fixtures", "logo.png")
+    attach_file "project_logo", File.join(Rails.root, "test", "fixtures", "logo.png")
+    click_on "Save"
 
+    flunk("Project not created for some reason.") if Project.last.nil?
+
+    must_be_on project_path(Project.last)
+    the_flash_notice_must_be "Project created."
+    find('.title img')['src'].split("/").last.must_equal "formatted_logo.png"
   end
 
   scenario "Upload photo to existing project"

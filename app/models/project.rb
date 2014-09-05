@@ -12,6 +12,8 @@ class Project
   field :starts_at,       type: Date
   field :ends_at,         type: Date
 
+  mount_uploader :logo, LogoUploader
+
   has_many   :updates
   belongs_to :creator, class_name: "User"
   has_and_belongs_to_many :members, class_name: "User"

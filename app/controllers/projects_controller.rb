@@ -24,7 +24,9 @@ protected
                                     :builder_name,
                                     :description,
                                     :starts_at,
-                                    :ends_at
+                                    :ends_at,
+                                    :logo,
+                                    :logo_cache
   end
 
   def collection
