@@ -3,4 +3,5 @@ Fabricator :project do
   starts_at { Time.now + 1.week }
   ends_at { Time.now + 1.year }
   creator { Fabricate :user }
+  value { 10000000 }
 end

@@ -23,8 +23,6 @@ class Project
   has_and_belongs_to_many :members, class_name: "User"
 
   validates_presence_of :title,
-                        :starts_at,
-                        :ends_at,
                         :creator_id
   validates_numericality_of :value
   validate :date_range_valid
@@ -36,7 +34,14 @@ class Project
 
 protected
   def date_range_valid
-    errors[:base] << "Starting and/or ending dates are invalid" unless (starts_at < ends_at)
+    case 
+    when starts_at.blank?
+      errors[:starts_at] << "must be specified."
+    when ends_at.blank?
+      errors[:ends_at] << "must be specified."
+    when (starts_at >= ends_at)
+      errors[:base] << "Starting and/or ending dates are invalid"
+    end 
   end
 
   def admins_are_members
