@@ -1,5 +1,6 @@
 %h2
-  .title= image_tag @project.logo.url(:main), title: @project.title.titleize
+  .logo= image_tag @project.logo.url(:main), title: "#{@project.title.titleize} logo"
+  .title= @project.title.titleize
   .completion-date== Estimated completion date: #{@project.ends_at.to_s(:month_and_year)}
 %p.description= @project.description
 %dl.details
