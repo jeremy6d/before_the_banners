@@ -17,9 +17,9 @@ class Project
 
   has_many   :updates
   belongs_to :creator, class_name: "User"
-  belongs_to :owner, class_name: "User"
-  belongs_to :architect, class_name: "User"
-  belongs_to :builder, class_name: "User"
+  # belongs_to :owner, class_name: "Company"
+  # belongs_to :architect, class_name: "Company"
+  # belongs_to :builder, class_name: "Company"
   has_and_belongs_to_many :members, class_name: "User"
 
   validates_presence_of :title,
@@ -29,8 +29,12 @@ class Project
   validate :admins_are_members, on: :update
 
   before_create :add_creator_as_member
-  before_save :cache_titles!
+  # before_save :cache_titles!
   after_create  :authorize_creator_to_administer
+
+  def companies
+    @companies ||= Company.where(:employee_ids.in => member_ids).to_a
+  end
 
 protected
   def date_range_valid
