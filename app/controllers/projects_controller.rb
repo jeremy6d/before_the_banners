@@ -27,9 +27,9 @@ protected
                                     :ends_at,
                                     :logo,
                                     :logo_cache,
-                                    :owner_id,
-                                    :architect_id,
-                                    :builder_id
+                                    :owner_title,
+                                    :architect_title,
+                                    :builder_title
   end
 
   def collection
