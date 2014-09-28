@@ -81,9 +81,10 @@ class Capybara::Rails::TestCase
   end
 
   def sign_up_user! in_attrs = {}
+    sign_out!
     user_attrs = Fabricate.attributes_for(:user).merge in_attrs
-
     visit root_path
+
     within("header"){ click_on "Sign up" }
     within("form") do
       fill_in "Company email address", with: user_attrs[:email]
@@ -96,11 +97,18 @@ class Capybara::Rails::TestCase
     end
 
     the_flash_notice_must_be "Welcome! You have signed up successfully."
+
+    return User.last
+  end
+
+  def sign_out!
+    click_on "Sign out" if page.has_content?("Sign out")
   end
 
   def sign_in_as! usr
+    sign_out!
     visit new_user_session_path
-    
+
     within("form#new_user") do
       fill_in "Email", with: usr.email
       fill_in "Password", with: PASSWORD
@@ -133,5 +141,26 @@ class Capybara::Rails::TestCase
 
       find("a", text: /^#{sought_date.day}$/).click
     end
+  end
+
+  def create_project! in_attrs = {}
+    click_on "My projects"
+    click_on "Create new project"
+
+    attrs = Fabricate.attributes_for(:project).merge in_attrs
+
+    fill_in "Project title", with: attrs[:title]
+    fill_in "Project value", with: attrs[:value]
+    fill_in "Project type", with: attrs[:type]
+    fill_in "Project description", with: attrs[:description]
+    fill_in "Owner", with: attrs[:owner_title]
+    fill_in "Architect", with: attrs[:architect_title]
+    fill_in "Builder", with: attrs[:builder_title]
+    pick_date "Start date", attrs[:starts_at]
+    pick_date "End date", attrs[:ends_at]
+    attach_file "project_logo", File.join(Rails.root, "test", "fixtures", "logo.png")
+    click_on "Save"
+
+    Project.last
   end
 end

@@ -23,6 +23,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'mongoid-grid_fs', github: 'jeremy6d/mongoid-grid_fs'
+gem 'mongoid_slug'
 
 group :test do
   gem "minitest"
@@ -49,7 +50,7 @@ end
 group :development, :test do
   gem 'quiet_assets'
   gem 'letter_opener'
-  gem 'pry-rails'
+  gem 'byebug'
 end
 
 gem 'rails_12factor', group: :production

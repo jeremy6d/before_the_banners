@@ -3,6 +3,7 @@
   .form-inputs
     = f.input :title
     = f.input :body, as: :text
+    = f.association :workspace, as: :select, collection: @project.workspaces
     #attachment-area
       %h3 Attachment
       = image_tag(@update.attachment.thumb.url) if @update.attachment?

@@ -18,4 +18,6 @@
     = project_form.hidden_field :logo_cache
   .form-actions
     = project_form.button :submit, "Save"
-    = link_to "Authorization settings", authorizations_for_project_path(@project), class: "btn" unless @project.new_record?
+    - unless @project.new_record?
+      = link_to "Authorization settings", authorizations_for_project_path(@project), class: "btn" 
+      = link_to "Manage workspaces", project_workspaces_path(@project), class: "btn" 

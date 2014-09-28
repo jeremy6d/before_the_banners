@@ -17,6 +17,7 @@ protected
     params.require(:update).permit :title,
                                    :body,
                                    :attachment,
-                                   :attachment_cache
+                                   :attachment_cache,
+                                   :workspace_id
   end
 end

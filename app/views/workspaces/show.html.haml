@@ -1,0 +1,12 @@
+%h1= Workspace #{@workspace.title} (#{@project.title})
+%p.description= @workspace.description
+- unless @workspace.updates.empty?
+  %h2 Updates
+  %ul.updates
+    - @workspace.updates.each do |update|
+      %li= link_to update.title, project_update_path(@project, update)
+
+%ul.operations
+  %li= link_to 'Edit', edit_project_workspace_path(@project, @workspace)
+  %li= link_to 'Destroy', [@project, @workspace], method: :delete, prompt: "Are you sure?"
+  %li= link_to 'Back', project_workspaces_path(@project)

@@ -16,6 +16,7 @@ class Project
   mount_uploader :logo, LogoUploader
 
   has_many   :updates
+  has_many   :workspaces
   belongs_to :creator, class_name: "User"
   # belongs_to :owner, class_name: "Company"
   # belongs_to :architect, class_name: "Company"

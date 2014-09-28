@@ -1,0 +1,7 @@
+= simple_form_for [@project, @workspace] do |workspace_form|
+  = workspace_form.error_notification
+  .form-inputs
+    = workspace_form.input :title
+    = workspace_form.input :description, as: :text
+  .form-actions
+    = workspace_form.submit 'Save'

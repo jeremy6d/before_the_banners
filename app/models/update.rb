@@ -13,6 +13,7 @@ class Update
   belongs_to :project
   belongs_to :author,   class_name: "User"
   belongs_to :approver, class_name: "User"
+  belongs_to :workspace
 
   validates_presence_of :title
 end

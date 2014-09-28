@@ -1,0 +1,9 @@
+%h1 Editing workspace
+
+= render 'form'
+
+%ul.operations
+  %li= link_to 'View', project_workspace_path(@project, @workspace)
+  %li= link_to 'Destroy', [@project, @workspace], method: :delete, prompt: "Are you sure?"
+  %li= link_to 'Back', project_workspaces_path(@project)
+

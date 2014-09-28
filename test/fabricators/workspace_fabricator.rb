@@ -1,0 +1,2 @@
+Fabricator(:workspace) do
+end

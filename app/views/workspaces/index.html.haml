@@ -1,0 +1,7 @@
+%h1== #{@project.title} workspaces
+
+%ol
+  - @workspaces.each do |workspace|
+    %li= link_to workspace.title, [@project, workspace]
+
+= link_to 'New Workspace', new_project_workspace_path(@project), class: 'btn'

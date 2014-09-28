@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :workspaces
+
   get "/media/*path" => "grid_fs#serve"
   get "/widgets/:project_id" => "widgets#basic"
 
@@ -9,6 +11,7 @@ Rails.application.routes.draw do
   # end
   resource :company
   resources :projects do
+    resources :workspaces
     resources :updates, except: :index
     member do
       get "authorizations" => "authorizations#index", as: :authorizations_for
