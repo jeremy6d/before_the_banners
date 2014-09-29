@@ -7,6 +7,7 @@
     - @members.each do |member|
       %tr
         %td
+          = image_tag member.avatar.url(:thumb)
           - if !!member.invited_by_id && !member.invitation_accepted?
             == #{member.email} (pending)
           - else
