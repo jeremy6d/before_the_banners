@@ -110,6 +110,8 @@ GEM
     faker (1.4.3)
       i18n (~> 0.5)
     ffi (1.9.3)
+    font-awesome-rails (4.2.0.0)
+      railties (>= 3.2, < 5.0)
     formatador (0.2.5)
     guard (2.6.1)
       formatador (>= 0.2.4)
@@ -322,6 +324,7 @@ DEPENDENCIES
   devise_invitable (~> 1.3.4)
   fabrication
   faker
+  font-awesome-rails
   guard-bundler
   guard-minitest
   haml

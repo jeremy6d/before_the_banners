@@ -1,3 +1,11 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$ ->
+  $('#workspaces').sortable
+    update: ->
+      $.ajax $('li#back-link a').attr('href') + "/workspaces/sort",
+        type: 'PUT'
+        handle: '.handle'
+        dataType: 'script'
+        data: $('#workspaces').sortable('serialize')
+        complete: ->
+          $('#workspaces').effect('highlight')
+

@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   # end
   resource :company
   resources :projects do
-    resources :workspaces
+    resources :workspaces do
+      collection do
+        put 'sort' => "workspaces#sort"
+      end
+    end
     resources :updates, except: :index
     member do
       get "authorizations" => "authorizations#index", as: :authorizations_for

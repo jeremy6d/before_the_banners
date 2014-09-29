@@ -1,7 +1,12 @@
 %h1== #{@project.title} workspaces
 
-%ol
+%ol#workspaces
   - @workspaces.each do |workspace|
-    %li= link_to workspace.title, [@project, workspace]
+    %li{ id: "workspace-#{workspace.to_param}" }
+      = link_to workspace.title, [@project, workspace]
+      .handle
+        %i.fa.fa-sort
 
-= link_to 'New Workspace', new_project_workspace_path(@project), class: 'btn'
+%ul.operations
+  %li#new-link= link_to 'New workspace', new_project_workspace_path(@project)
+  %li#back-link= link_to 'Back to project', @project
