@@ -22,7 +22,7 @@
   - unless @project.builder_title.blank?
     %dt Builder
     %dd= @project.builder_title
-
+%h3 Updates
 %ul.updates
   - @project.updates.desc(:created_at).each do |update|
     %li
