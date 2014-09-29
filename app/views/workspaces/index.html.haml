@@ -2,7 +2,7 @@
 
 %ol#workspaces
   - @workspaces.each do |workspace|
-    %li{ id: "workspace-#{workspace.to_param}" }
+    %li{ id: "workspace-#{workspace.id}" }
       = link_to workspace.title, [@project, workspace]
       .handle
         %i.fa.fa-sort
