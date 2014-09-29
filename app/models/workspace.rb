@@ -13,4 +13,6 @@ class Workspace
 
   slug :title, scope: :project, 
                history: true
+
+  default_scope ->{ asc(:sequence) }
 end
