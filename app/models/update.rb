@@ -2,7 +2,6 @@ class Update
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :title,           type: String
   field :body,            type: String
   field :approval_status, type: String
   field :edits,           type: Hash, default: {}
@@ -15,5 +14,9 @@ class Update
   belongs_to :approver, class_name: "User"
   belongs_to :workspace
 
-  validates_presence_of :title
+  validates_presence_of :body, :author_id
+
+  def workspace_title
+    workspace.try :title
+  end
 end

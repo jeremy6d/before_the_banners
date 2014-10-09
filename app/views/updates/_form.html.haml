@@ -1,7 +1,6 @@
 = simple_form_for [@project, @update] do |f|
   = f.error_notification
   .form-inputs
-    = f.input :title
     = f.input :body, as: :text
     = f.association :workspace, as: :select, collection: @project.workspaces
     #attachment-area

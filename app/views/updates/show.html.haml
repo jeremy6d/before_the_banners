@@ -1,8 +1,6 @@
 - if @update.attachment?
   =image_tag @update.attachment.thumb.url
-%h2.title= @update.title.titleize
-- if @update.workspace
-  %span.workspace== Workspace #{@update.workspace.title}
+%h2.workspace= @update.workspace_title
 %p.description= @update.body
 
 %ul.operations

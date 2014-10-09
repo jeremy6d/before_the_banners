@@ -8,4 +8,4 @@
   #btb-description= truncate @project.description, length: 150
   %ul#btb-updates
     - @project.updates.each do |update|
-      %li= image_tag update.attachment.url(:thumb), title: update.title
+      %li= image_tag update.attachment.url(:thumb), title: update.workspace_title

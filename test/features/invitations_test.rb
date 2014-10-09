@@ -1,6 +1,6 @@
 require_relative './feature_test_helper'
 
-feature "Invite new users" do
+feature "Invitations" do
   let(:inviter) { inviter = Fabricate :user }
 
   scenario "Inviting new co-workers" do

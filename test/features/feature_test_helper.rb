@@ -160,7 +160,7 @@ class Capybara::Rails::TestCase
     pick_date "End date", attrs[:ends_at]
     attach_file "project_logo", File.join(Rails.root, "test", "fixtures", "logo.png")
     click_on "Save"
-
-    Project.last
+    sleep 1
+    return Project.last
   end
 end

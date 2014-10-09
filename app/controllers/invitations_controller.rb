@@ -8,6 +8,7 @@ class InvitationsController < Devise::InvitationsController
       @user.project_ids += params[:user][:project_ids]
       @user.authorizations += auth_records
       @user.save
+      # need to send message about this
     else
       attrs = invite_params.merge! company: get_company,
                                    project_ids: params[:user][:project_ids],

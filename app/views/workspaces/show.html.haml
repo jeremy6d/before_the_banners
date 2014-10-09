@@ -1,10 +1,12 @@
-%h1= Workspace #{@workspace.title} (#{@project.title})
+%h1== #{@workspace.title} workspace for #{@project.title}
 %p.description= @workspace.description
+%h2 Updates
 - unless @workspace.updates.empty?
-  %h2 Updates
   %ul.updates
     - @workspace.updates.each do |update|
-      %li= link_to update.title, project_update_path(@project, update)
+      %li= link_to truncate(update.body, length: 250), project_update_path(@project, update)
+- else
+  %p.no-content No updates for this workspace.
 
 %ul.operations
   %li= link_to 'Edit', edit_project_workspace_path(@project, @workspace)

@@ -22,19 +22,18 @@
   - unless @project.builder_title.blank?
     %dt Builder
     %dd= @project.builder_title
-%h3 Updates
-%ul.updates
-  - @project.updates.desc(:created_at).each do |update|
-    %li
-      .thumbnail= image_tag update.attachment.url(:thumb)
-      %h3= link_to update.title.titleize, [@project, update]
-      %p
-        = truncate(update.body, length: 200) do
-          = link_to "(More)", [@project, update]
-      .tagline== Posted #{update.created_at.to_s(:verbose)} by #{update.author.try :full_name}
-
 %ul.operations
   %li= link_to 'Add update', new_project_update_path(@project)
   - if current_user.authorized? to: Authorization::ADMINISTER, on: @project
     %li= link_to 'Edit', edit_project_path(@project)
   %li= link_to 'Back', projects_path
+%h3 Updates
+%ul.updates
+  - @project.updates.desc(:created_at).each do |update|
+    %li
+      .thumbnail= image_tag update.attachment.url(:thumb)
+      %h3.workspace= link_to update.workspace_title, [@project, update]
+      %p
+        = truncate(update.body, length: 200) do
+          = link_to "(More)", [@project, update]
+      .tagline== Posted #{update.created_at.to_s(:verbose)} by #{update.author.try :full_name}
