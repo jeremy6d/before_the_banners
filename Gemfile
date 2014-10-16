@@ -46,15 +46,16 @@ group :development do
   gem 'guard-bundler'
   gem 'spring'
   gem 'capistrano-rails'
+  gem 'pry-rails'
 end
 
 group :development, :test do
   gem 'quiet_assets'
   gem 'letter_opener'
-  gem 'byebug'
+  gem 'pry-byebug'
 end
 
 gem 'rails_12factor', group: :production
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
-ruby '2.1.2'
+ruby '2.1.3'

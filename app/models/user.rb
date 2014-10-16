@@ -45,6 +45,13 @@ class User
   mount_uploader :avatar, AvatarUploader
   
   embeds_many :authorizations, inverse_of: :grantee, cascade_callbacks: true
+  has_many :notifications, inverse_of: :recipient do
+    def current
+      where(dismissed: false).tap do |scope|
+        scope.set(viewed: true)
+      end
+    end
+  end
   belongs_to :company
   accepts_nested_attributes_for :company
   has_and_belongs_to_many :projects, inverse_of: :member, 
@@ -113,6 +120,12 @@ class User
 
     elem_match authorizations: query
   }
+
+  def notify! text
+    notifications.create(text: text).tap do |n|
+      NotificationMailer.email(n).deliver
+    end
+  end
 
 protected
   def no_duplicate_company

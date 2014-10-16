@@ -2,8 +2,7 @@ require_relative './feature_test_helper'
 
 feature "Manage workspaces" do
   before do
-    @user = sign_up_user!
-    sign_in_as! @user
+    @user = sign_up!
     @project = create_project!
     page.click_on "Edit"
     page.click_on "Manage workspaces"

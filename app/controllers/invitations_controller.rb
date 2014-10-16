@@ -5,10 +5,14 @@ class InvitationsController < Devise::InvitationsController
 
   def create
     if @user = User.where(email: params[:user][:email]).first
+      project_names = Project.only(:title).
+                              find(params[:user][:project_ids] - @user.project_ids).
+                              map(&:title).
+                              to_sentence
       @user.project_ids += params[:user][:project_ids]
       @user.authorizations += auth_records
       @user.save
-      # need to send message about this
+      @user.notify! "You have been invited to #{project_names}."
     else
       attrs = invite_params.merge! company: get_company,
                                    project_ids: params[:user][:project_ids],

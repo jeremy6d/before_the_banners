@@ -1,9 +1,12 @@
 require_relative './feature_test_helper'
 
 feature "Project management" do
-  scenario "Upload photo while creating project" do
-    user = sign_up_user!
+  setup do
+    sign_up!
     click_on "My projects"
+  end
+
+  scenario "Upload photo while creating project" do
     click_on "Create new project"
 
     attrs = Fabricate.attributes_for :project

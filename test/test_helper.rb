@@ -29,6 +29,21 @@ class MiniTest::Spec
   after :each do
     DatabaseCleaner.clean
   end
+
+  def must_receive_email opts_to_check = {}
+    ActionMailer::Base.deliveries.
+                       select { |i|
+                        opts_to_check.all? do |key, value|
+                          actual = i.send(key)
+                          case actual.class.to_s
+                          when "Mail::AddressContainer"
+                            actual.include? value
+                          else
+                            actual == value
+                          end 
+                        end
+                      }.wont_be :empty?
+  end
 end
 
 PASSWORD = "testest123"

@@ -6,6 +6,7 @@ class Capybara::Rails::TestCase
   DatabaseCleaner.strategy = :truncation
 
   def setup
+    %x[bundle exec rake assets:precompile]
     DatabaseCleaner.start
     super
   end
@@ -17,6 +18,21 @@ class Capybara::Rails::TestCase
   
   def saop
     save_and_open_page
+  end
+
+  def must_receive_email opts_to_check = {}
+    ActionMailer::Base.deliveries.
+                       select { |i|
+                        opts_to_check.all? do |key, value|
+                          actual = i.send(key)
+                          case actual.class.to_s
+                          when "Mail::AddressContainer"
+                            actual.include? value
+                          else
+                            actual == value
+                          end 
+                        end
+                      }.wont_be :empty?
   end
 
   def screenshot!
@@ -31,13 +47,7 @@ class Capybara::Rails::TestCase
 
   %w(alert notice).each do |type|
     define_method "the_flash_#{type}_must_be" do |msg|
-      within("ul#flash li.#{type}") do
-        page.must_have_content msg
-      end
-
-      page.all("button.ui-dialog-titlebar-close").first.tap do |e|
-        e.click if e # close flash dialog
-      end
+      assert find("ul#flash li.#{type}").has_content?(msg)
     end
   end
 
@@ -80,42 +90,8 @@ class Capybara::Rails::TestCase
     end
   end
 
-  def sign_up_user! in_attrs = {}
-    sign_out!
-    user_attrs = Fabricate.attributes_for(:user).merge in_attrs
-    visit root_path
-
-    within("header"){ click_on "Sign up" }
-    within("form") do
-      fill_in "Company email address", with: user_attrs[:email]
-      fill_in "First name", with: user_attrs[:first_name]
-      fill_in "Last name", with: user_attrs[:last_name]
-      fill_in "user_password", with: PASSWORD
-      fill_in "user_password_confirmation", with: PASSWORD
-      fill_in "Company name", with: user_attrs[:company_attributes][:title]
-      click_on "Sign up"
-    end
-
-    the_flash_notice_must_be "Welcome! You have signed up successfully."
-
-    return User.last
-  end
-
   def sign_out!
     click_on "Sign out" if page.has_content?("Sign out")
-  end
-
-  def sign_in_as! usr
-    sign_out!
-    visit new_user_session_path
-
-    within("form#new_user") do
-      fill_in "Email", with: usr.email
-      fill_in "Password", with: PASSWORD
-      click_on "Sign in"
-    end
-
-    the_flash_notice_must_be "Signed in successfully."
   end
 
   def pick_date locator, sought_date
@@ -162,5 +138,80 @@ class Capybara::Rails::TestCase
     click_on "Save"
     sleep 1
     return Project.last
+  end
+
+  def sign_up! attrs = {}, &block
+    sign_out!
+    user_attrs = Fabricate.attributes_for(:user).merge attrs
+    visit "/"
+    within("header"){ click_on "Sign up" }
+    within("form") do
+      fill_in "Company email address", with: user_attrs[:email]
+      fill_in "First name", with: user_attrs[:first_name]
+      fill_in "Last name", with: user_attrs[:last_name]
+      fill_in "user_password", with: PASSWORD
+      fill_in "user_password_confirmation", with: PASSWORD
+      fill_in "Company name", with: user_attrs[:company_attributes][:title]
+
+      click_on "Sign up"
+    end
+
+    the_flash_notice_must_be "Welcome! You have signed up successfully."
+
+    if block_given?
+      yield
+      sign_out!
+    end
+
+    return User.last
+  end
+
+  def sign_in_as! input, &block
+    sign_out!
+    visit new_user_session_path
+
+    user_email = case input.class.to_s
+      when "String"
+        input
+      when "User"
+        input.email
+      else
+        raise ArgumentError.new
+      end
+
+    within("form#new_user") do
+      fill_in "Email", with: user_email
+      fill_in "Password", with: PASSWORD
+      click_on "Sign in"
+    end
+
+    the_flash_notice_must_be "Signed in successfully."
+
+    if block_given?
+      yield
+      sign_out!
+    end
+  end
+
+  alias_method :signed_in_as, :sign_in_as!
+
+  def add_workspaces! *names
+    unless current_path.include? "/projects/"
+      find("header").click_on "My projects"
+      find("ul li:last-child a").click
+    end
+
+    click_on "Edit"
+
+    page.click_on "Manage workspaces"
+
+    names.each do |name|
+      click_on "New workspace"
+      within("form") do
+        fill_in "Title", with: name
+        click_on "Save"
+      end
+      click_on "Back"
+    end
   end
 end
