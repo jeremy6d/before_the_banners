@@ -2,8 +2,8 @@
 
 %ul
   - @projects.each do |project|
-    %li= link_to project.title, project
-
+    %li{ id: "project-#{project.to_param}" }
+      = link_to project.title, project
 
 %ul.operations
   %li= link_to 'Create new project', new_project_path

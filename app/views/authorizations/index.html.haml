@@ -5,7 +5,7 @@
     - Authorization.types.each do |type|
       %th= type.humanize
     - @members.each do |member|
-      %tr
+      %tr{ class: 'authorizations-row', id: "authorizations-#{member.to_param}" }
         %td
           = image_tag member.avatar.url(:thumb)
           - if !!member.invited_by_id && !member.invitation_accepted?

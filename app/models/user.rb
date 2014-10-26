@@ -54,13 +54,15 @@ class User
   end
   belongs_to :company
   accepts_nested_attributes_for :company
-  has_and_belongs_to_many :projects, inverse_of: :member, 
+  has_and_belongs_to_many :projects, inverse_of: :members, 
                                      after_remove: :deauthorize_for do
     def authorized_to(auth_name)
       project_ids = base.authorizations.where(name: auth_name).pluck(:project_id)
       where(:_id.in => project_ids)
     end
   end
+
+  # has_many :created_projects, inverse_of: :creator, class_name: "Project"
 
   validates_presence_of :first_name, :last_name, :company
   validate :no_duplicate_company, if: Proc.new { |u| u.company.try :new_record? }
@@ -103,7 +105,7 @@ class User
   end
 
   def deauthorize_for project
-    authorizations.destroy_all project_id: project.id
+    authorizations.delete_all project_id: project.id
   end
 
   scope :authorized, ->(to: nil, on: nil) {

@@ -3,6 +3,12 @@
     border: 1px solid black;
     width: 200px;
   }
+
+  ul li {
+    display: inline;
+    list-style-type: none;
+    / padding-right: 20px;
+  }
 #btb-widget
   #btb-logo= image_tag @project.logo.url(:widget), title: @project.title
   #btb-description= truncate @project.description, length: 150

@@ -16,6 +16,8 @@ class Update
 
   validates_presence_of :body, :author_id
 
+  scope :approved, -> { where(approved_at) }
+
   def workspace_title
     workspace.try :title
   end

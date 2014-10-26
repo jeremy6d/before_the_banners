@@ -2,6 +2,12 @@
   .logo= image_tag @project.logo.url(:main), title: "#{@project.title.titleize} logo"
   .title= @project.title.titleize
   .completion-date== Estimated completion date: #{@project.ends_at.to_s(:month_and_year)}
+%ul.operations
+  - if current_user.authorized? to: Authorization::CREATE_UPDATES, on: @project
+    %li= link_to 'Add update', new_project_update_path(@project)
+  - if current_user.authorized? to: Authorization::ADMINISTER, on: @project
+    %li= link_to 'Edit', edit_project_path(@project)
+  %li= link_to 'Back', projects_path
 %p.description= @project.description
 %dl.details
   - if @project.address
@@ -22,11 +28,6 @@
   - unless @project.builder_title.blank?
     %dt Builder
     %dd= @project.builder_title
-%ul.operations
-  %li= link_to 'Add update', new_project_update_path(@project)
-  - if current_user.authorized? to: Authorization::ADMINISTER, on: @project
-    %li= link_to 'Edit', edit_project_path(@project)
-  %li= link_to 'Back', projects_path
 %h3 Updates
 %ul.updates
   - @project.updates.desc(:created_at).each do |update|

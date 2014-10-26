@@ -8,7 +8,7 @@ class UpdatesController < ApplicationController
     @update = @project.updates.build update_params
     @update.author = current_user
     create! do |success, failure|
-      success.html { redirect_to project_path(@project), notice: "Update created." }
+      success.html { redirect_to project_path(@project), notice: "Update submitted." }
     end
   end
 

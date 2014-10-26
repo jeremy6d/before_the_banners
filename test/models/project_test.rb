@@ -31,7 +31,11 @@ describe Project do
   end
 
   it "does not grant the creator permission to approve posts" do
-    subject.members.authorized(to: Authorization::APPROVE_POSTS, on: subject).wont_include creator
+    subject.members.authorized(to: Authorization::APPROVE_UPDATES, on: subject).wont_include creator
+  end
+
+  it "grants the creator authorization to create updates" do
+    subject.members.authorized(to: Authorization::CREATE_UPDATES, on: subject).must_include creator
   end
 
   it "prevents members with authorization to administer from being removed from membership" do

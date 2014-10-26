@@ -8,7 +8,7 @@
     - Authorization.types.each do |type|
       %th= type.humanize
     - current_user.projects.authorized_to(Authorization::ADMINISTER).each do |project|
-      %tr
+      %tr{ class: 'authorizations-row', id: "authorizations-#{project.to_param}" }
         %td
           %label
             = check_box_tag("user[project_ids][]", project.to_param, false)

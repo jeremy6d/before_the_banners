@@ -20,6 +20,10 @@ class Capybara::Rails::TestCase
     save_and_open_page
   end
 
+  def enter
+    saop and save_and_open_page
+  end
+
   def must_receive_email opts_to_check = {}
     ActionMailer::Base.deliveries.
                        select { |i|
@@ -140,6 +144,8 @@ class Capybara::Rails::TestCase
     return Project.last
   end
 
+  # pass signed up user into the block
+  # return false in the block to skip sign out
   def sign_up! attrs = {}, &block
     sign_out!
     user_attrs = Fabricate.attributes_for(:user).merge attrs
@@ -155,17 +161,15 @@ class Capybara::Rails::TestCase
 
       click_on "Sign up"
     end
-
+saop
     the_flash_notice_must_be "Welcome! You have signed up successfully."
 
-    if block_given?
-      yield
-      sign_out!
+    User.last.tap do |u|
+      (yield(u) and sign_out!) if block_given?
     end
-
-    return User.last
   end
 
+  # return false in the block to skip sign out
   def sign_in_as! input, &block
     sign_out!
     visit new_user_session_path
@@ -187,22 +191,32 @@ class Capybara::Rails::TestCase
 
     the_flash_notice_must_be "Signed in successfully."
 
-    if block_given?
-      yield
-      sign_out!
-    end
+    (yield and sign_out!) if block_given?
   end
 
   alias_method :signed_in_as, :sign_in_as!
 
-  def add_workspaces! *names
-    unless current_path.include? "/projects/"
-      find("header").click_on "My projects"
-      find("ul li:last-child a").click
+  def accept_invite_for! invited_email, in_attrs = {}
+    user_attrs = Fabricate.attributes_for(:user, in_attrs)
+
+    open_email_addressed_to invited_email
+    click_email_link_for "Accept invitation"
+    must_be_on accept_user_invitation_path
+    page.wont_have_content "Company name"
+
+    fill_in "First name", with: user_attrs[:first_name]
+    fill_in "Last name", with: user_attrs[:last_name]
+    fill_in "user[password]", with: PASSWORD
+    fill_in "user[password_confirmation]", with: PASSWORD
+    click_on "Accept invitation"
+
+    User.last.tap do |u|
+      (yield(u) and sign_out!) if block_given?
     end
+  end
 
-    click_on "Edit"
-
+  def add_workspaces! *names
+    edit_project!
     page.click_on "Manage workspaces"
 
     names.each do |name|
@@ -213,5 +227,55 @@ class Capybara::Rails::TestCase
       end
       click_on "Back"
     end
+
+    click_on "Back to project"
+  end
+
+  def set_authorizations_for! user, *labels
+    user_name = case user.class.to_s
+    when "User"
+      user.full_name
+    when "String"
+      user
+    else
+      raise "unidentified input in #set_authorizations_for!"
+    end
+
+    labels.map! { |l| l.capitalize.gsub "_", " " }
+
+    edit_project!
+    click_on "Authorization settings"
+
+    within("tr#authorizations-#{user.to_param}") do
+      Authorization.types.each_with_index do |auth, i|
+        if labels[i] == auth
+          binding.pry
+        end
+      end
+    end
+  end
+
+  def invite_to! project, email, *labels
+    click_on "Invite new users"
+    fill_in "Email", with: email
+    within("tr#authorizations-#{project.to_param}") do
+      check project.title
+      Authorization.types.
+                    map { |l| l.capitalize.gsub "_", " " }.
+                    each_with_index do |current_auth, i|
+        all("input[type='checkbox']")[i + 1].set labels.include?(current_auth)
+      end
+    end
+
+    click_on "Send invitation"
+  end
+
+  def edit_project! project = nil
+    unless project.nil?
+      find("header").click_on "My projects"
+      find("ul li#project-#{project.to_param}").click
+    end
+
+    click_on "Edit"
   end
 end

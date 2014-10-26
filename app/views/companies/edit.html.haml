@@ -5,6 +5,11 @@
   .form-inputs
     = co_form.input :title
     = co_form.input :email_domain
+  #attachment-area
+    %h3 Logo
+    = image_tag(@company.logo.thumb.url) if @company.logo?
+    = co_form.input :logo, as: :file, label: false
+    = co_form.hidden_field :logo_cache
   .form-actions
     = co_form.button :submit, "Update"
     = link_to "Invite fellow employees of #{@company.title}", new_user_invitation_path

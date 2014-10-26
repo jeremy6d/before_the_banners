@@ -4,6 +4,9 @@ class Company
 
   field :title, type: String
   field :email_domain, type: String
+  field :description, type: String
+
+  mount_uploader :logo, LogoUploader
 
   has_many    :employees, class_name: "User"
   belongs_to  :manager,   class_name: "User", 

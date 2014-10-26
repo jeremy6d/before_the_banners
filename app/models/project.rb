@@ -2,6 +2,11 @@ class Project
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  DEFAULT_AUTHORIZATIONS = [
+    Authorization::ADMINISTER,
+    Authorization::CREATE_UPDATES
+  ]
+
   field :title,             type: String
   field :type,              type: String
   field :value,             type: Integer
@@ -17,7 +22,7 @@ class Project
 
   has_many   :updates
   has_many   :workspaces
-  belongs_to :creator, class_name: "User"
+  belongs_to :creator, class_name: "User", inverse_of: nil
   # belongs_to :owner, class_name: "Company"
   # belongs_to :architect, class_name: "Company"
   # belongs_to :builder, class_name: "Company"
@@ -31,7 +36,7 @@ class Project
 
   before_create :add_creator_as_member
   # before_save :cache_titles!
-  after_create  :authorize_creator_to_administer
+  after_create  :grant_default_authorizations!
 
   def companies
     @companies ||= Company.where(:employee_ids.in => member_ids).to_a
@@ -58,11 +63,14 @@ protected
   end
 
   def add_creator_as_member
-    member_ids << creator.id
+    # member_ids << creator.id
+    write_attribute :member_ids, [creator.id]
   end
 
-  def authorize_creator_to_administer
-    creator.authorize! to: Authorization::ADMINISTER, on: self
+  def grant_default_authorizations!
+    DEFAULT_AUTHORIZATIONS.each do |auth|
+      creator.authorize! to: auth, on: self
+    end
   end
 
   def cache_titles!

@@ -3,7 +3,7 @@ class Authorization
   include Mongoid::Timestamps::Created
 
   def self.types
-    %w(administer approve_posts)
+    %w(administer approve_updates create_updates)
   end
 
   types.each do |name|
