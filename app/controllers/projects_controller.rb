@@ -2,6 +2,13 @@ class ProjectsController < ApplicationController
   inherit_resources
   before_action :authorize_for_administration, only: %i(edit update destroy)
   
+  def show
+    @updates = resource.updates.desc(:created_at)
+    unless (wid = params["workspace_id"]).blank?
+      @updates = @updates.where(workspace_id: wid) 
+    end
+  end
+
   def create
     @project = Project.new project_params
     @project.creator = current_user

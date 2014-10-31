@@ -161,7 +161,7 @@ class Capybara::Rails::TestCase
 
       click_on "Sign up"
     end
-saop
+
     the_flash_notice_must_be "Welcome! You have signed up successfully."
 
     User.last.tap do |u|
@@ -277,5 +277,32 @@ saop
     end
 
     click_on "Edit"
+  end
+
+  def add_update_to! project, in_attrs = {}
+    click_on "My projects"
+    click_on project.title
+    click_on "Add update"
+
+    attrs = Fabricate.attributes_for(:update).tap do |a|
+      a.merge! in_attrs
+      a.delete("author_id")
+    end
+  id = attrs.delete('workspace_id')
+  title = if name = attrs.delete('workspace')
+    attrs.delete 'workspace_id'
+    Workspace.where(title: name).first
+  elsif id
+    Workspace.find(id)
+  else
+    nil
+  end.try :title
+
+    select title, from: "Workspace" if title
+    attrs.each do |attr_name, attr_value|
+      fill_in "update_#{attr_name}", with: attr_value
+    end
+    
+    click_on "Submit update"
   end
 end

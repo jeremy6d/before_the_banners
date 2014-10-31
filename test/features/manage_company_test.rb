@@ -9,6 +9,5 @@ feature "Manage a company's details" do
   scenario "Editing company as manager" do
     click_on "My company"
     must_be_on edit_company_path
-    saop  
   end
 end

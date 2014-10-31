@@ -14,7 +14,9 @@ class Update
   belongs_to :approver, class_name: "User"
   belongs_to :workspace
 
-  validates_presence_of :body, :author_id
+  validates_presence_of :body, 
+                        :author,
+                        :workspace
 
   scope :approved, -> { where(approved_at) }
 

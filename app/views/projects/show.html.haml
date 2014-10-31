@@ -29,8 +29,12 @@
     %dt Builder
     %dd= @project.builder_title
 %h3 Updates
+= form_tag project_path(@project), method: :get do
+  = label_tag 'workspace_id', "Workspace"
+  = select_tag 'workspace_id', options_from_collection_for_select(@project.workspaces, "id", "title"), include_blank: true
+  = submit_tag "Filter"
 %ul.updates
-  - @project.updates.desc(:created_at).each do |update|
+  - @updates.each do |update|
     %li
       .thumbnail= image_tag update.attachment.url(:thumb)
       %h3.workspace= link_to update.workspace_title, [@project, update]
