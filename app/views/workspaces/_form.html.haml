@@ -3,5 +3,6 @@
   .form-inputs
     = workspace_form.input :title
     = workspace_form.input :description, as: :text
+    = workspace_form.input :attachment, as: :file
   .form-actions
     = workspace_form.submit 'Save'

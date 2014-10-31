@@ -140,7 +140,7 @@ class Capybara::Rails::TestCase
     pick_date "End date", attrs[:ends_at]
     attach_file "project_logo", File.join(Rails.root, "test", "fixtures", "logo.png")
     click_on "Save"
-    sleep 1
+    the_flash_notice_must_be "Project created."
     return Project.last
   end
 
@@ -231,29 +231,29 @@ class Capybara::Rails::TestCase
     click_on "Back to project"
   end
 
-  def set_authorizations_for! user, *labels
-    user_name = case user.class.to_s
-    when "User"
-      user.full_name
-    when "String"
-      user
-    else
-      raise "unidentified input in #set_authorizations_for!"
-    end
+  # def set_authorizations_for! user, *labels
+  #   user_name = case user.class.to_s
+  #   when "User"
+  #     user.full_name
+  #   when "String"
+  #     user
+  #   else
+  #     raise "unidentified input in #set_authorizations_for!"
+  #   end
 
-    labels.map! { |l| l.capitalize.gsub "_", " " }
+  #   labels.map! { |l| l.capitalize.gsub "_", " " }
 
-    edit_project!
-    click_on "Authorization settings"
+  #   edit_project!
+  #   click_on "Authorization settings"
 
-    within("tr#authorizations-#{user.to_param}") do
-      Authorization.types.each_with_index do |auth, i|
-        if labels[i] == auth
-          binding.pry
-        end
-      end
-    end
-  end
+  #   within("tr#authorizations-#{user.to_param}") do
+  #     Authorization.types.each_with_index do |auth, i|
+  #       if labels[i] == auth
+  #         binding.pry
+  #       end
+  #     end
+  #   end
+  # end
 
   def invite_to! project, email, *labels
     click_on "Invite new users"

@@ -8,6 +8,8 @@ class Workspace
   field :sequence,    type: Integer, 
                       default: 1000
 
+  mount_uploader :attachment, MediaUploader
+
   belongs_to  :project
   has_many    :updates 
 

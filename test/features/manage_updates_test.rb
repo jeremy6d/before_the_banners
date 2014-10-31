@@ -1,6 +1,6 @@
 require_relative './feature_test_helper'
 
-WORKSPACES = %w(plumbing foundation interior)
+WORKSPACES = %w(plumbing foundation interior electrical)
 
 feature "Manage updates and approvals" do 
   before do
@@ -16,12 +16,14 @@ feature "Manage updates and approvals" do
   scenario "view updates by workspace" do
     add_update_to! @project, body: "Testing 123", workspace: "plumbing"
     add_update_to! @project, body: "trying 456", workspace: "interior"
+    add_update_to! @project, body: "attempt 789", workspace: "foundation"
 
     click_on "My projects"
     click_on @project.title
 
     [ "Testing 123",
-      "trying 456" ].each do |body| 
+      "trying 456",
+      "attempt 789" ].each do |body| 
         page.must_have_content body 
     end
 
@@ -30,25 +32,30 @@ feature "Manage updates and approvals" do
 
     page.must_have_content "Testing 123"
     page.wont_have_content "trying 456"
+    page.wont_have_content "attempt 789"
 
     select "interior", from: "Workspace"
     click_on "Filter"
 
     page.must_have_content "trying 456"
     page.wont_have_content "Testing 123"
+    page.wont_have_content "attempt 789"
 
-    select "foundation", from: "Workspace"
+    select "electrical", from: "Workspace"
     click_on "Filter"
 
     page.wont_have_content  "Testing 123"
     page.wont_have_content  "trying 456" 
+    page.wont_have_content "attempt 789"
 
     select "", from: "Workspace"
     click_on "Filter"
 
-    page.must_have_content  "Testing 123"
-    page.must_have_content  "trying 456"  
-    
+    [ "Testing 123",
+      "trying 456",
+      "attempt 789" ].each do |body| 
+        page.must_have_content body 
+    end
   end
 
   scenario "add update to project and approve" do

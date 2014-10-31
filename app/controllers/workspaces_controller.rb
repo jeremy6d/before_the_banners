@@ -20,7 +20,9 @@ protected
   def workspace_params
     params.require(:workspace).permit :title,
                                       :description,
-                                      :sequence
+                                      :sequence,
+                                      :attachment,
+                                      :attachment_cache
   end
 
   def collection

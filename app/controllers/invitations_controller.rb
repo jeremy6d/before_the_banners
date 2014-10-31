@@ -27,6 +27,8 @@ class InvitationsController < Devise::InvitationsController
     @user = resource
     @user.invitation_token = params[:invitation_token]
     @company = @user.company || @user.build_company
+    binding.pry if @company.nil?
+    @company
   end
 
 protected

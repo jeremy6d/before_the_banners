@@ -14,15 +14,17 @@ feature "Manage workspaces" do
     within("form") do
       fill_in "Title", with: "New workspace"
       fill_in "Description", with: "Testing workspaces feature"
+      attach_file "workspace_attachment", File.join(Rails.root, "test", "fixtures", "ymca_leaders.jpg")
       click_on "Save"
     end
     sleep 1
     must_be_on project_workspace_path(@project, Workspace.last)
     the_flash_notice_must_be "Workspace was successfully created."
-    page.must_have_content "New workspace"
+    page.must_have_content "New workspace" 
+    page.must_have_xpath("//img[contains(@src, \"thumb_ymca_leaders.jpg\")]")
   end
 
-  scenario "Edit workspace within project"
-  scenario "Remove workspace from project"
-  scenario "View workspace"
+  # scenario "Edit workspace within project"
+  # scenario "Remove workspace from project"
+  # scenario "View workspace"
 end

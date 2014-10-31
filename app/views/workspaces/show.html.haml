@@ -1,5 +1,6 @@
 %h1== #{@workspace.title} workspace for #{@project.title}
 %p.description= @workspace.description
+= image_tag @workspace.attachment.url(:thumb)
 %h2 Updates
 - unless @workspace.updates.empty?
   %ul.updates
