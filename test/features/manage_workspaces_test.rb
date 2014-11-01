@@ -21,7 +21,7 @@ feature "Manage workspaces" do
     must_be_on project_workspace_path(@project, Workspace.last)
     the_flash_notice_must_be "Workspace was successfully created."
     page.must_have_content "New workspace" 
-    page.must_have_xpath("//img[contains(@src, \"thumb_ymca_leaders.jpg\")]")
+    page.must_contain_image_for "thumb_ymca_leaders.jpg"
   end
 
   # scenario "Edit workspace within project"

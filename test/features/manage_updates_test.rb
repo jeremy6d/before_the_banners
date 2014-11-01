@@ -74,6 +74,7 @@ feature "Manage updates and approvals" do
     must_be_on project_path(@project)
     the_flash_notice_must_be "Update submitted."
     page.wont_have_content @text
+    page.must_contain_image_for "thumb_planning.jpg"
   end
 
   # scenario "edit update within project"

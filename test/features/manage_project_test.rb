@@ -23,11 +23,8 @@ feature "Project management" do
     attach_file "project_logo", File.join(Rails.root, "test", "fixtures", "logo.png")
     click_on "Save"
 
-    # saop and flunk("Project not created for some reason.") if Project.last.nil?
-
-    # must_be_on project_path(Project.last)
     the_flash_notice_must_be "Project created."
-    find('h2 .logo img')['src'].split("/").last.must_equal "main_logo.png"
+    page.must_contain_image_for "main_logo.png"
   end
 
   scenario "Upload photo to existing project"
