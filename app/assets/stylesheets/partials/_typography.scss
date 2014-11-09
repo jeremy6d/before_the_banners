@@ -13,9 +13,7 @@ label {
   font-size: _em(9);
   text-transform: uppercase;
   color: $gray;
-}
 
-label.boolean {
-  font-size: _em(10);
-  text-transform: capitalize;
+  letter-spacing: _em(.43);
+
 }

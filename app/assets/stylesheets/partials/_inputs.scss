@@ -5,12 +5,28 @@ div.input {
 
 div.input.boolean {
   text-align: center;
-  margin: 0;
+  margin: _em(4);
+  label {
+    margin-left: _em(1);
+    font-size: _em(10);
+    text-transform: capitalize;
+  }
 }
 
 input[type="email"],
 input[type="password"] {
   width: 100%;
+  border: _em(2) solid $gray;
+  padding: _em(8);
+  font-size: _em(12);
+  letter-spacing: _em(.43);
+  border-radius: 2px;
+  color: $dark-gray;
+  transition: all .2s ease;
+  &:focus {
+    outline: none;
+    border-color: $blue;
+  }
 }
 
 input[type="submit"] {
@@ -18,7 +34,7 @@ input[type="submit"] {
   background: white;
   box-shadow: none;
   color: $blue;
-  border: _em(4) solid $blue;
+  border: _em(3) solid $blue;
 
   font-size: _em(12);
   letter-spacing: _em(.83);
