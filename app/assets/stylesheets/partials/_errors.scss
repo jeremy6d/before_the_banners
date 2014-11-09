@@ -1,0 +1,29 @@
+p.error_notification {
+  color: $red;
+
+  width: 110%;
+  margin-left: -5%;
+  padding: _em(6);
+
+  border: _em(1) solid $red;
+  background: lighten($red,45%);
+}
+
+span.error {
+  border: _em(2) solid $red;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background: lighten($red,45%);
+
+  font-size: _em(9);
+  color: $red;
+  text-align: center;
+
+  padding: _em(10);
+  
+  display: block;
+}
+
+div.input.field_with_errors input {
+  border-color: $red;
+}
