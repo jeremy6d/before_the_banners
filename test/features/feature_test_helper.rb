@@ -12,7 +12,7 @@ class Capybara::Rails::TestCase
   DatabaseCleaner.strategy = :truncation
 
   def setup
-    %x[bundle exec rake assets:precompile]
+    # %x[bundle exec rake assets:precompile]
     DatabaseCleaner.start
     super
   end
