@@ -1,0 +1,5 @@
+.page--header {
+
+  background: lighten($gray,30%);
+  @include clearfix;
+}

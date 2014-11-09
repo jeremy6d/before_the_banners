@@ -1,8 +1,11 @@
 header {
+
   @include clearfix;
   background: $heavy-blue;
   color: white;
-  text-rendering: optimizeLegibility;
+ 
+  z-index: 10;
+  width: 100%;
 
   padding: 0 _em(10);
 
@@ -11,6 +14,8 @@ header {
 
   font-weight: 400;
   text-transform: uppercase;
+  text-rendering: optimizeLegibility;
+
   a {
     color: white;
     text-decoration: none;
@@ -25,16 +30,34 @@ header {
 }
 
 .nav {
+
   float: right;
 
   font-size: _em(10);
   letter-spacing: _em(1.43);
+
+  @media (max-width: _em(640)) {
+      display: none;
+  }
+
+}
+
+.mobile-nav {
+
+  float: right;
+  display: none;
+
+  @media(max-width: _em(640)) {
+    display: block;
+    margin-top: -2px;
+  }
+
 }
 
 ul#navigation-menu {
+
   padding: 0;
   margin: 0 _em(20) 0 0;
-
   float: left;
 
   li {
@@ -42,9 +65,11 @@ ul#navigation-menu {
     margin: 0 _em(20) 0 0;
     list-style-type: none;
     display: inline;
+
     &:last-child {
       margin: 0;
     }
+
   }
 
 }

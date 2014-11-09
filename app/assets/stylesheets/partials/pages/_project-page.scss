@@ -1,0 +1,113 @@
+.project-header {
+
+  
+  width: 100%;
+  overflow: hidden;
+  height: _em(500);
+
+
+  text-align: center;
+
+  background-position: center;
+
+
+  .logo {
+    position: absolute;
+    width: 100%;
+    max-height: _em(500);
+    overflow: hidden;
+    opacity: .2;
+    background: white;
+    img {
+      -webkit-filter: brightness(.88);
+    }
+
+  }
+
+}
+
+progress {
+  width: 100%;
+  margin-bottom: _em(25);
+}
+
+.project-information {
+
+  position: absolute;
+  width: 100%;
+  max-width: _em(920);
+  margin: 0 auto;
+
+  color: $heavy-blue;
+
+  @include vertical-align;
+  @include clearfix;
+
+}
+
+.credits {
+  @include clearfix;
+  width: _em(600);
+  margin: 0 auto 40px auto;
+}
+
+.credit {
+
+  width: 33.3333%;
+  float: left;
+
+  span.label {
+    font-size: _em(9);
+    color: #424242;
+    opacity: .8;
+    text-transform: uppercase;
+    margin-right: _em(2);
+
+    &:after {
+      content: ':';
+    }
+
+  }
+
+  span.value {
+    font-size: _em(11);
+    color: #424242;
+    border-bottom: 1px solid #424242;
+    padding-bottom: 2px;
+  }
+}
+
+.details {
+  @include clearfix;
+}
+
+.wrap {
+  @include clearfix;
+  float: left;
+  width: 33.3333%
+}
+
+.project-definition {
+  left: 50%;
+  text-align: left;
+  float: left;
+  height: 100px;
+  span.label {
+
+    width: 100%;
+    display: block;
+    font-size: _em(9);
+    color: #424242;
+    line-height: 11px;
+    text-transform: uppercase;
+
+  }
+
+  span.value {
+    font-size: 22px;
+    color: #3D6E9F;
+    line-height: 29px;
+    /* Higher Education, Re: */
+  }
+
+}

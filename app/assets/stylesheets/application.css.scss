@@ -5,10 +5,15 @@
 @import "bourbon/bourbon";
 @import "partials/variables";
 @import "partials/functions";
+@import "partials/mixins";
+@import "partials/typography";
 @import "partials/body";
 @import "partials/header";
 @import "neat/neat";
 @import "jquery-ui";
+@import "font-awesome";
 
-// 
+// Pages
+@import "partials/pages/pages";
+@import "partials/pages/project-page";
 

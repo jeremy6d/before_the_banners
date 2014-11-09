@@ -1,7 +1,42 @@
-%h2
-  .logo= image_tag @project.logo.url(:main), title: "#{@project.title.titleize} logo"
-  .title= @project.title.titleize
-  .completion-date== Estimated completion date: #{@project.ends_at.to_s(:month_and_year)}
+.page--header
+  .project-header
+    .logo= image_tag @project.logo.url(:main), title: "#{@project.title.titleize} logo", class: "header-image"
+    .project-information
+      %h2
+        .title= @project.title.titleize
+      .credits
+        - unless @project.owner_title.blank?
+          .credit
+            %span.label Owner
+            %span.value= @project.owner_title
+        - unless @project.architect_title.blank?
+          .credit
+            %span.label Architect
+            %span.value= @project.architect_title
+        - unless @project.builder_title.blank?
+          .credit
+            %span.label Builder
+            %span.value= @project.builder_title
+      .details
+        %progress value: "22", max: "100"
+        - if @project.address
+          .project-definition
+            %span.label Location
+            %span.value= @project.address
+        - unless @project.type.blank?
+          .wrap
+            .project-definition
+              %span.label Project type
+              %span.value= @project.type
+        - if @project.value
+          .wrap
+            .project-definition
+              %span.label Contract value
+              %span.value= number_to_currency @project.value
+        .wrap
+          .project-definition
+            %span.label Estimate Completion Date
+            %span.value= @project.ends_at.to_s(:month_and_year)
 %ul.operations
   - if current_user.authorized? to: Authorization::CREATE_UPDATES, on: @project
     %li= link_to 'Add update', new_project_update_path(@project)
@@ -9,25 +44,6 @@
     %li= link_to 'Edit', edit_project_path(@project)
   %li= link_to 'Back', projects_path
 %p.description= @project.description
-%dl.details
-  - if @project.address
-    %dt Location
-    %dd= @project.address
-  - if @project.value
-    %dt Contract value
-    %dd= number_to_currency @project.value
-  - unless @project.type.blank?
-    %dt Project type
-    %dd= @project.type
-  - unless @project.owner_title.blank?
-    %dt Owner
-    %dd= @project.owner_title
-  - unless @project.architect_title.blank?
-    %dt Architect
-    %dd= @project.architect_title
-  - unless @project.builder_title.blank?
-    %dt Builder
-    %dd= @project.builder_title
 %h3 Updates
 = form_tag project_path(@project), method: :get do
   = label_tag 'workspace_id', "Workspace"
