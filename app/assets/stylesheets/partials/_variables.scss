@@ -1,12 +1,9 @@
 // Typography
-$sans-serif: $helvetica;
-$serif: $georgia;
-$base-font-family: $sans-serif;
-$header-font-family: $base-font-family;
+$base-font-family: "Roboto", sans-serif;
 
 // Sizes
-$base-font-size: 1em;
-$base-line-height: $base-font-size * 1.5;
+$base-font-size: 14;
+$base-line-height: 1.4;
 $unitless-line-height: $base-line-height / ($base-line-height * 0 + 1); // Strip units from line-height: https://developer.mozilla.org/en-US/docs/Web/CSS/line-height#Prefer_unitless_numbers_for_line-height_values
 $header-line-height: $base-font-size * 1.25;
 $base-border-radius: em(3);
@@ -19,6 +16,12 @@ $light-gray: #DDD;
 $light-red: #FBE3E4;
 $light-yellow: #FFF6BF;
 $light-green: #E6EFC2;
+$heavy-blue: #3d6e9f;
+$light-blue: #5d8eca;
+$yellow: #fbad18;
+$charcoal: #575b62;
+$gray: #a2a8b4;
+
 
 // Background Color
 $base-background-color: white;
@@ -51,3 +54,18 @@ $form-box-shadow: inset 0 1px 3px rgba(0,0,0,0.06);
 $form-box-shadow-focus: $form-box-shadow, 0 0 5px rgba(darken($form-border-color-focus, 5), 0.7);
 $form-font-size: $base-font-size;
 $form-font-family: $base-font-family;
+
+@import 'neat-helpers'; // or '../neat/neat-helpers' when not in Rails
+
+// Neat Overrides
+// $column: 90px;
+// $gutter: 30px;
+// $grid-columns: 12;
+// $max-width: em(1088);
+
+// Neat Breakpoints
+$medium-screen: em(640);
+$large-screen: em(860);
+
+$medium-screen-up: new-breakpoint(min-width $medium-screen 4);
+$large-screen-up: new-breakpoint(min-width $large-screen 8);

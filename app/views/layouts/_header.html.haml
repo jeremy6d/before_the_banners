@@ -1,18 +1,15 @@
 %header.navigation
   .menu-wrapper
-    =link_to root_path, class: "logo" do
-      =image_tag("btb-logo.png")
-    %p.navigation-menu-button#js-mobile-menu MENU
+    .btb-logotype Before The Banners
     .nav
       %ul#navigation-menu
         - if user_signed_in?
           %li.nav-link= link_to "My company", edit_company_path
           %li.nav-link= link_to "My projects", projects_path
           %li.nav-link= link_to "Invite new users", new_user_invitation_path
-    .navigation-tools
-      - if user_signed_in?
-        = link_to "Signed in as #{current_user}", edit_user_registration_path, class: "profile"
-        = link_to "Sign out", destroy_user_session_path, method: :delete, class: "sign-out"
-      - else
-        = link_to "Sign in", new_user_session_path, class: "sign-in"
-        = link_to "Sign up", new_user_registration_path, class: "sign-up"
+      .navigation-tools
+        - if user_signed_in?
+          = link_to "Sign out", destroy_user_session_path, method: :delete, class: "sign-out"
+        - else
+          = link_to "Sign in", new_user_session_path, class: "sign-in"
+          = link_to "Sign up", new_user_registration_path, class: "sign-up"

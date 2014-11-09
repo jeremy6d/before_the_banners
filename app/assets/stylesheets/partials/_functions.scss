@@ -1,0 +1,11 @@
+// Easy conversion to em from pixels
+@function _em($target, $context: $base-font-size) {
+    @if $target == 0 { @return 0 }
+    @return $target / $context + 0em;
+}
+
+//Replicate adobe tracking values in em
+@function _adobe_tracking_to_em($target) {
+    @if $target == 0 { @return 0 }
+    @return $target / 1000 + 0em;
+}
