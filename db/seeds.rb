@@ -21,7 +21,7 @@ unless /y/i.match STDIN.gets.chomp
   exit
 end
 
-Mongoid.default_session.drop
+Mongoid.default_session.collections.each &:drop
 
 puts "creating user Jeremy"
 jeremy =  User.create!  first_name: "Jeremy", 
