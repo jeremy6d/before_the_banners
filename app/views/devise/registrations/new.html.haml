@@ -1,14 +1,15 @@
-%h2 Sign up
-= simple_form_for(@user, as: "user", url: registration_path(@user), html: { class: "two-column"}) do |f|
-  = f.error_notification
-  .form-inputs
-    = f.input :first_name, required: true, autofocus: true
-    = f.input :last_name, required: true
-    = f.simple_fields_for :company, @company do |company_fields|
-      = company_fields.input :title, label: "Company name"
-    = f.input :email, required: true, label: "Company email address"
-    = f.input :password, required: true
-    = f.input :password_confirmation, required: true
-  .form-actions
-    = f.button :submit, "Sign up"
-= render "devise/shared/links"
+.devise-form
+  %h3 Welcome to Before The Banners!
+  = simple_form_for(@user, as: "user", url: registration_path(@user), html: { class: "two-column"}) do |f|
+    = f.error_notification
+    .form-inputs
+      = f.input :first_name, required: true, autofocus: true
+      = f.input :last_name, required: true
+      = f.simple_fields_for :company, @company do |company_fields|
+        = company_fields.input :title, label: "Company name"
+      = f.input :email, required: true, label: "Company email address"
+      = f.input :password, required: true
+      = f.input :password_confirmation, required: true
+    .form-actions
+      = f.button :submit, "Sign up"
+  = render "devise/shared/links"

@@ -1,5 +1,5 @@
 div.input {
-  margin: _em(5) 0;
+  margin: _em(4) 0;
   text-align: left;
 }
 
@@ -13,6 +13,7 @@ div.input.boolean {
   }
 }
 
+input[type="text"],
 input[type="email"],
 input[type="password"] {
   width: 100%;
@@ -35,6 +36,7 @@ input[type="submit"] {
   box-shadow: none;
   color: $blue;
   border: _em(3) solid $blue;
+
 
   font-size: _em(12);
   letter-spacing: _em(.83);

@@ -1,26 +1,23 @@
-body.sessions {
+body.registrations,
+body.sessions,
+body.passwords {
 
   header {
     display: none;
   }
 
-  height: 100%;
-
 }
 
-.login-form {
+.devise-form {
   @include vertical-align;
-  width: _em(320);
+  width: 95%;
+  max-width: _em(450);
   margin: 0 auto;
-  padding: _em(30) _em(20);
-  border: _em(1) solid $light-gray;
-  border-radius: 5px;
   text-align: center;
 
-  h4 {
-    margin: 0;
-  }
-
+  border: _em(1) solid $light-gray;
+  border-radius: 5px;
+  padding: _em(30) _em(20);
 }
 
 .form-actions {
