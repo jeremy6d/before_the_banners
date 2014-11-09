@@ -15,7 +15,7 @@ def sequential_mock_time!
   end
 end
 
-puts "Drop entire database for #{Rails.env} environment? (yes/no)"
+puts "Do you want to proceed, losing all existing data for the \"#{Rails.env}\" environment? (yes/no)"
 unless /y/i.match STDIN.gets.chomp
   puts("Exiting.")
   exit
