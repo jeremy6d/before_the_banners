@@ -4,10 +4,9 @@
     %title Before the Banners
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = csrf_meta_tags
-  %body
+  %body{ :class=> "#{controller_name}"}
     = render partial: "layouts/header"
-    %content
-      - unless flash.empty?
-        = render partial: "layouts/flash_messages", locals: { flash: flash }
-      = yield
+    - unless flash.empty?
+      = render partial: "layouts/flash_messages", locals: { flash: flash }
+    = yield
   = javascript_include_tag 'application', 'data-turbolinks-track' => true

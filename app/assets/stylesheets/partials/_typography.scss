@@ -4,3 +4,18 @@ h2 {
   color: $heavy-blue;
   margin: 0;
 }
+
+h4 {
+  text-align: left;
+}
+
+label {
+  font-size: _em(9);
+  text-transform: uppercase;
+  color: $gray;
+}
+
+label.boolean {
+  font-size: _em(10);
+  text-transform: capitalize;
+}

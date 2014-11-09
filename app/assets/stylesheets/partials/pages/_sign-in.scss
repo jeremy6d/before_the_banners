@@ -1,0 +1,44 @@
+body.sessions {
+
+  header {
+    display: none;
+  }
+
+  height: 100%;
+
+}
+
+.login-form {
+  @include vertical-align;
+  width: _em(320);
+  margin: 0 auto;
+  padding: _em(30) _em(20);
+  border: _em(1) solid $light-gray;
+  border-radius: 5px;
+  text-align: center;
+
+  h4 {
+    margin: 0;
+  }
+
+}
+
+.form-actions {
+  margin: _em(20);
+}
+
+ul#devise-links {
+  padding: 0;
+  margin: 0;
+  li {
+    list-style-type: none;
+    padding: 0 _em(5);
+    margin: 0;
+    display: inline;
+    a {
+      color: $gray;
+      text-decoration: none;
+      font-size: _em(10);
+    }
+  }
+}
