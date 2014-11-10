@@ -1,0 +1,29 @@
+.minimap {
+  border-left: em(1) solid $light-gray;
+  height: 100%;
+
+  position: fixed;
+  left: em(30);
+}
+
+ul.minimap-page-sections {
+  padding: 0; 
+  margin: 0;
+  position: fixed;
+  top: em(120);
+  li {
+    font-family: 100;
+    font-size: em(12);
+    color: $gray;
+    margin: em(10) 0 em(10) em(-3);
+    padding: 0 0 0 em(18);
+    list-style-type: none;
+    letter-spacing: em(.73);
+    &.active {
+      border-left: em(4) solid $dark-gray;
+      padding: 0 0 0 em(12);
+      color: $dark-gray;
+    }
+  }
+
+}
