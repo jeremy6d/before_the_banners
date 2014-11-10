@@ -37,24 +37,25 @@
           .project-definition
             %span.label Estimate Completion Date
             %span.value= @project.ends_at.to_s(:month_and_year)
-%ul.operations
-  - if current_user.authorized? to: Authorization::CREATE_UPDATES, on: @project
-    %li= link_to 'Add update', new_project_update_path(@project)
-  - if current_user.authorized? to: Authorization::ADMINISTER, on: @project
-    %li= link_to 'Edit', edit_project_path(@project)
-  %li= link_to 'Back', projects_path
-%p.description= @project.description
-%h3 Updates
-= form_tag project_path(@project), method: :get do
-  = label_tag 'workspace_id', "Workspace"
-  = select_tag 'workspace_id', options_from_collection_for_select(@project.workspaces, "id", "title"), include_blank: true
-  = submit_tag "Filter"
-%ul.updates
-  - @updates.each do |update|
-    %li
-      .thumbnail= image_tag update.attachment.url(:thumb)
-      %h3.workspace= link_to update.workspace_title, [@project, update]
-      %p
-        = truncate(update.body, length: 200) do
-          = link_to "(More)", [@project, update]
-      .tagline== Posted #{update.created_at.to_s(:verbose)} by #{update.author.try :full_name}
+.wrapper
+  %ul.operations
+    - if current_user.authorized? to: Authorization::CREATE_UPDATES, on: @project
+      %li= link_to 'Add update', new_project_update_path(@project)
+    - if current_user.authorized? to: Authorization::ADMINISTER, on: @project
+      %li= link_to 'Edit', edit_project_path(@project)
+    %li= link_to 'Back', projects_path
+  %p.description= @project.description
+  %h3 Updates
+  = form_tag project_path(@project), method: :get do
+    = label_tag 'workspace_id', "Workspace"
+    = select_tag 'workspace_id', options_from_collection_for_select(@project.workspaces, "id", "title"), include_blank: true
+    = submit_tag "Filter"
+  %ul.updates
+    - @updates.each do |update|
+      %li
+        .thumbnail= image_tag update.attachment.url(:thumb)
+        %h3.workspace= link_to update.workspace_title, [@project, update]
+        %p
+          = truncate(update.body, length: 200) do
+            = link_to "(More)", [@project, update]
+        .tagline== Posted #{update.created_at.to_s(:verbose)} by #{update.author.try :full_name}

@@ -1,5 +1,5 @@
 // Typeface
-@import url(http://fonts.googleapis.com/css?family=Roboto:100,400,500,900);
+@import url(http://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,900);
 
 // Site wide
 @import "bourbon/bourbon";
@@ -9,6 +9,7 @@
 @import "partials/typography";
 @import "partials/body";
 @import "partials/inputs";
+@import "partials/flash";
 @import "partials/errors";
 @import "partials/header";
 @import "neat/neat";
@@ -18,5 +19,6 @@
 // Pages
 @import "partials/pages/pages";
 @import "partials/pages/devise";
+@import "partials/pages/project-new";
 @import "partials/pages/project-page";
 

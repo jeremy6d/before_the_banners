@@ -7,10 +7,10 @@ header {
   z-index: 10;
   width: 100%;
 
-  padding: 0 _em(10);
+  padding: 0 em(10);
 
-  height: _em(40);
-  line-height: _em(40);
+  height: em(40);
+  line-height: em(40);
 
   font-weight: 400;
   text-transform: uppercase;
@@ -24,19 +24,19 @@ header {
 }
 
 .btb-logotype {
-  letter-spacing: _em(1.83);
+  letter-spacing: em(1.83);
   float: left;
-  font-size: _em(12);
+  font-size: em(12);
 }
 
 .nav {
 
   float: right;
 
-  font-size: _em(10);
-  letter-spacing: _em(1.43);
+  font-size: em(10);
+  letter-spacing: em(1.43);
 
-  @media (max-width: _em(640)) {
+  @media (max-width: em(640)) {
       display: none;
   }
 
@@ -47,7 +47,7 @@ header {
   float: right;
   display: none;
 
-  @media(max-width: _em(640)) {
+  @media(max-width: em(640)) {
     display: block;
     margin-top: -2px;
   }
@@ -57,12 +57,12 @@ header {
 ul#navigation-menu {
 
   padding: 0;
-  margin: 0 _em(20) 0 0;
+  margin: 0 em(20) 0 0;
   float: left;
 
   li {
     padding: 0;
-    margin: 0 _em(20) 0 0;
+    margin: 0 em(20) 0 0;
     list-style-type: none;
     display: inline;
 

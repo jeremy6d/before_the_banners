@@ -1,27 +1,28 @@
 div.input {
-  margin: _em(8) 0;
+  margin: em(4) 0;
   text-align: left;
 }
 
 div.input.boolean {
   text-align: center;
-  margin: _em(4);
+  margin: em(4);
   label {
-    margin-left: _em(1);
-    font-size: _em(10);
+    margin-left: em(1);
+    font-size: em(10);
     text-transform: capitalize;
   }
 }
 
 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+textarea {
   width: 100%;
-  border: _em(2) solid $gray;
-  padding: _em(8);
-  font-size: _em(12);
-  letter-spacing: _em(.43);
-  border-radius: 2px;
+  border: em(2) solid $gray;
+  padding: em(8);
+  font-size: em(12);
+  letter-spacing: em(.43);
+  border-radius: $base-border-radius;
   color: $dark-gray;
   transition: all .2s ease;
   &:focus {
@@ -35,11 +36,11 @@ input[type="submit"] {
   background: white;
   box-shadow: none;
   color: $blue;
-  border: _em(3) solid $blue;
+  border: em(3) solid $blue;
 
 
-  font-size: _em(12);
-  letter-spacing: _em(.83);
+  font-size: em(12);
+  letter-spacing: em(.83);
   text-shadow: none;
   &:hover:not(:disabled) {
     background: white;

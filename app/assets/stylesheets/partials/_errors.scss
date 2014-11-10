@@ -3,23 +3,23 @@ p.error_notification {
 
   width: 110%;
   margin-left: -5%;
-  padding: _em(6);
+  padding: em(6);
 
-  border: _em(1) solid $red;
+  border: em(1) solid $red;
   background: lighten($red,45%);
 }
 
 span.error {
-  border: _em(2) solid $red;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border: em(2) solid $red;
+  border-bottom-left-radius: $base-border-radius;
+  border-bottom-right-radius: $base-border-radius;
   background: lighten($red,45%);
 
-  font-size: _em(9);
+  font-size: em(9);
   color: $red;
   text-align: center;
 
-  padding: _em(10);
+  padding: em(10);
   
   display: block;
 }

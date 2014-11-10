@@ -1,26 +1,33 @@
 h2 {
   font-family: Roboto-Bold;
-  font-size: _em(35);
+  font-size: em(35);
   color: $heavy-blue;
   margin: 0;
 }
 
 h3 {
   text-align: left;
-  font-size: _em(24);
+  font-size: em(24);
   color: $heavy-blue;
-  margin: 0 0 _em(10) 0;
+  margin: 0 0 em(10) 0;
 }
 
 h4 {
   text-align: left;
 }
 
+p {
+  font-weight: 300;
+  font-size: em(17);
+  color: #4A4A4A;
+  line-height: em(26);
+}
+
 label {
-  font-size: _em(9);
+  font-size: em(9);
   text-transform: uppercase;
   color: $gray;
 
-  letter-spacing: _em(.43);
+  letter-spacing: em(.43);
 
 }

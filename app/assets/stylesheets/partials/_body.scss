@@ -10,3 +10,10 @@ body {
   font-size: $base-font-size;
   line-height: $base-line-height;
 }
+
+.wrapper {
+  width: 95%;
+  max-width: em(920);
+  height: 100%;
+  margin: 0 auto;
+}
