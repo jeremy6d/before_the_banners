@@ -17,3 +17,15 @@ body {
   height: 100%;
   margin: 0 auto;
 }
+
+.internal-wrapper {
+  width: 95%;
+  max-width: em(920);
+  margin: 0 auto;
+}
+
+.small-internal-wrapper {
+  width: 95%;
+  max-width: em(620);
+  margin: 0 auto;
+}

@@ -1,0 +1,23 @@
+ul.operations {
+  padding: 0;
+  margin: em(5) 0;
+  text-align: center;
+  &:hover {
+    opacity: 1;
+  }
+  li {
+    padding: 0;
+    margin: 0 em(5);
+    list-style-type: none;
+    display: inline;
+    a {
+      font-size: em(12);
+      color: $blue;
+      text-decoration: none;
+      border-bottom: em(2) dotted $blue;
+      &:hover {
+        border-bottom-style: solid;
+      }
+    }
+  }
+}

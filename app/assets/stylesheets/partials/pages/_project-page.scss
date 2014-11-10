@@ -1,7 +1,8 @@
 .project-header {
 
-  width: 100%;
+  width: 95%;
   height: em(400);
+  margin: 0 auto;
 
   text-align: center;
   background-position: center;
@@ -81,7 +82,11 @@ progress {
   @include clearfix;
 }
 
-
+.description {
+  margin: 0 auto;
+  padding: em(40) 0;
+  border-bottom: $base-border-bottom;
+}
 
 .wrap {
   @include clearfix;
