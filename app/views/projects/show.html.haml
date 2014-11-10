@@ -60,11 +60,12 @@
     = select_tag 'workspace_id', options_from_collection_for_select(@project.workspaces, "id", "title"), include_blank: true
     = submit_tag "Filter"
   %ul.updates
+    .update-feed-line
     - @updates.each do |update|
+      .dateline== #{update.created_at.to_s(:verbose)} 
       %li
-        .thumbnail= image_tag update.attachment.url(:thumb)
         %h3.workspace= link_to update.workspace_title, [@project, update]
+        .thumbnail= image_tag update.attachment.url
         %p
           = truncate(update.body, length: 200) do
             = link_to "(More)", [@project, update]
-        .tagline== Posted #{update.created_at.to_s(:verbose)} by #{update.author.try :full_name}
