@@ -1,0 +1,38 @@
+ul.project-index {
+
+  padding: 0;
+  margin: 0;
+  @include outer-container;
+
+  li {
+
+    @include span-columns(6);
+    @include omega(2n);
+    border: $base-border;
+    border-radius: $base-border-radius;
+    margin-bottom: em(25);
+
+    img {
+      width: 100%;
+    }
+
+    a {
+      display: block;
+      padding: em(10);
+      color: $dark-gray;
+      font-weight: 500;
+      letter-spacing: em(.63);
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    @media(max-width: em(640)) {
+      @include span-columns(12);
+      @include omega(1);
+    }
+
+  }
+
+}

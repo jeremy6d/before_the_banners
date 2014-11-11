@@ -7,6 +7,7 @@ class ProjectsController < ApplicationController
     unless (wid = params["workspace_id"]).blank?
       @updates = @updates.where(workspace_id: wid) 
     end
+    render layout: "wrapperless_application"
   end
 
   def create

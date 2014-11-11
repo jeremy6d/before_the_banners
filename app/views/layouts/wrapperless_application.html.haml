@@ -8,6 +8,5 @@
     = render partial: "layouts/header"
     - unless flash.empty?
       = render partial: "layouts/flash_messages", locals: { flash: flash }
-    .wrapper
-      = yield
+    = yield
   = javascript_include_tag 'application', 'data-turbolinks-track' => true

@@ -1,9 +1,9 @@
-%h1 Current Projects
+%h3 Current Projects
 
-%ul
+%ul.project-index
   - @projects.each do |project|
-    %li{ id: "project-#{project.to_param}" }
+    %li.project-node{ id: "project-#{project.to_param}" }
+      = image_tag project.logo.url(:main), title: "#{project.title.titleize} logo", class: "header-image"
       = link_to project.title, project
-
-%ul.operations
-  %li= link_to 'Create new project', new_project_path
+.center
+  = link_to '+ Create New Project', new_project_path, class: "new-project-button"

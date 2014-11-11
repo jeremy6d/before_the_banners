@@ -16,6 +16,8 @@ ul.minimap-page-sections {
   li {
     font-family: 100;
 
+    text-shadow: 0 0 em(1) $gray;
+
     margin: em(10) 0 em(10) em(-5);
     padding: 0 0 0 em(18);
     list-style-type: none;
@@ -23,7 +25,7 @@ ul.minimap-page-sections {
 
     a {
       font-size: em(12);
-      color: $gray;
+      color: $dark-gray;
       text-decoration: none;
     }
 
