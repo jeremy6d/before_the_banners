@@ -1,4 +1,4 @@
-.minimap
+.minimap.no-mobile
   %ul.minimap-page-sections
     %li.selected 
       %a{ :href => "#page--header"} Project Brief
@@ -32,25 +32,18 @@
           %li= link_to 'Edit', edit_project_path(@project)
         %li= link_to 'Back', projects_path
       .details
-        %progress value: "22", max: "100"
-        - if @project.address
-          .project-definition
-            %span.label Location
-            %span.value= @project.address
+        %progress.no-mobile value: "22", max: "100"
         - unless @project.type.blank?
-          .wrap
-            .project-definition
-              %span.label Project type
-              %span.value= @project.type
-        - if @project.value
-          .wrap
-            .project-definition
-              %span.label Contract value
-              %span.value= number_to_currency @project.value
-        .wrap
           .project-definition
-            %span.label Estimate Completion Date
-            %span.value= @project.ends_at.to_s(:month_and_year)  
+            %span.label Project type
+            %span.value= @project.type
+        - if @project.value
+          .project-definition
+            %span.label Contract value
+            %span.value= number_to_currency @project.value
+        .project-definition
+          %span.label Estimate Completion Date
+          %span.value= @project.ends_at.to_s(:month_and_year)  
 #description.description
   .small-internal-wrapper
     %label Project Description <br/>
