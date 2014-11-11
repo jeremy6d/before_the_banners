@@ -1,8 +1,10 @@
 h2 {
-  font-family: Roboto-Bold;
   font-size: em(35);
   color: $heavy-blue;
   margin: 0;
+  @media(max-width: em(640)) {
+    font-size: em(24);
+  }
 }
 
 h3 {

@@ -50,34 +50,42 @@ progress {
 }
 
 .credits {
-  @include clearfix;
-  width: em(600);
+  width: 95%;
+  max-width: em(620);
   margin: 0 auto 40px auto;
-}
+  .credit {
 
-.credit {
+    @include span-columns(4);
 
-  width: 33.3333%;
-  float: left;
+    span.label {
+      font-size: em(9);
+      color: #424242;
+      opacity: .6;
+      text-transform: uppercase;
+      margin-right: em(2);
 
-  span.label {
-    font-size: em(9);
-    color: #424242;
-    opacity: .6;
-    text-transform: uppercase;
-    margin-right: em(2);
+      &:after {
+        content: ':';
+      }
 
-    &:after {
-      content: ':';
+    }
+
+    span.value {
+      font-size: em(11);
+      color: #424242;
+    }
+
+    @media(max-width: em(640)) {
+      @include span-columns(12);
+      text-align: center;
     }
 
   }
 
-  span.value {
-    font-size: em(11);
-    color: #424242;
+  @media(max-width: em(640)) {
+    @include span-columns(12);
+    margin: em(10) 0;
   }
-
 
 }
 
@@ -111,6 +119,7 @@ progress {
     @media(max-width: em(640)) {
       @include span-columns(12);
       margin: em(15) 0;
+      text-align: center;
     }
 
   }
