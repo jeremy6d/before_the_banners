@@ -1,10 +1,12 @@
 .minimap
   %ul.minimap-page-sections
-    %li Project Brief
-    %li.active Description
-    %li Maps
-    %li Updates
-.page--header
+    %li.project-brief.selected 
+      %a{ :href => "#page--header"} Project Brief
+    %li.description 
+      %a{ :href => "#description"} Description
+    %li.updates 
+      %a{ :href => "#update-section"} Updates
+#page--header.page--header
   .project-header
     / .logo= image_tag @project.logo.url(:main), title: "#{@project.title.titleize} logo", class: "header-image"
     .project-information
@@ -23,6 +25,12 @@
           .credit
             %span.label Builder
             %span.value= @project.builder_title
+      %ul.operations
+        - if current_user.authorized? to: Authorization::CREATE_UPDATES, on: @project
+          %li= link_to 'Add update', new_project_update_path(@project)
+        - if current_user.authorized? to: Authorization::ADMINISTER, on: @project
+          %li= link_to 'Edit', edit_project_path(@project)
+        %li= link_to 'Back', projects_path
       .details
         %progress value: "22", max: "100"
         - if @project.address
@@ -42,14 +50,8 @@
         .wrap
           .project-definition
             %span.label Estimate Completion Date
-            %span.value= @project.ends_at.to_s(:month_and_year)
-/ %ul.operations
-/   - if current_user.authorized? to: Authorization::CREATE_UPDATES, on: @project
-/     %li= link_to 'Add update', new_project_update_path(@project)
-/   - if current_user.authorized? to: Authorization::ADMINISTER, on: @project
-/     %li= link_to 'Edit', edit_project_path(@project)
-/   %li= link_to 'Back', projects_path  
-.description
+            %span.value= @project.ends_at.to_s(:month_and_year)  
+#description.description
   .small-internal-wrapper
     %label Project Description <br/>
     %p= @project.description
@@ -59,13 +61,13 @@
     = label_tag 'workspace_id', "Workspace"
     = select_tag 'workspace_id', options_from_collection_for_select(@project.workspaces, "id", "title"), include_blank: true
     = submit_tag "Filter"
-  %ul.updates
-    .update-feed-line
-    - @updates.each do |update|
-      .dateline== #{update.created_at.to_s(:verbose)} 
-      %li
-        %h3.workspace= link_to update.workspace_title, [@project, update]
-        .thumbnail= image_tag update.attachment.url
-        %p
-          = truncate(update.body, length: 200) do
-            = link_to "(More)", [@project, update]
+  #update-section.update-section
+    %ul.updates
+      - @updates.each do |update|
+        .dateline== #{update.created_at.to_s(:verbose)} 
+        %li
+          %h3.workspace= link_to update.workspace_title, [@project, update]
+          .thumbnail= image_tag update.attachment.url
+          %p
+            = truncate(update.body, length: 200) do
+              = link_to "(More)", [@project, update]

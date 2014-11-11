@@ -19,7 +19,7 @@ ul.minimap-page-sections {
     padding: 0 0 0 em(18);
     list-style-type: none;
     letter-spacing: em(.73);
-    &.active {
+    &.selected {
       border-left: em(4) solid $dark-gray;
       padding: 0 0 0 em(12);
       color: $dark-gray;
