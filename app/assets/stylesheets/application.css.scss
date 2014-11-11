@@ -3,6 +3,7 @@
 
 // Site wide
 @import "bourbon/bourbon";
+@import "neat/neat";
 @import "partials/variables";
 @import "partials/functions";
 @import "partials/mixins";
@@ -11,8 +12,8 @@
 @import "partials/inputs";
 @import "partials/flash";
 @import "partials/errors";
+@import "partials/forms";
 @import "partials/header";
-@import "neat/neat";
 @import "jquery-ui";
 @import "font-awesome";
 

@@ -1,3 +1,21 @@
+.update-filter {
+  @include clearfix;
+  margin: em(60) 0;
+  label {
+    display: block;
+    margin: 0 0 em(10) 0;
+  }
+}
+
+select#workspace_id {
+  width: 90%;
+  border: em(2) solid $medium-gray;
+  background: white;
+  font-size: em(14);
+  height: em(40);
+  border-radius: $base-border-radius !important;
+}
+
 ul.updates {
 
   width: 50%;

@@ -1,0 +1,62 @@
+.form-inputs {
+  
+  @include clearfix;
+
+  .form-section {
+
+    @include outer-container;
+    margin: em(20) 0;
+
+
+    &.two-columns {
+
+      .string,
+      .datepicker {
+        @include span-columns(6);
+        @include omega(2n);
+        
+        input {
+          width: 100%;
+        }
+
+      }
+
+    }
+
+    &.three-columns {
+
+      .string {
+        @include span-columns(4);
+        @include omega(3n);
+
+        input {
+          width: 100%;
+        }
+
+      }
+
+    }
+
+  }
+
+  .string.project_owner_title,
+  .string.project_architect_title,
+  .string.project_builder_title {
+    @include span-columns (3);
+  }
+
+}
+
+span.hint {
+  display: inline-block;
+  font-size: em(12);
+  line-height: em(24);
+  padding: em(12);
+  border: $base-border;
+  border-width: em(2);
+  border-color: $blue;
+  background: lighten($blue,42%);
+  color: $blue;
+  margin: em(5) 0;
+  border-radius: $base-border-radius;
+}

@@ -38,6 +38,8 @@ GEM
     addressable (2.3.6)
     ansi (1.4.3)
     arel (5.0.1.20140414130214)
+    autonumeric-rails (1.9.25.0)
+      jquery-rails (>= 2.0.2)
     bcrypt (3.1.7)
     bourbon (3.2.3)
       sass (~> 3.2)
@@ -314,6 +316,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  autonumeric-rails
   bourbon
   capistrano-rails
   capybara

@@ -16,6 +16,14 @@ h4 {
   text-align: left;
 }
 
+h5 {
+  color: $medium-gray;
+  font-size: em(14);
+  font-weight: 400;
+  letter-spacing: em(.73);
+  margin: 0;
+}
+
 p {
   font-weight: 300;
   font-size: em(17);

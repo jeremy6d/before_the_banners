@@ -3,7 +3,9 @@
   height: 100%;
 
   position: fixed;
+  z-index: 5;
   left: em(30);
+  margin-top: em(-40);
 }
 
 ul.minimap-page-sections {
@@ -13,15 +15,21 @@ ul.minimap-page-sections {
   top: em(120);
   li {
     font-family: 100;
-    font-size: em(12);
-    color: $gray;
-    margin: em(10) 0 em(10) em(-3);
+
+    margin: em(10) 0 em(10) em(-5);
     padding: 0 0 0 em(18);
     list-style-type: none;
     letter-spacing: em(.73);
+
+    a {
+      font-size: em(12);
+      color: $gray;
+      text-decoration: none;
+    }
+
     &.selected {
-      border-left: em(4) solid $dark-gray;
-      padding: 0 0 0 em(12);
+      border-left: em(4) solid $medium-gray;
+      padding: 0 0 0 em(14);
       color: $dark-gray;
     }
   }

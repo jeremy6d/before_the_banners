@@ -1,10 +1,10 @@
 .minimap
   %ul.minimap-page-sections
-    %li.project-brief.selected 
+    %li.selected 
       %a{ :href => "#page--header"} Project Brief
-    %li.description 
+    %li 
       %a{ :href => "#description"} Description
-    %li.updates 
+    %li
       %a{ :href => "#update-section"} Updates
 #page--header.page--header
   .project-header
@@ -56,11 +56,10 @@
     %label Project Description <br/>
     %p= @project.description
 .wrapper
-  %h3 Updates
-  = form_tag project_path(@project), method: :get do
+  = form_tag project_path(@project), class: "update-filter", method: :get do
     = label_tag 'workspace_id', "Workspace"
-    = select_tag 'workspace_id', options_from_collection_for_select(@project.workspaces, "id", "title"), include_blank: true
-    = submit_tag "Filter"
+    = select_tag 'workspace_id', options_from_collection_for_select(@project.workspaces, "id", "title"), include_blank: true, class: "left"
+    = submit_tag "Filter", class: "right"
   #update-section.update-section
     %ul.updates
       - @updates.each do |update|

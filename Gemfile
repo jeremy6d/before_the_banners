@@ -24,6 +24,7 @@ gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'mongoid-grid_fs', github: 'jeremy6d/mongoid-grid_fs'
 gem 'mongoid_slug'
 gem 'font-awesome-rails'
+gem 'autonumeric-rails'
 
 group :test do
   gem "minitest"

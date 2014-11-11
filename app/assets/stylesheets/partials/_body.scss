@@ -11,6 +11,14 @@ body {
   line-height: $base-line-height;
 }
 
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
 .wrapper {
   width: 95%;
   max-width: em(920);

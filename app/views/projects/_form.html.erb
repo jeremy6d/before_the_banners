@@ -1,0 +1,36 @@
+<%= simple_form_for @project, html: { class: "two-column" } do |project_form| %>
+  <%= project_form.error :base %>
+  <div class="form-inputs">
+    <div class="form-section two-columns">
+      <%= project_form.input :title, label: "Project title" %>
+      <%= project_form.input :address %>
+      <%= project_form.input :type, label: "Project type" %>
+      <%= project_form.input :value, label: "Project value" %>
+    </div>
+    <div class="form-section three-columns">
+      <%= project_form.input :owner_title, label: "Owner" %>
+      <%= project_form.input :architect_title, label: "Architect" %>
+      <%= project_form.input :builder_title, label: "Builder" %>
+    </div>
+    <div class="form-section">
+      <%= project_form.input :description, as: :text, label: "Project description" %>
+    </div>
+    <div class="form-section two-columns">
+      <%= project_form.input :starts_at, as: :datepicker, label: "Start date" %>
+      <%= project_form.input :ends_at, as: :datepicker, label: "End date", hint: %Q(Note that these dates will be generalized to protect against delays. For example, a completion date of 12/15/15 will be displayed to the public as "Estimated Completion: December 2015.") %>
+    </div>
+  </div>
+  <div id="attachment-area">
+    <h3>Logo</h3>
+    <%= image_tag(@project.logo.thumb.url) if @project.logo? %>
+    <%= project_form.input :logo, as: :file, label: false %>
+    <%= project_form.hidden_field :logo_cache %>
+  </div>
+  <div class="form-actions">
+    <%= project_form.button :submit, "Save" %>
+    <% unless @project.new_record? %>
+      <%= link_to "Authorization settings", authorizations_for_project_path(@project), class: "btn"  %>
+      <%= link_to "Manage workspaces", project_workspaces_path(@project), class: "btn"  %>
+    <% end %>
+  </div>
+<% end %>

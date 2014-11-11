@@ -16,7 +16,8 @@ div.input.boolean {
 input[type="text"],
 input[type="email"],
 input[type="password"],
-textarea {
+textarea,
+select {
   width: 100%;
   border: em(2) solid $gray;
   padding: em(8);
@@ -29,6 +30,10 @@ textarea {
     outline: none;
     border-color: $blue;
   }
+}
+
+textarea {
+  height: em(150);
 }
 
 input[type="submit"] {
