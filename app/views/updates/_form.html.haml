@@ -1,12 +1,11 @@
 = simple_form_for [@project, @update] do |f|
   = f.error_notification
   .form-inputs
+    #attachment-area
+      = image_tag(@update.attachment.thumb.url) if @update.attachment?
+      = f.input :attachment, as: :file, label: "Update Image"
+      = f.hidden_field :attachment_cache
     = f.association :workspace, as: :select, collection: @project.workspaces, include_blank: false
     = f.input :body, as: :text
-    #attachment-area
-      %h3 Attachment
-      = image_tag(@update.attachment.thumb.url) if @update.attachment?
-      = f.input :attachment, as: :file, label: false
-      = f.hidden_field :attachment_cache
   .form-actions
     = f.submit 'Submit update'

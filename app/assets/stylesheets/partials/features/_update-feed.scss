@@ -9,11 +9,6 @@
 
 select#workspace_id {
   width: 90%;
-  border: em(2) solid $medium-gray;
-  background: white;
-  font-size: em(14);
-  height: em(40);
-  border-radius: $base-border-radius !important;
   @media(max-width: em(640)) {
     width: 100%;
   }

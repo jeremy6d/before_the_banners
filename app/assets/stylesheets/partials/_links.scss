@@ -1,4 +1,5 @@
 a.new-project-button {
   @include main-button;
-  font-size: em(14);
+  text-decoration: none;
+  text-shadow: none;
 }

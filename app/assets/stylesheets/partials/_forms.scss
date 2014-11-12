@@ -1,3 +1,8 @@
+.form-actions {
+  text-align: center;
+  margin: em(40) 0;  
+}
+
 .form-inputs {
   
   @include clearfix;
@@ -19,18 +24,28 @@
           width: 100%;
         }
 
+        @media(max-width: em(640)) {
+          @include span-columns(12);
+        }
+
       }
 
     }
 
     &.three-columns {
 
-      .string {
+      .string,
+      .datepicker,
+      .file {
         @include span-columns(4);
         @include omega(3n);
 
         input {
           width: 100%;
+        }
+
+        @media(max-width: em(640)) {
+          @include span-columns(12);
         }
 
       }
