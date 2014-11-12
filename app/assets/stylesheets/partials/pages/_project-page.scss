@@ -1,31 +1,37 @@
+img.header-image {
+  width: 100%;  
+  display: block;
+  margin: 0 auto;
+  max-width: em(1440);
+}
+
 .project-header {
 
-  width: 95%;
-  height: 40vh;
-  min-height: em(500);
-
+  width: 100%;
+  max-width: em(1440);
+  height: em(500);
 
   margin: 0 auto;
 
-  text-align: center;
   background-position: center;
 
-  .logo {
-    position: absolute;
+  .header-image {
     width: 100%;
     max-width: em(1440);
-    max-height: em(400);
-    overflow: hidden;
-    background: white;
+    position: absolute;
+    opacity: .5;
+    height: em(500);
+  }
 
-    border-bottom: 1px solid $light-gray;
-
-    img {
-      -webkit-filter: brightness(1.7);
-      filter: brightness(1.7);
-      opacity: .4;
-    }
-
+  .project-information {
+    width: 100%;
+    max-width: em(920);
+    margin: 0 auto;
+    color: $heavy-blue;
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    @include vertical-align;
   }
 
 }
@@ -35,24 +41,14 @@ progress {
   margin-bottom: em(25);
 }
 
-.project-information {
 
-  position: absolute;
-  width: 100%;
-  max-width: em(920);
-  margin: 0 auto;
-
-  color: $heavy-blue;
-
-  @include vertical-align;
-  @include clearfix;
-
-}
 
 .credits {
+
   width: 95%;
   max-width: em(620);
   margin: 0 auto 40px auto;
+
   .credit {
 
     @include span-columns(4);

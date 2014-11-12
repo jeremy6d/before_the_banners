@@ -30,6 +30,12 @@ body {
   margin: em(40) auto;
 }
 
+.large-wrapper {
+  width: 100%;
+  max-width: em(1440);
+  margin: 0 auto;
+}
+
 .internal-wrapper {
   width: 95%;
   max-width: em(920);

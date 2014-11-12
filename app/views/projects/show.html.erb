@@ -12,9 +12,9 @@
   </ul>
 </div>
 <div class="page--header" id="page--header">
+  
   <div class="project-header">
-    <!-- .logo= image_tag @project.logo.url(:main), title: "#{@project.title.titleize} logo", class: "header-image"
-    -->
+    <canvas class="header-image" src="<%= @project.logo.url(:main) %>"></canvas>
     <div class="project-information">
       <h2>
         <div class="title">
