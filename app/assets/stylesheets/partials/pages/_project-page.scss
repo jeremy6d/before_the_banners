@@ -11,11 +11,14 @@ img.header-image {
   width: 100%;
   border-bottom: $base-border;
   border-width: em(1);
-  border-bottom-color: $medium-gray;
+  border-bottom-color: $blue;
   text-align: center;
   img {
     margin: em(12) em(30) 0;
     max-height: em(50);
+  }
+  @media(max-width: em(640)) {
+    display: none;
   }
 }
 
@@ -30,8 +33,7 @@ img.header-image {
   background-position: center;
 
   .header-image {
-    width: 100%;
-    max-width: em(1440);
+    width: em(1440);
     position: absolute;
     opacity: .3;
     height: em(500);
@@ -51,6 +53,11 @@ img.header-image {
     z-index: 10;
     text-align: center;
     @include vertical-align;
+
+    @media(max-width: em(640)) {
+      padding: 0 em(7);
+    }
+
   }
 
 }
