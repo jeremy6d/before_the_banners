@@ -103,6 +103,13 @@
   </div>
 </div>
 <div class="wrapper">
+<ul class="filters">
+<% @project.workspaces.each do |workspace| %>
+  <li>
+    <%= workspace.title %>
+  </li>
+<% end %>
+</ul>
   <%= form_tag project_path(@project), class: "update-filter", method: :get do %>
     <%= label_tag 'workspace_id', "Workspace" %>
     <%= select_tag 'workspace_id', options_from_collection_for_select(@project.workspaces, "id", "title"), include_blank: true, class: "left" %>
