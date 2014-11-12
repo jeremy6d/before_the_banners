@@ -15,7 +15,7 @@ def sequential_mock_time!
   end
 end
 
-puts "Drop entire database for #{Rails.env} environment? (yes/no)"
+puts "Do you want to proceed, losing all existing data for the \"#{Rails.env}\" environment? (yes/no)"
 unless /y/i.match STDIN.gets.chomp
   puts("Exiting.")
   exit
@@ -27,8 +27,8 @@ puts "creating user Jeremy"
 jeremy =  User.create!  first_name: "Jeremy", 
                         last_name: "Weiland", 
                         email: "jeremy@6thdensity.com", 
-                        password: "password123",
-                        password_confirmation: "password123",
+                        password: "leanasfuck",
+                        password_confirmation: "leanasfuck",
                         company_attributes: { 
                           title: "6th Density LLC" 
                         },
@@ -42,6 +42,17 @@ jeff =    User.create!  first_name: "Jeff",
                         password_confirmation: "leanasfuck",
                         company_attributes: { 
                           title: "Before the Banners LLC" 
+                        },
+                        created_at: sequential_mock_time!
+
+puts "creating user Gabe"
+gabe =    User.create!  first_name: "Gabe", 
+                        last_name: "Kelley", 
+                        email: "hello@gabekelley.com", 
+                        password: "leanasfuck",
+                        password_confirmation: "leanasfuck",
+                        company_attributes: { 
+                          title: "Gabe Kelley LLC" 
                         },
                         created_at: sequential_mock_time!
 
@@ -104,7 +115,7 @@ vcu = Project.create! "architect_title"=>"VMDO Architects",
 
 
 WORKSPACES = [
- { :title=>"Frank's Theater and Bowling Center", :description=>"http://www.franktheatres.com/CINEBOWLGRILLE.aspx", :project=>parkside},
+ { :title=>"Frank's Theater and Bowling Center", :description=>"http://www.franktheatres.com/CINEBOWLGRILLE.aspx", :project=>parkside },
  { :title=>"Excavation", :description=>"", :project=>vcu},
  { :title=>"Toby Keith's Bar and Grille", :description=>"Toby Keith's Bar and Grille", :project=>parkside},
  { :title=>"Foundations", :description=>"", :project=>vcu},
@@ -120,12 +131,12 @@ WORKSPACES = [
  { :title=>"Starbucks/Verizon", :description=>"Starbucks and Verizon will have one of the most prominent out lots at Parkside Towne Commons", :project=>parkside},
  { :title=>"Building Envelope", :description=>"", :project=>vcu},
  { :title=>"Landscaping & Paving", :description=>"Common spaces and thoroughfares throughout the development.", :project=>parkside},
- { :title=>"East Court", :description=>"", :project=>vcu},
- { :title=>"West Court", :description=>"", :project=>vcu},
- { :title=>"Training, Equipment, & Video", :description=>"", :project=>vcu},
- { :title=>"Locker Rooms", :description=>"", :project=>vcu},
- { :title=>"Team Lounges", :description=>"", :project=>vcu},
- { :title=>"Coaching & Administration", :description=>"", :project=>vcu},
+ { :title=>"East Court", :description=>"", :project=>vcu, :attachment => upload!("Workspace East_Court.png")},
+ { :title=>"West Court", :description=>"", :project=>vcu, :attachment => upload!("Workspace West_Court.png")},
+ { :title=>"Training, Equipment, & Video", :description=>"", :project=>vcu, attachment: upload!("Workspace Training_Equip_Video.png")},
+ { :title=>"Locker Rooms", :description=>"", :project=>vcu, attachment: upload!("Workspace Locker_Rooms.png")},
+ { :title=>"Team Lounges", :description=>"", :project=>vcu, attachment: upload!("Workspace Team_Lounges.png")},
+ { :title=>"Coaching & Administration", :description=>"", :project=>vcu, attachment: upload!("Workspace Coaching_Administration.png") },
  { :title=>"Offsite Roadwork", :description=>"There are several intersections nearby that need to be adjusted to handle the additional traffic flow anticipated as a result of our popular development.", :project=>parkside},
  { :title=>"Phase 1 - Target/Petco", :description=>"PetCo and Target are part of Phase 1 Construction", :project=>parkside},
  { :title=>"Phase 1 - Level 3 of Chemistry Building", :description=>"Create construction access to the basement mechanical room. Integrate make-up air handlers into existing systems. Renovate mechanical room and install new systems.", :project=>gilmer_hall},
