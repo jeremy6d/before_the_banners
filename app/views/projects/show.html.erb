@@ -118,21 +118,26 @@
   <div class="update-section" id="update-section">
     <ul class="updates">
       <% @updates.each do |update| %>
-        <div class="dateline">
-          <%= update.created_at.to_s(:verbose)  %>
-        </div>
-        <li>
-          <h3 class="workspace">
-            <%= link_to update.workspace_title, [@project, update] %>
-          </h3>
-          <div class="thumbnail">
-            <%= image_tag update.attachment.url %>
+        <li class="update-full">
+          <div class="workspaces">
+            
+          </div>  
+          <div class="update">
+            <div class="dateline">
+              <%= update.created_at.to_s(:verbose)  %>
+            </div>
+            <h3 class="workspace">
+              <%= link_to update.workspace_title, [@project, update] %>
+            </h3>
+            <div class="thumbnail">
+              <%= image_tag update.attachment.url %>
+            </div>
+            <p>
+              <%= truncate(update.body, length: 200) do %>
+                <%= link_to "(More)", [@project, update] %>
+              <% end %>
+            </p>
           </div>
-          <p>
-            <%= truncate(update.body, length: 200) do %>
-              <%= link_to "(More)", [@project, update] %>
-            <% end %>
-          </p>
         </li>
       <% end %>
     </ul>
