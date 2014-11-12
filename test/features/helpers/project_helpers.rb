@@ -111,5 +111,15 @@ module FeatureHelpers
       the_flash_notice_must_be "Project created."
       return Project.last
     end
+
+    def filter_on! workspace_name
+      within("ul#workspace-filter-list") do
+        click_on workspace_name
+      end
+    end
+
+    def remove_filter!
+      find("ul#workspace-filter-list li.selected a").click
+    end
   end
 end

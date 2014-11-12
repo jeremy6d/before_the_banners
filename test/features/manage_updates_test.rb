@@ -27,29 +27,25 @@ feature "Manage updates and approvals" do
         page.must_have_content body 
     end
 
-    select "plumbing", from: "Workspace"
-    click_on "Filter"
+    filter_on! "plumbing"
 
     page.must_have_content "Testing 123"
     page.wont_have_content "trying 456"
     page.wont_have_content "attempt 789"
 
-    select "interior", from: "Workspace"
-    click_on "Filter"
+    filter_on! "interior"
 
     page.must_have_content "trying 456"
     page.wont_have_content "Testing 123"
     page.wont_have_content "attempt 789"
 
-    select "electrical", from: "Workspace"
-    click_on "Filter"
+    filter_on!  "electrical"
 
     page.wont_have_content  "Testing 123"
     page.wont_have_content  "trying 456" 
     page.wont_have_content "attempt 789"
 
-    select "", from: "Workspace"
-    click_on "Filter"
+    remove_filter!
 
     [ "Testing 123",
       "trying 456",

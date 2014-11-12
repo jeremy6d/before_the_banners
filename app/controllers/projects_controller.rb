@@ -3,10 +3,9 @@ class ProjectsController < ApplicationController
   before_action :authorize_for_administration, only: %i(edit update destroy)
   
   def show
-    @updates = resource.updates.desc(:created_at)
-    unless (wid = params["workspace_id"]).blank?
-      @updates = @updates.where(workspace_id: wid) 
-    end
+    @workspaces = resource.workspaces
+    @current_workspace = @workspaces.to_a.find { |w| w.slug == params[:workspace] }
+    @updates = @current_workspace.try(:updates) || @project.updates
   end
 
   def create
