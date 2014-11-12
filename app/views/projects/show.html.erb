@@ -1,0 +1,129 @@
+<div class="minimap no-mobile">
+  <ul class="minimap-page-sections">
+    <li class="selected">
+      <a href="#page--header">Project Brief</a>
+    </li>
+    <li>
+      <a href="#description">Description</a>
+    </li>
+    <li>
+      <a href="#update-section">Updates</a>
+    </li>
+  </ul>
+</div>
+<div class="page--header" id="page--header">
+  <div class="project-header">
+    <!-- .logo= image_tag @project.logo.url(:main), title: "#{@project.title.titleize} logo", class: "header-image"
+    -->
+    <div class="project-information">
+      <h2>
+        <div class="title">
+          <%= @project.title.titleize %>
+        </div>
+      </h2>
+      <div class="credits">
+        <% unless @project.owner_title.blank? %>
+          <div class="credit">
+            <span class="label">Owner</span>
+            <span class="value">
+              <%= @project.owner_title %>
+            </span>
+          </div>
+        <% end %>
+        <% unless @project.architect_title.blank? %>
+          <div class="credit">
+            <span class="label">Architect</span>
+            <span class="value">
+              <%= @project.architect_title %>
+            </span>
+          </div>
+        <% end %>
+        <% unless @project.builder_title.blank? %>
+          <div class="credit">
+            <span class="label">Builder</span>
+            <span class="value">
+              <%= @project.builder_title %>
+            </span>
+          </div>
+        <% end %>
+      </div>
+      <ul class="operations">
+        <% if current_user.authorized? to: Authorization::CREATE_UPDATES, on: @project %>
+          <li>
+            <%= link_to 'Add update', new_project_update_path(@project) %>
+          </li>
+        <% end %>
+        <% if current_user.authorized? to: Authorization::ADMINISTER, on: @project %>
+          <li>
+            <%= link_to 'Edit', edit_project_path(@project) %>
+          </li>
+        <% end %>
+        <li>
+          <%= link_to 'Back', projects_path %>
+        </li>
+      </ul>
+      <div class="details">
+        <progress class="no-mobile" value="<%= (Date.today - @project.starts_at).to_i %>" max="<%= (@project.ends_at - @project.starts_at).to_i %>"></progress>
+        <% unless @project.type.blank? %>
+          <div class="project-definition">
+            <span class="label">Project type</span>
+            <span class="value">
+              <%= @project.type %>
+            </span>
+          </div>
+        <% end %>
+        <% if @project.value %>
+          <div class="project-definition">
+            <span class="label">Contract value</span>
+            <span class="value">
+              <%= number_to_currency @project.value %>
+            </span>
+          </div>
+        <% end %>
+        <div class="project-definition">
+          <span class="label">Estimate Completion Date</span>
+          <span class="value">
+            <%= @project.ends_at.to_s(:month_and_year)   %>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="description" id="description">
+  <div class="small-internal-wrapper">
+    <label>Project Description <br/></label>
+    <p>
+      <%= @project.description %>
+    </p>
+  </div>
+</div>
+<div class="wrapper">
+  <%= form_tag project_path(@project), class: "update-filter", method: :get do %>
+    <%= label_tag 'workspace_id', "Workspace" %>
+    <%= select_tag 'workspace_id', options_from_collection_for_select(@project.workspaces, "id", "title"), include_blank: true, class: "left" %>
+    <%= submit_tag "Filter", class: "right" %>
+  <% end %>
+  <div class="update-section" id="update-section">
+    <ul class="updates">
+      <% @updates.each do |update| %>
+        <div class="dateline">
+          <%= update.created_at.to_s(:verbose)  %>
+        </div>
+        <li>
+          <h3 class="workspace">
+            <%= link_to update.workspace_title, [@project, update] %>
+          </h3>
+          <div class="thumbnail">
+            <%= image_tag update.attachment.url %>
+          </div>
+          <p>
+            <%= truncate(update.body, length: 200) do %>
+              <%= link_to "(More)", [@project, update] %>
+            <% end %>
+          </p>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
