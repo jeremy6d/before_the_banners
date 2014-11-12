@@ -20,18 +20,14 @@ select#workspace_id {
 }
 
 ul.updates {
-
-  border-left: $base-border;
   padding: em(40) 0 0 0;
   margin: 0;
-
   @media(max-width: em(640)) {
     width: 95%;
     float: none;
     border: 0;
     margin: 0 auto;
   }
-
   .dateline {
     font-family: Roboto-Medium;
     font-size: em(11);
@@ -44,26 +40,53 @@ ul.updates {
     padding: em(10) em(25);
     background: white;
     margin-top: em(-65);
-    margin-left: em(-28);
-
     @media(max-width: em(640)) {
       margin-left: 0;
-      margin-top: em(-45)
     }
   }
-
   li {
-
+    @include clearfix;
+    max-width: em(1440);
     list-style-type: none;
-    border: $base-border;
     background: white;
-    margin: 0 0 em(90) em(-20);
+    margin: 0 0 em(90) 0;
     padding: 0;
-
+    .update-workspace {
+      @include span-columns(4);
+      margin-top: em(-20);
+      img {
+        padding: em(10);
+        border: $base-border;
+        border-color: $medium-gray;
+      }
+    }
+    .update {
+      @include span-columns(7);
+      float: right;
+      height: 100%;
+      .update-line {
+        border-left: $base-border;
+        height: 100%;
+        position: absolute;
+        margin-top: em(-20);
+        margin-left: em(20);
+        padding-top: em(20);
+        z-index: -1;
+      }
+      img {
+        border: $base-border;
+        border-color: $medium-gray;
+      }
+      p {
+        border: $base-border;
+        border-color: $medium-gray;
+        margin-top: em(-1);
+        margin-bottom: 0;
+      }
+    }
     @media(max-width: em(640)) {
       margin: 0 auto em(90) auto;
     }
-
     h3.workspace {
       position: absolute;
       display: block;
@@ -75,7 +98,6 @@ ul.updates {
       text-transform: uppercase;
       line-height: 15px;
       letter-spacing: 1px;
-      
       border: em(2) solid $gray;
       background: white;
       a {
@@ -84,31 +106,23 @@ ul.updates {
         padding: em(5) em(10);
         display: block;
       }
-
       @media(max-width: em(640)) {
         margin: em(5) 0 0 em(-5);
       }
-
     }
-
     .thumbnail {
       max-height: em(275);
       overflow: hidden;
       border-bottom: $base-border;
     }
-
     img {
       width: 100%;
     }
-
     p {
       padding: em(20);
     }
-
     .tagline {
       font-size: em(9);
     }
-
   }
-
 }

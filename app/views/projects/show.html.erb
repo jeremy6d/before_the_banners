@@ -119,10 +119,12 @@
     <ul class="updates">
       <% @updates.each do |update| %>
         <li class="update-full">
-          <div class="workspaces">
-            
+          <div class="update-section update-workspace">
+            <label><%= update.workspace.title %></label>
+            <%= image_tag update.workspace.attachment.url %>
           </div>  
-          <div class="update">
+          <div class="update-section update">
+            <div class="update-line"></div>
             <div class="dateline">
               <%= update.created_at.to_s(:verbose)  %>
             </div>
