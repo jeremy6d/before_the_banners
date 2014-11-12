@@ -5,6 +5,20 @@ img.header-image {
   max-width: em(1440);
 }
 
+.ownership-credit-feed {
+  background: white;
+  height: em(80);
+  width: 100%;
+  border-bottom: $base-border;
+  border-width: em(1);
+  border-bottom-color: $medium-gray;
+  text-align: center;
+  img {
+    margin: em(12) em(30) 0;
+    max-height: em(50);
+  }
+}
+
 .project-header {
 
   width: 100%;
@@ -19,8 +33,13 @@ img.header-image {
     width: 100%;
     max-width: em(1440);
     position: absolute;
-    opacity: .5;
+    opacity: .3;
     height: em(500);
+    filter:          grayscale(20%);
+    -webkit-filter: grayscale(20%);
+    -moz-filter:    grayscale(20%);
+    -ms-filter:     grayscale(20%);
+    -o-filter:      grayscale(20%);
   }
 
   .project-information {
