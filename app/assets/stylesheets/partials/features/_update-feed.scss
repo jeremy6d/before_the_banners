@@ -39,6 +39,9 @@ ul.updates {
         border: $base-border;
         border-color: $medium-gray;
       }
+      @media(max-width: em(640)) {
+        display: none;
+      }
     }
     .update {
       @include span-columns(7);
@@ -62,6 +65,9 @@ ul.updates {
         border-color: $medium-gray;
         margin-top: em(-1);
         margin-bottom: 0;
+      }
+      @media(max-width: em(640)) {
+        @include span-columns(12);
       }
     }
     @media(max-width: em(640)) {
