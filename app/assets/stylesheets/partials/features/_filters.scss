@@ -6,24 +6,31 @@ ul.filters {
   text-align: center;
 
   li {
-
     padding: 0 0 em(2) 0;
     margin: 0 em(20) 0 0;
     list-style-type: none;
     line-height: em(33);
     display: inline;
-    font-size: em(14);
-    color: $medium-gray;
-    letter-spacing: em(.63);
-    border-bottom: em(2) dotted $gray;
-
-    &:hover {
-      color: $dark-gray;
-      cursor: pointer;
-      border-bottom-style: solid;
-      border-bottom-color: $dark-gray;
+    a {
+      font-size: em(14);
+      color: $medium-gray;
+      letter-spacing: em(.63);
+      border-bottom: em(2) dotted $gray;
+      text-decoration: none;
+      &:hover {
+        color: $dark-gray;
+        cursor: pointer;
+        border-bottom-style: solid;
+        border-bottom-color: $dark-gray;
+      }
     }
-
+    &.selected {
+      a {
+        color: $dark-gray;
+        border-bottom-style: solid;
+        border-bottom-color: $dark-gray;
+      }
+    }
   }
 
 }
