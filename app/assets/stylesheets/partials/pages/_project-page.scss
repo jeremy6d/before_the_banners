@@ -35,13 +35,13 @@ img.header-image {
   .header-image {
     width: em(1440);
     position: absolute;
-    opacity: .3;
+    opacity: .5;
     height: em(500);
-    filter:          grayscale(20%);
-    -webkit-filter: grayscale(20%);
-    -moz-filter:    grayscale(20%);
-    -ms-filter:     grayscale(20%);
-    -o-filter:      grayscale(20%);
+    filter:          grayscale(10%);
+    -webkit-filter: grayscale(10%);
+    -moz-filter:    grayscale(10%);
+    -ms-filter:     grayscale(10%);
+    -o-filter:      grayscale(10%);
   }
 
   .project-information {
@@ -73,7 +73,7 @@ progress {
 
   width: 95%;
   max-width: em(620);
-  margin: 0 auto 40px auto;
+  margin: -1px auto 40px auto;
 
   .credit {
 

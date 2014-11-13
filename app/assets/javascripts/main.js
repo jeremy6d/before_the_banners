@@ -74,7 +74,7 @@ $(document).ready(function(){
     image = new Image();
     image.onload = function() {
       canvasImage = new CanvasImage(canvas, this);
-      canvasImage.blur(5);
+      // canvasImage.blur(5);
     };
     image.src = $(canvas).attr("src");
   });
