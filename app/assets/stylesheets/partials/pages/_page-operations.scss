@@ -40,5 +40,9 @@ ul.operations {
       a {
       }
     }
+    @media(max-width: em(640)) {
+      position: absolute;
+      right: -1px;
+    }
   }
 }
