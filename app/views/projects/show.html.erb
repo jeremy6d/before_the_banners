@@ -17,6 +17,21 @@
     <%= image_tag "timmons-group-logo.png" %>
     <%= image_tag "hourigan-logo.png" %>
   </div>
+  <ul class="operations off--page">
+    <% if current_user.authorized? to: Authorization::CREATE_UPDATES, on: @project %>
+      <li>
+        <%= link_to 'Add update', new_project_update_path(@project) %>
+      </li>
+    <% end %>
+    <% if current_user.authorized? to: Authorization::ADMINISTER, on: @project %>
+      <li>
+        <%= link_to 'Edit', edit_project_path(@project) %>
+      </li>
+    <% end %>
+    <li>
+      <%= link_to 'Back', projects_path %>
+    </li>
+  </ul>
   <div class="project-header">
     <canvas class="header-image" src="<%= @project.logo.url(:main) %>"></canvas>
     <div class="project-information">
@@ -51,21 +66,6 @@
           </div>
         <% end %>
       </div>
-      <ul class="operations">
-        <% if current_user.authorized? to: Authorization::CREATE_UPDATES, on: @project %>
-          <li>
-            <%= link_to 'Add update', new_project_update_path(@project) %>
-          </li>
-        <% end %>
-        <% if current_user.authorized? to: Authorization::ADMINISTER, on: @project %>
-          <li>
-            <%= link_to 'Edit', edit_project_path(@project) %>
-          </li>
-        <% end %>
-        <li>
-          <%= link_to 'Back', projects_path %>
-        </li>
-      </ul>
       <div class="details">
         <progress class="no-mobile" value="<%= (Date.today - @project.starts_at).to_i %>" max="<%= (@project.ends_at - @project.starts_at).to_i %>"></progress>
         <% unless @project.type.blank? %>

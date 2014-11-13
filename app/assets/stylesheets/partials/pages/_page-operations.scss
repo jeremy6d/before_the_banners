@@ -20,4 +20,25 @@ ul.operations {
       }
     }
   }
+  &.off--page {
+    @include clearfix;
+    position: fixed;
+    z-index: 10;
+    right: -160px;
+    height: em(40);
+    line-height: em(35);
+    border: em(1) solid $heavy-blue;
+    border-left-width: em(5);
+    background: white;
+    transition: all .4s ease;
+    padding: 0 em(8);
+    &:hover {
+      right: -1px;
+      border-left-width: em(1);
+    }
+    li {
+      a {
+      }
+    }
+  }
 }
