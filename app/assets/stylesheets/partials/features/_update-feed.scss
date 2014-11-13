@@ -1,20 +1,5 @@
-.update-filter {
-  @include clearfix;
-  margin: em(60) 0;
-  label {
-    display: block;
-    margin: 0 0 em(10) 0;
-  }
-}
-
-select#workspace_id {
-  width: 90%;
-  @media(max-width: em(640)) {
-    width: 100%;
-  }
-}
-
 ul.updates {
+  @include clearfix;
   padding: em(40) 0 0 0;
   margin: 0;
   @media(max-width: em(640)) {
