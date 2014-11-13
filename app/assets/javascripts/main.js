@@ -79,4 +79,14 @@ $(document).ready(function(){
     image.src = $(canvas).attr("src");
   });
 
+  // Toggle responsive menu
+  $('.mobile-nav-icon').on('tap', function(){
+    $('.mobile-nav').slideToggle();
+  });
+
+  // Hide mobile menu on window resize
+  $(window).resize(function(){
+    $('.mobile-nav').hide();
+  });
+
 })

@@ -1,8 +1,18 @@
+%ul.mobile-nav
+  - if user_signed_in?
+    %li.nav-link= link_to "My company", edit_company_path
+    %li.nav-link= link_to "My projects", projects_path
+    %li.nav-link= link_to "Invite new users", new_user_invitation_path
+  - if user_signed_in?
+    %li= link_to "Sign out", destroy_user_session_path, method: :delete, class: "sign-out"
+  - else
+    %li= link_to "Sign in", new_user_session_path, class: "sign-in"
+    %li= link_to "Sign up", new_user_registration_path, class: "sign-up"
 %header.navigation
   .menu-wrapper
     .btb-logotype 
       %a{ :href => "/" }Before The Banners
-    .nav
+    .nav.desktop-nav
       %ul#navigation-menu
         - if user_signed_in?
           %li.nav-link= link_to "My company", edit_company_path
@@ -14,5 +24,5 @@
         - else
           = link_to "Sign in", new_user_session_path, class: "sign-in"
           = link_to "Sign up", new_user_registration_path, class: "sign-up"
-    .mobile-nav
+    .mobile-nav-icon
       = fa_icon "bars"

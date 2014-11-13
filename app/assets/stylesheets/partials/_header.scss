@@ -43,10 +43,42 @@ header {
 
 }
 
-.mobile-nav {
+ul.mobile-nav {
+  padding: 0;
+  margin: 0;
+  display: none;
+  li {
+    margin: 0;
+    border-bottom: em(1) solid $blue;
+    a {
+      display: block;
+      padding: em(20) 0 em(20) em(20);
+      background: lighten($light-blue,10%);
+      font-size: em(12);
+      letter-spacing: em(.63);
+      color: $heavy-blue;
+      text-transform: uppercase;
+      text-decoration: none;
+      &:hover {
+        background: $blue;
+        color: white;
+      }
+    }
+  }
+}
+
+.mobile-nav-icon {
 
   float: right;
   display: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  @media(min-width: em(640)) {
+    display: none;
+  }
 
   @media(max-width: em(640)) {
     display: block;
