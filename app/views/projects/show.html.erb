@@ -13,9 +13,6 @@
 </div>
 <div class="page--header" id="page--header">
   <div class="ownership-credit-feed">
-    <%= image_tag "stone-brewing-logo.png" %>
-    <%= image_tag "timmons-group-logo.png" %>
-    <%= image_tag "hourigan-logo.png" %>
   </div>
   <ul class="operations off--page">
     <% if current_user.authorized? to: Authorization::CREATE_UPDATES, on: @project %>
