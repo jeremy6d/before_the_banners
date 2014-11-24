@@ -8,4 +8,8 @@ header.project-navigation {
     @include clearfix;
     padding: 0 em(10);
   }
+  @media(max-width: em(640)) {
+    height: em(40);
+    position: relative;
+  }
 }

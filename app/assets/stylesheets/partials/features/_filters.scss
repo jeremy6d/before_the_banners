@@ -32,5 +32,8 @@ ul.filters {
       }
     }
   }
+  @media(max-width: em(640)) {
+    display: none;
+  }
 
 }
