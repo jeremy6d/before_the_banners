@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
     @current_workspace = @workspaces.to_a.find { |w| w.slug == params[:workspace] }
     @updates = @current_workspace.try(:updates) || @project.updates
 
-    render layout: "wrapperless_application"
+    render layout: "project_page"
   end
 
   def create
