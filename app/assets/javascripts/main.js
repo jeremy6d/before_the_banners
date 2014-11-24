@@ -54,4 +54,7 @@ $(document).ready(function(){
     $('.mobile-nav').hide();
   });
 
+  // Filters stick to top
+  $('#workspace-filter-list').scrollToFixed({ marginTop: 120 });
+
 })

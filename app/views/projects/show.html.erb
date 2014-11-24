@@ -96,7 +96,9 @@
     </div>
   </div>
   <div class="wrapper">
+
     <ul id="workspace-filter-list" class="filters">
+      <div class="secondary-project-title center"><%= @project.title.titleize %></div>
       <%= render @project.workspaces %>
     </ul>
 
@@ -114,7 +116,7 @@
                 <%= update.created_at.to_s(:verbose)  %>
               </div>
               <h3 class="workspace">
-                <%= link_to update.workspace_title, [@project, update] %>
+                <%= update.workspace_title %>
               </h3>
               <div class="thumbnail">
                 <%= image_tag update.attachment.url %>

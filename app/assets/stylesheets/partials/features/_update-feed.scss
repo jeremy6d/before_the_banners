@@ -86,12 +86,8 @@ ul.updates {
       letter-spacing: 1px;
       border: em(2) solid $gray;
       background: white;
-      a {
-        text-decoration: none;
-        color: lighten($dark-gray,20%);
-        padding: em(5) em(10);
-        display: block;
-      }
+      color: lighten($dark-gray,20%);
+      padding: em(5) em(10);
       @media(max-width: em(640)) {
         margin: em(5) 0 0 em(-5);
       }
