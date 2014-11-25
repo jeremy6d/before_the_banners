@@ -17,6 +17,11 @@ tr {
       margin: 0;
       padding: em(10) 0;
       border-bottom: em(1) solid $gray;
+      label {
+        color: $dark-gray;
+        font-size: em(12);
+        text-transform: capitalize;
+      }
     }
   }
 }
