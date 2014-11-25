@@ -1,0 +1,22 @@
+table {
+  width: 100%;
+  margin-top: em(40);
+  border-spacing: 0;
+}
+
+tr {
+  th {
+    text-align: left;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: em(12);
+    letter-spacing: em(.33);
+  }
+  &.authorizations-row {
+    td {
+      margin: 0;
+      padding: em(10) 0;
+      border-bottom: em(1) solid $gray;
+    }
+  }
+}

@@ -51,3 +51,21 @@ textarea {
 input[type="submit"] {
   @include main-button;
 }
+
+div.field_with_hint {
+  text-align: center;
+  input {
+    margin-bottom: em(3);
+  }
+  label {
+    float: left;
+  }
+}
+
+span.hint {
+  color: $blue;
+  font-size: em(12);
+  background: lighten($light-blue,30%);
+  border: em(2) solid $blue;
+  padding: em(8);
+}
