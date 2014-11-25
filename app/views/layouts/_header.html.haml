@@ -8,7 +8,7 @@
   - else
     %li= link_to "Sign in", new_user_session_path, class: "sign-in"
     %li= link_to "Sign up", new_user_registration_path, class: "sign-up"
-%header.navigation
+%header
   .menu-wrapper
     .btb-logotype 
       %a{ :href => "/" }Before The Banners
@@ -26,4 +26,3 @@
           = link_to "Sign up", new_user_registration_path, class: "sign-up"
     .mobile-nav-icon
       = fa_icon "bars"
-.ownership-credit-feed
