@@ -103,10 +103,23 @@ ul#navigation-menu {
       margin: 0;
     }
 
+    a {
+      &:hover {
+        color: white;
+        text-decoration: underline;
+      }
+    }
+
   }
 
 }
 
 .navigation-tools {
   float: right;
+  a {
+    &:hover {
+      color: white;
+      text-decoration: underline;
+    }
+  }
 }
