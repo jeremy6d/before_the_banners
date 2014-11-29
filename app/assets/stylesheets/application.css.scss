@@ -9,6 +9,7 @@
 @import "partials/mixins";
 @import "partials/mobile";
 @import "partials/typography";
+@import "partials/navigation";
 @import "partials/links";
 @import "partials/body";
 @import "partials/inputs";
@@ -24,6 +25,7 @@
 @import "partials/features/update-feed";
 @import "partials/features/progress-bar";
 @import "partials/features/filters";
+@import "partials/features/tables";
 
 // Pages
 @import "partials/pages/pages";
@@ -32,4 +34,5 @@
 @import "partials/pages/project-index";
 @import "partials/pages/project-new";
 @import "partials/pages/project-page";
+@import "partials/pages/company-edit-page";
 

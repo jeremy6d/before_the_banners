@@ -18,7 +18,7 @@
     <div class="form-section three-columns">
       <%= project_form.input :starts_at, as: :datepicker, label: "Start date" %>
       <%= project_form.input :ends_at, as: :datepicker, label: "End date", wrapper_html: { :data => { :tip => "Note that these dates will be generalized to protect against delays. For example, a completion date of 12/15/15 will be displayed to the public as 'Estimated Completion: December 2015.'" } } %>
-      <%= project_form.input :logo, as: :file, label: "Logo" %>
+      <%= project_form.input :logo, as: :file, label: "Project Image" %>
       <%= project_form.hidden_field :logo_cache %>
     </div>
   </div>

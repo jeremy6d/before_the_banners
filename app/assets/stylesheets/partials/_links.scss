@@ -3,3 +3,16 @@ a.new-project-button {
   text-decoration: none;
   text-shadow: none;
 }
+
+a {
+  color: $gray;
+  font-size: inherit;
+  text-decoration: none;
+  border-bottom: em(1) solid $gray;
+  padding-bottom: em(2);
+  transition: all .2s ease-in-out;
+  &:hover {
+    color: $dark-gray;
+    border-bottom-color: $dark-gray;
+  }
+}

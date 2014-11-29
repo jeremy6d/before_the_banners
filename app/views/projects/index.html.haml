@@ -3,7 +3,7 @@
 %ul.project-index
   - @projects.each do |project|
     %li.project-node{ id: "project-#{project.to_param}" }
-      = image_tag project.logo.url(:main), title: "#{project.title.titleize} logo", class: "header-image"
+      = image_tag project.logo.url(:thumbnail), title: "#{project.title.titleize} logo", class: "header-image"
       = link_to project.title, project
 .center
   = link_to '+ Create New Project', new_project_path, class: "new-project-button"

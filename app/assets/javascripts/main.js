@@ -3,28 +3,6 @@
      animationTime = 1200, // time in milliseconds
      contentTop = [];
 
-CanvasImage = function (e, t) {
-  this.image = t;
-  this.element = e;
-  e.width = t.width;
-  e.height = t.height;
-  this.context = e.getContext("2d");
-  this.context.drawImage(t, 0, 0);
-};
-
-CanvasImage.prototype = {
-  blur:function(e) {
-    this.context.globalAlpha = 0.5;
-    for(var t = -e; t <= e; t += 2) {
-      for(var n = -e; n <= e; n += 2) {
-        this.context.drawImage(this.element, n, t);
-        var blob = n >= 0 && t >= 0 && this.context.drawImage(this.element, -(n -1), -(t-1));
-      }
-    }
-  }
-};
-
-
 $(document).ready(function(){ 
 
   // Stop animated scroll if the user does something
@@ -66,19 +44,6 @@ $(document).ready(function(){
   });
 
 
-
-  // Blur project header image
-  var image, canvasImage, canvas;
-  $(".header-image").each(function() {
-    canvas = this;
-    image = new Image();
-    image.onload = function() {
-      canvasImage = new CanvasImage(canvas, this);
-      // canvasImage.blur(5);
-    };
-    image.src = $(canvas).attr("src");
-  });
-
   // Toggle responsive menu
   $('.mobile-nav-icon').on('tap', function(){
     $('.mobile-nav').slideToggle();
@@ -88,5 +53,8 @@ $(document).ready(function(){
   $(window).resize(function(){
     $('.mobile-nav').hide();
   });
+
+  // Filters stick to top
+  $('#workspace-filter-list').scrollToFixed({ marginTop: 120 });
 
 })

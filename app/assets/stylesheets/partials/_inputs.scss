@@ -23,7 +23,6 @@ select {
   border: em(2) solid $gray;
   padding: em(8);
   font-size: em(12);
-  letter-spacing: em(.43);
   border-radius: $base-border-radius;
   color: $dark-gray;
   transition: all .2s ease;
@@ -51,4 +50,22 @@ textarea {
 
 input[type="submit"] {
   @include main-button;
+}
+
+div.field_with_hint {
+  text-align: center;
+  input {
+    margin-bottom: em(3);
+  }
+  label {
+    float: left;
+  }
+}
+
+span.hint {
+  color: $blue;
+  font-size: em(12);
+  background: lighten($light-blue,30%);
+  border: em(2) solid $blue;
+  padding: em(8);
 }

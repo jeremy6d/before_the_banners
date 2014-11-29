@@ -5,7 +5,7 @@
   position: fixed;
   z-index: 5;
   left: em(30);
-  margin-top: em(-40);
+  margin-top: em(-120);
 }
 
 ul.minimap-page-sections {
@@ -15,20 +15,15 @@ ul.minimap-page-sections {
   top: em(150);
   li {
     font-family: 100;
-
-    text-shadow: 0 0 em(1) $gray;
-
     margin: em(10) 0 em(10) em(-5);
     padding: 0 0 0 em(18);
     list-style-type: none;
     letter-spacing: em(.73);
-
     a {
       font-size: em(12);
-      color: $medium-gray;
+      color: $dark-gray;
       text-decoration: none;
     }
-
     &.selected {
       border-left: em(4) solid $medium-gray;
       padding: 0 0 0 em(14);

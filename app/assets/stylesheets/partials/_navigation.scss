@@ -1,0 +1,15 @@
+header.project-navigation {
+  padding: 0;
+  height: em(120);
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  .menu-wrapper {
+    @include clearfix;
+    padding: 0 em(10);
+  }
+  @media(max-width: em(640)) {
+    height: em(40);
+    position: relative;
+  }
+}
