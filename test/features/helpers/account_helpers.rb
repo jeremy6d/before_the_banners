@@ -11,13 +11,9 @@ module FeatureHelpers
     def sign_up! attrs = {}, &block
       sign_out!
       user_attrs = Fabricate.attributes_for(:user).merge attrs
-binding.pry
-      case current_path
-      when new_user_session_path
-        click_on "Sign up"
-      else
-        visit "/"
-      end
+
+      click_on "Sign up"
+      
       within("form") do
         fill_in "Company email address", with: user_attrs[:email]
         fill_in "First name", with: user_attrs[:first_name]
@@ -28,7 +24,7 @@ binding.pry
 
         click_on "Sign up"
       end
-
+      
       the_flash_notice_must_be "Welcome! You have signed up successfully."
 
       User.last.tap do |u|

@@ -93,7 +93,8 @@ module FeatureHelpers
 
     def create_project! in_attrs = {}
       click_on "My projects"
-      click_on "Create new project"
+
+      click_on "+ Create New Project"
 
       attrs = Fabricate.attributes_for(:project).merge in_attrs
 
@@ -104,8 +105,8 @@ module FeatureHelpers
       fill_in "Owner", with: attrs[:owner_title]
       fill_in "Architect", with: attrs[:architect_title]
       fill_in "Builder", with: attrs[:builder_title]
-      pick_date "Start date", attrs[:starts_at]
-      pick_date "End date", attrs[:ends_at]
+      pick_date "START DATE", attrs[:starts_at]
+      pick_date "END DATE", attrs[:ends_at]
       attach_file "project_logo", File.join(Rails.root, "test", "fixtures", "logo.png")
       click_on "Save"
       the_flash_notice_must_be "Project created."
