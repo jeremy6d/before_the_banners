@@ -3,3 +3,8 @@
   padding: 0;
   margin: 0;
 }
+
+// Vertical align
+.valign {
+  @include vertical-align;
+}

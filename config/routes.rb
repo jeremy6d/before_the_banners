@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'static/index'
+
   resources :workspaces
 
   get "/media/*path" => "grid_fs#serve"
@@ -23,5 +25,5 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: "projects#index"
+  root to: "static#index"
 end

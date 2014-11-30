@@ -8,6 +8,7 @@
 @import "partials/functions";
 @import "partials/mixins";
 @import "partials/mobile";
+@import "partials/resets";
 @import "partials/typography";
 @import "partials/navigation";
 @import "partials/links";
@@ -21,6 +22,7 @@
 @import "font-awesome";
 
 // Features
+@import "partials/features/logo";
 @import "partials/features/minimap";
 @import "partials/features/update-feed";
 @import "partials/features/progress-bar";
@@ -28,6 +30,7 @@
 @import "partials/features/tables";
 
 // Pages
+@import "partials/pages/homepage";
 @import "partials/pages/pages";
 @import "partials/pages/page-operations";
 @import "partials/pages/devise";

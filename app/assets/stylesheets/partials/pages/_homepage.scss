@@ -1,0 +1,62 @@
+body.static {
+  .nav {
+    font-size: em(14);
+    padding: em(24) em(15);
+    &.desktop-nav {
+      width: 100%;
+    }
+  }
+  .navigation-tools {
+    position: fixed;
+    width: 98%;
+    a {
+      color: white;
+      font-size: em(14);
+      border: 2px solid white;
+      border-radius: em(5);
+      padding: em(8) em(14);
+      font-weight: 500;
+      &:hover {
+        text-decoration: none;
+        border-color: $heavy-blue;
+        color: $heavy-blue;
+      }
+      &.sign-up {
+        margin-left: em(5);
+      }
+    }
+  }
+}
+
+.header {
+  height: 95vh;
+  background-image: image-url('header.png');
+  background-size: cover;
+  background-position: center center;
+  position: fixed;
+  z-index: -1;
+  width: 100%;
+}
+
+.homepage--page {
+  background: white;
+  padding: em(60) 0;
+  position: absolute;
+  width: 100%;
+  top: 95vh;
+  text-align: center;
+}
+
+.cta-text {
+  @extend p;
+  margin: 0 auto;
+  max-width: em(650);
+  width: 95%;
+  text-align: left;
+}
+
+a.signup-link {
+
+}
+
+

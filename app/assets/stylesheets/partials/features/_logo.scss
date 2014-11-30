@@ -1,0 +1,8 @@
+.btb-logo {
+  background-image: image-url('btb-logo.png');
+  width: 550px;
+  height: 215px;
+  margin: 0 auto;
+  z-index: 20;
+  @include vertical-align;
+}
