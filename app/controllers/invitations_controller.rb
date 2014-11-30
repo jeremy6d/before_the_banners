@@ -9,15 +9,18 @@ class InvitationsController < Devise::InvitationsController
                               find(params[:user][:project_ids] - @user.project_ids).
                               map(&:title).
                               to_sentence
+
       @user.project_ids += params[:user][:project_ids]
       @user.authorizations += auth_records
       @user.save
       @user.notify! "You have been invited to #{project_names}."
     else
-      attrs = invite_params.merge! company: get_company,
+      @company = lookup_existing_company 
+      attrs = invite_params.merge! company: @company,
                                    project_ids: params[:user][:project_ids],
                                    authorizations: auth_records.map(&:attributes)
       @user = User.invite! attrs, current_user
+      @company ||= @user.company || @user.build_company 
     end
 
     redirect_to root_path, notice: "Your invitation was sent."
@@ -29,12 +32,28 @@ class InvitationsController < Devise::InvitationsController
     @company = @user.company || @user.build_company
   end
 
+  def update
+    @user = accept_resource
+
+    if @user.errors.empty?
+      flash_message = @user.active_for_authentication? ? :updated : :updated_not_active
+      set_flash_message :notice, flash_message if is_flashing_format?
+      sign_in(:user, @user)
+      respond_with @user, :location => after_accept_path_for(@user)
+    else
+      respond_with_navigational(@user) do
+        @company = @user.company || @user.build_company
+        render :edit
+      end
+    end
+  end
+
 protected
   def load_project
     @project = current_user.projects.authorized_to(Authorization::ADMINISTER).find(params[:project_id])
   end
 
-  def get_company
+  def lookup_existing_company
     Company.where(email_domain: invite_params[:email].split("@").last).first
   end
 

@@ -6,13 +6,17 @@ module FeatureHelpers
         find("ul li#project-#{project.to_param}").click
       end
 
+      find("ul.operations.off--page").hover
       click_on "Edit"
     end
 
     def add_update_to! project, in_attrs = {}
       click_on "My projects"
+      
       click_on project.title
-      click_on "Add update"
+
+      find("ul.operations.off--page").hover
+      find("a", text: "Add update").trigger("click") # workaround partial input blockage from popup
 
       attrs = Fabricate.attributes_for(:update).tap do |a|
         a.merge! in_attrs

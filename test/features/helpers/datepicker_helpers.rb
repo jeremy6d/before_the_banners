@@ -5,7 +5,7 @@ module FeatureHelpers
 
       sought_month_and_year = Date.new sought_date.year, sought_date.month, 1
 
-      find('label', text: locator).click
+      find('label', text: locator).trigger("click") # partial covering over input, so just bypass by triggering event manually
 
       within("#ui-datepicker-div") do
         current_month_and_year = Date.parse find(".ui-datepicker-title").text

@@ -4,6 +4,7 @@ feature "Manage workspaces" do
   before do
     @user = sign_up!
     @project = create_project!
+    find("ul.operations.off--page").hover
     page.click_on "Edit"
     page.click_on "Manage workspaces"
     must_be_on project_workspaces_path(@project)

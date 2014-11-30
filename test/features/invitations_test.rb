@@ -58,7 +58,6 @@ feature "Invitations" do
     open_email_addressed_to invited_email
     click_email_link_for "Accept invitation"
     must_be_on accept_user_invitation_path
-    page.must_have_content "Company name"
 
     fill_in "First name", with: "Invitee"
     fill_in "Last name", with: "Dude"
