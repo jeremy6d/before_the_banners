@@ -1,3 +1,14 @@
+// Homepage Neat container variable
+@mixin homepage-container {
+  @include clearfix;
+  max-width: em(1024);
+  margin: {
+    left: auto;
+    right: auto;
+  }
+}
+
+// Styles
 body.static {
   .nav {
     font-size: em(14);
@@ -38,9 +49,20 @@ body.static {
   width: 100%;
 }
 
+.logo-tagline {
+  @include vertical-align;
+}
+
+.tagline {
+  color: white;
+  font-size: em(21);
+  margin: em(5) 0;
+  text-shadow: 0 0 2px lighten($dark-gray,40%);
+}
+
 .homepage--page {
   background: white;
-  padding: em(60) 0;
+  padding: em(60) 0 0 0;
   position: absolute;
   width: 100%;
   top: 95vh;
@@ -56,7 +78,53 @@ body.static {
 }
 
 a.signup-link {
+  border: em(2) solid $blue;
+  border-radius: em(5);
+  padding: em(12);
+  display: block;
+  width: em(200);
+  margin: em(25) auto 0;
+  color: $blue;
+  text-transform: capitalize;
+  &:hover {
+    background: $blue;
+    color: white;
+  }
+}
+
+
+.homepage--page--section {
+  width: 100%;
+  margin-top: em(60);
+  border-top: em(1) solid $light-gray;
+
+  .homepage-inner-wrap {
+    @include homepage-container;
+    margin: em(60) auto;
+    @include clearfix;
+  }
 
 }
 
+ul.feature-set {
+  text-align: left;
+  margin: em(40) 0;
+  padding: 0;
+  @include span-columns(4);
+  &.contractors {
+    @include clearfix;
+  }
+  li {
+    margin: 0 0 em(8) em(20);
+    padding: 0;
+    opacity: .6;
+    font-weight: 300;
+    font-size: em(15);
+  }
+  span.audience-title {
+    display: block;
+    font-weight: 700;
+    margin-bottom: em(5);
+  }
+}
 
