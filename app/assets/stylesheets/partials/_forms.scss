@@ -62,8 +62,9 @@
 
   &.two-up {
     @include homepage-container;
+    max-width: em(600);
     .input {
-      @include span-columns(6);
+      @include span-columns(12);
       @include omega(2n);
       @media(max-width: em(640)) {
         @include span-columns(12);
