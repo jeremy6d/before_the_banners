@@ -105,7 +105,7 @@ class User
   end
 
   def deauthorize_for project
-    authorizations.delete_all project_id: project.id
+    authorizations.delete_all project: project
   end
 
   scope :authorized, ->(to: nil, on: nil) {

@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.4'
-gem 'sass-rails', '~> 4.0.3'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'rails'
+gem 'sass-rails'
+gem 'uglifier'
+gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
@@ -15,7 +15,7 @@ gem 'jquery-ui-rails'
 gem 'bourbon'
 gem 'neat'
 gem 'refills'
-gem 'mongoid', '~> 4.0.0'
+gem 'mongoid'
 gem 'devise'
 gem 'devise_invitable', '~> 1.3.4'
 gem 'carrierwave'
@@ -58,4 +58,4 @@ end
 gem 'rails_12factor', group: :production
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
-ruby '2.1.3'
+ruby '2.1.5'
