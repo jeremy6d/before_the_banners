@@ -59,15 +59,17 @@ body.static {
     color: white;
     display: block;
     float: right;
-    border-radius: 5px;
+    border-radius: 3px;
     margin-left: em(10);
     text-transform: capitalize;
-    border: em(2) solid white;
+    border: em(3) solid white;
     padding: em(10) em(15);
+    font-size: em(14);
     &:hover {
       border-color: $blue;
       background: $blue;
       text-shadow: 0 0 2px lighten($dark-gray, 20%);
+      cursor: pointer;
     }
     @media(max-width: em(620)) {
       padding: em(5) em(10);
@@ -92,6 +94,7 @@ body.static {
   background: white;
   padding: em(60) 0 0 0;
   position: absolute;
+  z-index: 20;
   width: 100%;
   top: 95vh;
   text-align: center;
