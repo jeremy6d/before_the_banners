@@ -13,6 +13,7 @@
 @import "partials/navigation";
 @import "partials/links";
 @import "partials/body";
+@import "partials/pages/homepage";
 @import "partials/inputs";
 @import "partials/flash";
 @import "partials/errors";
@@ -31,7 +32,6 @@
 @import "partials/features/footer";
 
 // Pages
-@import "partials/pages/homepage";
 @import "partials/pages/pages";
 @import "partials/pages/page-operations";
 @import "partials/pages/devise";

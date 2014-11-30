@@ -4,7 +4,7 @@
     .tagline Construction marketing for the projects that matter.
 .homepage--page
   .cta-text Before The Banners is a marketing platform for high profile construction and real estate development projects. Before The Banners keeps community members, future clients, and current employees informed about the construction projects that impact them on a daily basis. Before The Banners gives construction teams a chance to show off their projects and interact with the people who will benefit from their work for years to come.
-  %a.signup-link{ :href => "#"} Sign up today
+  %a.signup-link{ :href => "#sign-up-section"} Sign up today
   .homepage--page--section
     .homepage-inner-wrap
       %ul.feature-set.owners
@@ -22,6 +22,22 @@
         %li Get a peek behind the construction barriers.
         %li Discover the projects that are impacting your community.
         %li Stay informed about your community’s future.
+  #sign-up-section.homepage--page--section
+    .homepage-inner-wrap
+      .form-title.center Create your free account today and start on your first project.
+      %p.about.center Soon you'll be posting updates and alerts, marketing your project to the community and informing stakeholders at the same time.
+      = simple_form_for(@user, as: "user", url: registration_path(@user), html: { class: "two-column"}) do |f|
+        = f.error_notification
+        .form-inputs.two-up
+          = f.input :first_name, required: true, autofocus: true
+          = f.input :last_name, required: true
+          = f.simple_fields_for :company, @company do |company_fields|
+            = company_fields.input :title, label: "Company name"
+          = f.input :email, required: true, label: "Company email address"
+          = f.input :password, required: true
+          = f.input :password_confirmation, required: true
+        .form-actions
+          = f.button :submit, "Sign up"
   %footer.homepage--footer
     .btb-logo
     .tagline Construction marketing for the projects that matter.

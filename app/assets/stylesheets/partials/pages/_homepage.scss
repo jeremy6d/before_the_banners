@@ -47,6 +47,9 @@ body.static {
   position: fixed;
   z-index: -1;
   width: 100%;
+  @media(max-width: em(620)) {
+    height: 50vh;
+  }
 }
 
 .logo-tagline {
@@ -67,6 +70,9 @@ body.static {
   width: 100%;
   top: 95vh;
   text-align: center;
+  @media(max-width: em(620)) {
+    top: 50vh;
+  }
 }
 
 .cta-text {
@@ -102,6 +108,7 @@ a.signup-link {
     @include homepage-container;
     margin: em(60) auto;
     @include clearfix;
+    padding: 0 em(20);
   }
 
 }
@@ -126,5 +133,18 @@ ul.feature-set {
     font-weight: 700;
     margin-bottom: em(5);
   }
+  @media(max-width: em(860)) {
+    width: em(400);
+    margin: em(20) auto;
+    float: none;
+    &:last-child {
+      margin-right: inherit;
+    }
+  }
+}
+
+p.about {
+  max-width: em(550);
+  margin: 0 auto em(20);
 }
 

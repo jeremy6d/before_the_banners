@@ -60,6 +60,17 @@
     @include span-columns (3);
   }
 
+  &.two-up {
+    @include homepage-container;
+    .input {
+      @include span-columns(6);
+      @include omega(2n);
+      @media(max-width: em(640)) {
+        @include span-columns(12);
+      }
+    }
+  }
+
 }
 
 [data-tip] {
