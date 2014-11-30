@@ -1,24 +1,6 @@
-%ul.mobile-nav
+.homepage--header-links
   - if user_signed_in?
-    %li.nav-link= link_to "My company", edit_company_path
-    %li.nav-link= link_to "My projects", projects_path
-    %li.nav-link= link_to "Invite new users", new_user_invitation_path
-  - if user_signed_in?
-    %li= link_to "Sign out", destroy_user_session_path, method: :delete, class: "sign-out"
+    = link_to "Sign out", destroy_user_session_path, method: :delete, class: "sign-out"
   - else
-    %li= link_to "Sign in", new_user_session_path, class: "sign-in"
-    %li= link_to "Sign up", new_user_registration_path, class: "sign-up"
-.menu-wrapper
-  .nav.desktop-nav
-    %ul#navigation-menu
-      - if user_signed_in?
-        %li.nav-link= link_to "My company", edit_company_path
-        %li.nav-link= link_to "My projects", projects_path
-        %li.nav-link= link_to "Invite new users", new_user_invitation_path
-    .navigation-tools
-      - if user_signed_in?
-        = link_to "Sign out", destroy_user_session_path, method: :delete, class: "sign-out"
-      - else
-        = link_to "Sign in", new_user_session_path, class: "sign-in"
-  .mobile-nav-icon
-    = fa_icon "bars"
+    = link_to "Sign in", new_user_session_path, class: "sign-in"
+    %a{ :href => "#sign-up-section"} Sign up

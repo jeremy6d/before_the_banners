@@ -4,4 +4,10 @@
   height: 215px;
   margin: 0 auto;
   z-index: 20;
+  @media(max-width: em(640)) {
+    width: 320px;
+    height: 125px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
 }

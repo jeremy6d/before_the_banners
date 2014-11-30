@@ -18,8 +18,6 @@ body.static {
     }
   }
   .navigation-tools {
-    position: fixed;
-    width: 98%;
     a {
       color: white;
       font-size: em(14);
@@ -49,6 +47,33 @@ body.static {
   width: 100%;
   @media(max-width: em(620)) {
     height: 50vh;
+  }
+}
+
+.homepage--header-links {
+  position: fixed;
+  z-index: 15;
+  padding: em(10);
+  width: 100%;
+  a {
+    color: white;
+    display: block;
+    float: right;
+    border-radius: 5px;
+    margin-left: em(10);
+    text-transform: capitalize;
+    border: em(2) solid white;
+    padding: em(10) em(15);
+    &:hover {
+      border-color: $blue;
+      background: $blue;
+      text-shadow: 0 0 2px lighten($dark-gray, 20%);
+    }
+    @media(max-width: em(620)) {
+      padding: em(5) em(10);
+      font-size: em(12);
+      border: em(2) solid white;
+    }
   }
 }
 
