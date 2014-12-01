@@ -5,6 +5,6 @@ Fabricator(:user) do
   password              { PASSWORD                }
   password_confirmation { PASSWORD                }
   company_attributes do
-    { title: "The Company" }
+    { title: "The #{Faker::Lorem.word} Company" }
   end
 end

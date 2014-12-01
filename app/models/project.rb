@@ -42,6 +42,20 @@ class Project
     @companies ||= Company.where(:employee_ids.in => member_ids).to_a
   end
 
+  def invite! invitee: nil, authorizations: [], as: nil
+    raise "No user specified" if invitee.nil?
+
+    invitee.projects << self
+    
+    authorizations.each do |auth_name|
+      invitee.authorizations.build name: auth_name,
+                                   project_id: id,
+                                   grantor_name: as.try(:full_name)
+    end
+
+    invitee.save
+  end
+
 protected
   def date_range_valid
     case 
