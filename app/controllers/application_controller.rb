@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   http_basic_authenticate_with :name => "btb", :password => "leanasfuck", :if => Proc.new { Rails.env.production? }
-  before_filter :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
 protected
@@ -27,5 +26,17 @@ protected
 
   def punt! message = nil
     redirect_to root_path, alert: (message || "You are not authorized to access that resource.")
+  end
+
+  def after_sign_in_path_for(resource_or_scope)
+    projects_path
+  end
+
+  def after_sign_out_path_for(resource_or_scope)
+    root_path
+  end
+
+  def after_sign_up_path_for(resource_or_scope)
+    new_project_path
   end
 end

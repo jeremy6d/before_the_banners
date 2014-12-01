@@ -6,7 +6,7 @@ $base-font-size: 14;
 $base-line-height: 1.4;
 $unitless-line-height: $base-line-height / ($base-line-height * 0 + 1); // Strip units from line-height: https://developer.mozilla.org/en-US/docs/Web/CSS/line-height#Prefer_unitless_numbers_for_line-height_values
 $header-line-height: $base-font-size * 1.25;
-$base-border-radius: 2px;
+$base-border-radius: 3px;
 
 // Colors
 $blue: #477DCA;

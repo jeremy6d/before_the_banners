@@ -1,0 +1,28 @@
+footer.homepage--footer {
+  width: 100%;
+  background: #E7E2DB;
+  text-align: center;
+  padding: em(60) 0;
+  .btb-logo {
+    max-width: em(320);
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: em(132);
+  }
+  .tagline {
+    margin: em(5) 0 em(40) 0;
+    font-size: em(16);
+    color: $blue;
+    text-shadow: none;
+  }
+  a {
+    color: $blue;
+    border-bottom-color: $blue;
+  }
+}
+
+.copyright {
+  font-size: em(10);
+  color: $gray;
+  padding: em(20) 0 0 0;
+}

@@ -96,7 +96,7 @@ module FeatureHelpers
     # end
 
     def create_project! in_attrs = {}
-      click_on "My projects"
+      page.find("ul#navigation-menu").click_on "My projects"
 
       click_on "+ Create New Project"
 

@@ -12,7 +12,7 @@ class RegistrationsController < DeviseInvitable::RegistrationsController
       if @user.active_for_authentication?
         set_flash_message :notice, :signed_up if is_flashing_format?
         sign_up(:user, @user)
-        respond_with @user, location: after_sign_up_path_for(@user)
+        redirect_to new_project_path, notice: "Get started by setting up your first project!"
       else
         set_flash_message :notice, :"signed_up_but_#{@user.inactive_message}" if is_flashing_format?
         expire_data_after_sign_in!

@@ -1,8 +1,10 @@
 module FeatureHelpers
   module AccountHelpers
     def sign_out!
-      visit root_path
-      click_on "Sign out" if page.has_content?(/Sign out/i)
+      visit dashboard_path
+      page.all("a", text: /Sign out/i).first.try :trigger, 'click'
+      sleep 0.1 # argh
+      must_be_on root_path
       assert !page.has_content?(/Sign out/i)
     end
 
@@ -11,10 +13,7 @@ module FeatureHelpers
     def sign_up! attrs = {}, &block
       sign_out!
       user_attrs = Fabricate.attributes_for(:user).merge attrs
-
-      click_on "Sign up"
-      
-      within("form") do
+      within("form#new_user") do
         fill_in "Company email address", with: user_attrs[:email]
         fill_in "First name", with: user_attrs[:first_name]
         fill_in "Last name", with: user_attrs[:last_name]
@@ -25,7 +24,8 @@ module FeatureHelpers
         click_on "Sign up"
       end
       
-      the_flash_notice_must_be "Welcome! You have signed up successfully."
+      the_flash_notice_must_be "Get started by setting up your first project!"
+      must_be_on new_project_path
 
       User.last.tap do |u|
         (yield(u) and sign_out!) if block_given?
@@ -64,6 +64,7 @@ module FeatureHelpers
 
       open_email_addressed_to invited_email
       click_email_link_for "Accept invitation"
+
       must_be_on accept_user_invitation_path
       page.wont_have_content "Company name"
 
