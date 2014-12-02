@@ -5,7 +5,8 @@ class ProjectsController < ApplicationController
   def show
     @workspaces = resource.workspaces
     @current_workspace = @workspaces.to_a.find { |w| w.slug == params[:workspace] }
-    @updates = @current_workspace.try(:updates) || @project.updates
+    @updates = @project.updates.desc(:created_at)
+    @updates = @updates.where(workspace: @current_workspace) if @current_workspace
 
     render layout: "project_page"
   end
