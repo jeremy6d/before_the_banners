@@ -1,7 +1,6 @@
 class RegistrationsController < DeviseInvitable::RegistrationsController
   def new
-    @user = User.new
-    @company = @user.build_company
+    set_up_sign_up_form
     respond_with @user
   end
 
@@ -19,7 +18,7 @@ class RegistrationsController < DeviseInvitable::RegistrationsController
         respond_with @user, location: after_inactive_sign_up_path_for(@user)
       end
     else
-      @company = @user.company
+      set_up_sign_up_form
       clean_up_passwords @user
       respond_with @user
     end

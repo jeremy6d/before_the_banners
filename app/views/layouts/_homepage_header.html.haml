@@ -1,7 +1,0 @@
-.homepage--header-links
-  = flash.map { |type, msg| msg }.join("; ")
-  - if user_signed_in?
-    = link_to "Sign out", destroy_user_session_path, method: :delete, class: "sign-out"
-  - else
-    = link_to "Sign in", new_user_session_path, class: "sign-in"
-    %a{ :href => "#sign-up-section"} Sign up

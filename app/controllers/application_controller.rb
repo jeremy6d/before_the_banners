@@ -3,6 +3,11 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
 protected
+  def set_up_sign_up_form
+    @user ||= User.new
+    @company ||= @user.build_company
+  end
+
   def configure_permitted_parameters
     %i(sign_up account_update).each do |type|
       devise_parameter_sanitizer.for(type).concat [:first_name,

@@ -23,7 +23,7 @@ class InvitationsController < Devise::InvitationsController
       @company ||= @user.company || @user.build_company 
     end
 
-    redirect_to root_path, notice: "Your invitation was sent."
+    redirect_to dashboard_path, notice: "Your invitation was sent."
   end
 
   def edit
