@@ -29,7 +29,7 @@
       = simple_form_for(@user, as: "user", url: registration_path(@user), html: { class: "two-column"}) do |f|
         = f.error_notification
         .form-inputs.two-up
-          = f.input :first_name, required: true, autofocus: true
+          = f.input :first_name, required: true
           = f.input :last_name, required: true
           = f.simple_fields_for :company, @company do |company_fields|
             = company_fields.input :title, label: "Company name"
