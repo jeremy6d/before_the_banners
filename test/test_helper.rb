@@ -28,6 +28,7 @@ class MiniTest::Spec
 
   after :each do
     DatabaseCleaner.clean
+    # need to clean tmp/uploads
   end
 
   def must_receive_email opts_to_check = {}

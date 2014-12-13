@@ -15,7 +15,7 @@ feature "Invitations" do
     check @project.title
     click_on "Send invitation"
     sign_out!
-    
+
     open_email_addressed_to invited_email
     click_email_link_for "Accept invitation"
     must_be_on accept_user_invitation_path

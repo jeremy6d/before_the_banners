@@ -12,4 +12,12 @@ class CompaniesController < ApplicationController
       render :edit, alert: "Your settings could not be updated."
     end
   end
+
+private
+  def company_params
+    params.require(:company).permit :title,
+                                    :email_domain,
+                                    :logo,
+                                    :logo_cache
+  end
 end

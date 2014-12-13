@@ -25,5 +25,9 @@ Rails.application.routes.draw do
     end
   end
 
+  authenticated :user do
+    root to: "projects#index", as: :dashboard # future dashboard 
+  end
+
   root to: "static#index"
 end

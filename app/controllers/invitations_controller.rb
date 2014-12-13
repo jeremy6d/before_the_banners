@@ -4,15 +4,15 @@ class InvitationsController < Devise::InvitationsController
   end
 
   def create
-    if @user = User.where(email: params[:user][:email]).first
-      project_names = Project.only(:title).
-                              find(params[:user][:project_ids] - @user.project_ids).
-                              map(&:title).
-                              to_sentence
+    if @user = User.where(email: params[:user][:email]).first      
+      project_names = Project.find(params[:user][:project_ids]).map { |project|
+        project.invite! invitee: @user, 
+                        authorizations: auth_list_for(project),
+                        as: current_user
 
-      @user.project_ids += params[:user][:project_ids]
-      @user.authorizations += auth_records
-      @user.save
+        project.title
+      }.to_sentence
+
       @user.notify! "You have been invited to #{project_names}."
     else
       @company = lookup_existing_company 
@@ -23,7 +23,7 @@ class InvitationsController < Devise::InvitationsController
       @company ||= @user.company || @user.build_company 
     end
 
-    redirect_to root_path, notice: "Your invitation was sent."
+    redirect_to dashboard_path, notice: "Your invitation was sent."
   end
 
   def edit
@@ -65,5 +65,9 @@ protected
         Authorization.new name: name, project_id: proj_id, grantor_name: current_user.full_name
       end
     }.flatten.compact
+  end
+
+  def auth_list_for project
+    params.fetch(:project_auth, {}).fetch(project.id.to_s, [])
   end
 end

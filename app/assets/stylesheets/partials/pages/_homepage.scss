@@ -55,6 +55,8 @@ body.static {
   z-index: 15;
   padding: em(10);
   width: 100%;
+  color: white;
+  float: left;
   a {
     color: white;
     display: block;
@@ -130,6 +132,7 @@ a.signup-link {
 
 .homepage--page--section {
   width: 100%;
+  margin-top: em(60);
   border-top: em(1) solid $light-gray;
 
   .homepage-inner-wrap {
@@ -140,10 +143,9 @@ a.signup-link {
     img {
       margin-bottom: 50px;
       max-width: 749px;
-      width: 100%:
+      width: 100%;
     }
   }
-
 }
 
 ul.feature-set {

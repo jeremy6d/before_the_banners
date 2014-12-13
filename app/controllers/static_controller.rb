@@ -4,5 +4,7 @@ class StaticController < ApplicationController
     @company = @user.build_company
 
     render layout: "homepage"
+
+    set_up_sign_up_form
   end
 end

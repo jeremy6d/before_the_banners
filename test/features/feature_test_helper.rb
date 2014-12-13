@@ -34,11 +34,13 @@ class Capybara::Rails::TestCase
     if Capybara.current_driver == :webkit
       screenshot_path = File.join(Rails.root, "tmp", "capybara", "#{Time.now.to_i}.png")
       page.driver.save_screenshot screenshot_path
-      Launchy.open screenshot_path
+      Launchy.open screenshot_path, application: "Safari"
     else
       puts "screenshot not supported by driver #{Capybara.current_driver}"
     end
   end
+
+  alias_method :ss, :screenshot!
 
   %w(alert notice).each do |type|
     define_method "the_flash_#{type}_must_be" do |msg|
@@ -51,6 +53,6 @@ class Capybara::Rails::TestCase
   end
 
   def must_be_on desired_path
-    page.current_path.must_equal desired_path
+    assert page.current_path == desired_path
   end
 end

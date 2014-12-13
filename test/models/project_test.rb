@@ -1,7 +1,7 @@
 require_relative '../test_helper'
 
 describe Project do
-  let(:creator) { Fabricate :user }
+  let(:creator) { Fabricate :user, first_name: "Bubba", last_name: "Gump" }
   subject { Fabricate :project, creator: creator }
   before { subject.reload }
   
@@ -43,5 +43,22 @@ describe Project do
     subject.member_ids.delete(creator.id)
     subject.save
     subject.errors[:base].must_include "Members authorized to administer may not be removed"
+  end
+
+  describe "processing an invitation" do
+    let(:invited_user) { Fabricate :user }
+    before do
+      subject.invite! invitee: invited_user, authorizations: [Authorization::ADMINISTER], as: creator
+    end
+
+    it "adds the user to the project's members" do
+      subject.members.must_include invited_user
+    end
+
+    it "adds the proper authorizations to the user" do
+      invited_user.reload.authorizations.where(name: Authorization::ADMINISTER, 
+                                               project_id: subject.id,
+                                               grantor_name: "Bubba Gump").count.must_equal 1
+    end
   end
 end
