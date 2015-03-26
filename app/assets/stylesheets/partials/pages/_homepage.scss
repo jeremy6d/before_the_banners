@@ -38,7 +38,7 @@ body.static {
 }
 
 .header {
-  height: 95vh;
+  height: 75vh;
   background-image: image-url('header.png');
   background-size: cover;
   background-position: center center;
@@ -94,11 +94,10 @@ body.static {
 
 .homepage--page {
   background: white;
-  padding: em(60) 0 0 0;
   position: absolute;
   z-index: 20;
   width: 100%;
-  top: 95vh;
+  top: 75vh;
   text-align: center;
   @media(max-width: em(620)) {
     top: 50vh;
@@ -119,9 +118,11 @@ a.signup-link {
   padding: em(12);
   display: block;
   width: em(200);
-  margin: em(25) auto 0;
+  margin: em(24) auto 0;
   color: $blue;
   text-transform: capitalize;
+  background: white;
+  font-weight: 500;
   &:hover {
     background: $blue;
     color: white;
@@ -139,8 +140,12 @@ a.signup-link {
     margin: em(60) auto;
     @include clearfix;
     padding: 0 em(20);
+    img {
+      margin-bottom: 50px;
+      max-width: 749px;
+      width: 100%;
+    }
   }
-
 }
 
 ul.feature-set {

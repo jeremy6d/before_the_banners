@@ -1,7 +1,10 @@
 class StaticController < ApplicationController
-  layout false
-
   def index
+    @user = User.new
+    @company = @user.build_company
+
+    render layout: "homepage"
+
     set_up_sign_up_form
   end
 end
