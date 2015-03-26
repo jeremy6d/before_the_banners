@@ -40,3 +40,8 @@
 @import "partials/pages/project-page";
 @import "partials/pages/company-edit-page";
 
+form.search-form input {
+  width: 30rem;
+  height: 42px;
+  float: left;
+}

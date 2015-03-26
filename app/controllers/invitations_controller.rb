@@ -17,8 +17,9 @@ class InvitationsController < Devise::InvitationsController
     else
       @company = lookup_existing_company 
       attrs = invite_params.merge! company: @company,
-                                   project_ids: params[:user][:project_ids],
+                                   project_ids: Project.find(params[:user][:project_ids]).map(&:id),
                                    authorizations: auth_records.map(&:attributes)
+
       @user = User.invite! attrs, current_user
       @company ||= @user.company || @user.build_company 
     end
@@ -68,6 +69,6 @@ protected
   end
 
   def auth_list_for project
-    params.fetch(:project_auth, {}).fetch(project.id.to_s, [])
+    params.fetch(:project_auth, {}).fetch(project.id, [])
   end
 end

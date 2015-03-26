@@ -12,32 +12,39 @@ module FeatureHelpers
 
     def add_update_to! project, in_attrs = {}
       click_on "My projects"
-      
+
       click_on project.title
 
       find("ul.operations.off--page").hover
+     
       find("a", text: "Add update").trigger("click") # workaround partial input blockage from popup
 
       attrs = Fabricate.attributes_for(:update).tap do |a|
         a.merge! in_attrs
         a.delete("author_id")
       end
-    id = attrs.delete('workspace_id')
-    title = if name = attrs.delete('workspace')
-      attrs.delete 'workspace_id'
-      Workspace.where(title: name).first
-    elsif id
-      Workspace.find(id)
-    else
-      nil
-    end.try :title
 
-      select title, from: "Workspace" if title
+      id = attrs.delete('workspace_id')
+      workspace_title = if name = attrs.delete('workspace')
+        attrs.delete 'workspace_id'
+        Workspace.where(title: name).first
+      elsif id
+        Workspace.find(id)
+      else
+        nil
+      end.try :title
+
+      select workspace_title, from: "Workspace" if workspace_title
+
       attrs.each do |attr_name, attr_value|
         fill_in "update_#{attr_name}", with: attr_value
       end
-      
+
       click_on "Submit update"
+
+      sleep 1
+
+      Update.last
     end
 
     def invite_to! project, email, *labels
@@ -113,6 +120,7 @@ module FeatureHelpers
       pick_date "END DATE", attrs[:ends_at]
       attach_file "project_logo", File.join(Rails.root, "test", "fixtures", "logo.png")
       click_on "Save"
+
       the_flash_notice_must_be "Project created."
       return Project.last
     end

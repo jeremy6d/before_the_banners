@@ -1,9 +1,55 @@
 require_relative '../test_helper'
 
+# create a company, then have another member join
+
 describe Project do
-  let(:creator) { Fabricate :user, first_name: "Bubba", last_name: "Gump" }
-  subject { Fabricate :project, creator: creator }
-  before { subject.reload }
+  let(:creator) do 
+    Fabricate :user, first_name: "Bubba", 
+                     last_name: "Gump",
+                     email: "bgump@niceco.biz",
+                     company_attributes: {
+                       title: "NiceCo Inc."
+                     }
+  end
+
+  let(:member) do
+    Fabricate :user, first_name: "Jenny",
+                     last_name: "Smith",
+                     email: "jsmith@bojangles.com",
+                     company_attributes: {
+                       title: "Bojangles LLC"
+                     }
+  end
+
+  subject do 
+    Fabricate :project, creator: creator,
+                        title: "A Great Project",
+                        type: "Something wonderful",
+                        architect_title: "Nelson Mandela",
+                        builder_title: "Cheech Marin",
+                        owner_title: "Daddy Warbuck",
+                        address: "1 Hacker Way, Richmond, VA 23224"
+  end
+  
+  before do 
+    subject.invite! invitee: member, 
+                    authorizations: [Authorization::CREATE_UPDATES],
+                    as: creator
+    subject.reload
+  end
+
+  it "indexes search terms" do
+    %w(great project something wonderful nelson 
+       mandela daddy warbuck cheech marin niceco 
+       inc bojangles llc 1 hacker way richmond 
+       va 23224).each do |term|
+      subject.terms.must_include term
+    end 
+  end
+
+  it "does not index ubiquitous words" do
+    subject.terms.wont_include "a"
+  end
   
   it "requires a creator to be set" do
     subject.creator = nil
@@ -52,7 +98,7 @@ describe Project do
     end
 
     it "adds the user to the project's members" do
-      subject.members.must_include invited_user
+      subject.reload.members.must_include invited_user
     end
 
     it "adds the proper authorizations to the user" do

@@ -12,10 +12,11 @@ class Authorization
 
   field :name, type: String
   field :grantor_name, type: String
+  # field :project_id,  type: BSON::ObjectId
 
   embedded_in :grantee, class_name: "User"
 
-  belongs_to :project
+  belongs_to :project # do I need to maintain this manually?
 
   validates_presence_of :name,
                         :project_id
@@ -24,6 +25,6 @@ class Authorization
 
 protected
   def member_of_project?
-    errors[:base] << "Cannot authorize non-member" unless project.members.include?(grantee)
+    errors[:base] << "Cannot authorize non-member" unless grantee.project_ids.include?(project_id)
   end
 end

@@ -72,7 +72,7 @@ class User
   index( { "authorizations.project" => 1 })
   index( { "authorizations.name"    => 1 })
   index( { "authorizations.project" => 1, 
-           "authorizations.name" => 1 },    { unique: true })
+           "authorizations.name"  => 1 },    { unique: true })
 
   def to_s
     [ first_name, last_name ].join(" ")

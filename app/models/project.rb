@@ -1,6 +1,7 @@
 class Project
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Slug
 
   DEFAULT_AUTHORIZATIONS = [
     Authorization::ADMINISTER,
@@ -17,6 +18,7 @@ class Project
   field :starts_at,         type: Date
   field :ends_at,           type: Date
   field :address,           type: String
+  field :terms,             type: Array, default: []
 
   mount_uploader :logo, LogoUploader
 
@@ -34,12 +36,17 @@ class Project
   validate :date_range_valid
   validate :admins_are_members, on: :update
 
-  before_create :add_creator_as_member
-  # before_save :cache_titles!
+  before_save do
+    add_creator_as_member if new_record?
+    index_search_terms
+  end
+
   after_create  :grant_default_authorizations!
 
+  slug :title, history: true
+
   def companies
-    @companies ||= Company.where(:employee_ids.in => member_ids).to_a
+    Company.find members.only(:company_id).map(&:company_id)
   end
 
   def invite! invitee: nil, authorizations: [], as: nil
@@ -54,6 +61,15 @@ class Project
     end
 
     invitee.save
+  end
+
+  def self.condition_terms term_list
+    term_list.split(" ").
+              map { |t| 
+                t.strip.downcase.gsub(/[^\w]+/, "") 
+              }.reject { |t| 
+                t.blank? || %w(a an the or and).include?(t) 
+              }.uniq
   end
 
 protected
@@ -77,8 +93,9 @@ protected
   end
 
   def add_creator_as_member
-    # member_ids << creator.id
-    write_attribute :member_ids, [creator.id]
+# binding.pry
+    # write_attribute :member_ids, [creator.id]
+    self.members.push creator
   end
 
   def grant_default_authorizations!
@@ -95,5 +112,22 @@ protected
 
   def title_for user
     "#{user.full_name}, #{user.company.title}"
+  end
+
+  def index_search_terms
+    write_attribute :terms, search_terms
+  end
+
+private
+  def search_terms
+    Project.condition_terms [ title,
+                      type,
+                      owner_title,
+                      architect_title,
+                      builder_title,
+                      companies.map(&:title),
+                      address.try(:split, ",") ].
+                    flatten.
+                    join(" ")
   end
 end

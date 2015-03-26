@@ -13,6 +13,7 @@ module FeatureHelpers
     def sign_up! attrs = {}, &block
       sign_out!
       user_attrs = Fabricate.attributes_for(:user).merge attrs
+  
       within("form#new_user") do
         fill_in "Company email address", with: user_attrs[:email]
         fill_in "First name", with: user_attrs[:first_name]
@@ -23,7 +24,7 @@ module FeatureHelpers
 
         click_on "Sign up"
       end
-      
+
       the_flash_notice_must_be "Get started by setting up your first project!"
       must_be_on new_project_path
 

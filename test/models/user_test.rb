@@ -23,6 +23,10 @@ describe User do
           subject.reload.projects.authorized_to(Authorization::APPROVE_UPDATES).to_a == [@project]
         end
 
+        it "writes the BSON id, not the slug, to the foreign key" do
+          assert subject.reload.project_ids.all? { |id| id.is_a?(BSON::ObjectId) }
+        end
+
         describe "an deauthorized by type and project" do
           before do
             subject.deauthorize! to: Authorization::APPROVE_UPDATES, on: @project 
@@ -75,6 +79,28 @@ describe User do
       it "prompts user to email the company contact" do
         new_user.errors[:base].must_include "This company already exists; request an invitation from the account manager."
       end
+    end
+  end
+
+  describe "on invitation" do
+    let(:project) { Fabricate :project }
+    let(:owner) { project.creator }
+    let(:new_auth) do
+      Authorization.new name: Authorization::CREATE_UPDATES,
+                        project_id: project.id,
+                        grantor_name: owner
+    end
+    let(:attrs) do
+      { email: "new-user@company.com", 
+        projects: [ project ],
+        company: nil, #simulate new company
+        authorizations: [ new_auth ] }
+    end
+
+    let(:invitee) { User.invite! attrs, owner }
+
+    it "sets the project to be accessible to the invitee" do
+      invitee.projects.must_include project
     end
   end
 end

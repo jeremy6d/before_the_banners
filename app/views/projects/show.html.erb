@@ -14,21 +14,23 @@
 
 <div class="page--wrap">
   <div class="page--header" id="page--header">
-    <ul class="operations off--page">
-      <% if current_user.authorized? to: Authorization::CREATE_UPDATES, on: @project %>
+    <%- if user_signed_in? -%>
+      <ul class="operations off--page">
+        <% if current_user.authorized? to: Authorization::CREATE_UPDATES, on: @project %>
+          <li>
+            <%= link_to 'Add update', new_project_update_path(@project) %>
+          </li>
+        <% end %>
+        <% if current_user.authorized? to: Authorization::ADMINISTER, on: @project %>
+          <li>
+            <%= link_to 'Edit', edit_project_path(@project) %>
+          </li>
+        <% end %>
         <li>
-          <%= link_to 'Add update', new_project_update_path(@project) %>
+          <%= link_to 'Back', projects_path %>
         </li>
-      <% end %>
-      <% if current_user.authorized? to: Authorization::ADMINISTER, on: @project %>
-        <li>
-          <%= link_to 'Edit', edit_project_path(@project) %>
-        </li>
-      <% end %>
-      <li>
-        <%= link_to 'Back', projects_path %>
-      </li>
-    </ul>
+      </ul>
+    <%- end -%>
     <div class="project-header" style="background-image: url('<%= @project.logo.url(:main) %>')">
       <div class="img-overlay"></div>
       <div class="project-information">

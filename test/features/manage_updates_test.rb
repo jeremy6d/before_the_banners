@@ -28,7 +28,7 @@ feature "Manage updates and approvals" do
     end
 
     filter_on! "plumbing"
-
+    
     page.must_have_content "Testing 123"
     page.wont_have_content "trying 456"
     page.wont_have_content "attempt 789"

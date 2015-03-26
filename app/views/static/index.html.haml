@@ -8,6 +8,8 @@
   %body{ :class=> "#{controller_name}"}
     .homepage--header-links
       = flash.map { |type, msg| msg }.join("; ")
+      %form(action="/projects" class="search-form")
+        %input(type="text" name="terms" id="search-terms-input" placeholder="Search projects")
       - if user_signed_in?
         = link_to "Sign out", destroy_user_session_path, method: :delete, class: "sign-out"
       - else
@@ -36,7 +38,9 @@
           %ul.feature-set.community
             %span.audience-title The Community
             %li Get a peek behind the construction barriers.
-            %li Discover the projects that are impacting your community.
+            %li 
+              Discover the projects that are impacting your community.
+              %a(href="/projects") Search now!
             %li Stay informed about your community’s future.
       #sign-up-section.homepage--page--section
         .homepage-inner-wrap

@@ -35,9 +35,7 @@ feature "Public browsing" do
   scenario "An unauthenticated visitor searches for a project page" do
     # visitor navigates to landing page and searches
     visit root_path
-    click_on "Search now!"
-    fill_in "Terms", with: "bubba"
-    click_on "Search"
+    fill_in "Search projects", with: "bubba\n"    
 
     # visitor should see search results
     page.must_have_content "Spatula Warehouse"

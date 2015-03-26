@@ -31,7 +31,7 @@ ul.project-index {
 
     @media(max-width: em(640)) {
       @include span-columns(12);
-      @include omega(1);
+      @include omega(1n);
     }
 
   }

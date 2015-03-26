@@ -3,7 +3,6 @@ Rails.application.routes.draw do
 
   resources :workspaces
 
-  get "/media/*path" => "grid_fs#serve"
   get "/widgets/:project_id" => "widgets#basic"
 
   devise_for :users, controllers: { registrations: "registrations", invitations: "invitations" }

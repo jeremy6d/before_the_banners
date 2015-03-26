@@ -25,6 +25,9 @@ gem 'mongoid-grid_fs', github: 'jeremy6d/mongoid-grid_fs'
 gem 'mongoid_slug'
 gem 'font-awesome-rails'
 gem 'autonumeric-rails'
+gem 'carrierwave_backgrounder'
+gem 'sucker_punch', '~> 1.0'
+gem "fog"
 
 group :test do
   gem "minitest"
@@ -58,4 +61,4 @@ end
 gem 'rails_12factor', group: :production
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
-ruby '2.1.5'
+ruby '2.2.0'

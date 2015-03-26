@@ -11,8 +11,8 @@
       %tr{ class: 'authorizations-row', id: "authorizations-#{project.to_param}" }
         %td
           %label
-            = check_box_tag("user[project_ids][]", project.to_param, false)
+            = check_box_tag("user[project_ids][]", project.id, false)
             = project.title
         - Authorization.types.each do |type|
-          %td= check_box_tag "project_auth[#{project.to_param}][]", type, false
+          %td= check_box_tag "project_auth[#{project.id}][]", type, false
   .form-actions= invite_form.button :submit, "Send invitation"

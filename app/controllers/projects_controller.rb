@@ -4,9 +4,11 @@ class ProjectsController < ApplicationController
   
   def show
     @workspaces = resource.workspaces
-    @current_workspace = @workspaces.to_a.find { |w| w.slug == params[:workspace] }
     @updates = @project.updates.desc(:created_at)
-    @updates = @updates.where(workspace: @current_workspace) if @current_workspace
+
+    if @current_workspace = @workspaces.to_a.find { |w| w.slug == params[:workspace] }
+      @updates = @updates.where(workspace: @current_workspace)
+    end
 
     render layout: "project_page"
   end
@@ -20,6 +22,15 @@ class ProjectsController < ApplicationController
     else
       flash.now[:alert] = "Project could not be saved."
       render :new
+    end
+  end
+
+  def index
+    @terms = Project.condition_terms(params.fetch("terms", "")).
+                     map { |t| Regexp.new(t, Regexp::IGNORECASE) }
+    collection
+    if @terms.any?
+      @projects = @projects.in(terms: @terms) 
     end
   end
 
@@ -42,7 +53,7 @@ protected
   end
 
   def collection
-    @projects ||= current_user.projects
+    @projects ||= current_user.try(:projects) || Project.all
   end
 
   def authorize_for_administration

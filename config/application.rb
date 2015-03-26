@@ -14,7 +14,7 @@ require "rails/test_unit/railtie"
 Bundler.require(*Rails.groups)
 
 module BeforeTheBanners
-class Application < Rails::Application
+  class Application < Rails::Application
     config.encoding = "utf-8"
     config.time_zone = 'Eastern Time (US & Canada)'
     config.active_support.escape_html_entities_in_json = true

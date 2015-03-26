@@ -1,0 +1,19 @@
+db:
+  image: dockerfile/mongodb
+  volumes: 
+    - /opt/beforethebanners/data:/data/db
+  command: mongod --smallfiles
+web:
+  build: .
+  ports:
+    - "80:80"
+    - "443:443"
+  links:
+    - db
+  environment:
+    - MANDRILL_USERNAME
+    - MANDRILL_PASSWORD
+    - SECRET_KEY
+    - SECRET_KEY_BASE
+    - AWS_ACCESS_KEY_ID
+    - AWS_SECRET_ACCESS_KEY
