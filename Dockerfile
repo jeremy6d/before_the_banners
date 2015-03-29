@@ -25,8 +25,18 @@ CMD ["/sbin/my_init"]
 # ADD ./Gemfile.lock Gemfile.lock
 # RUN "bundle install --without development test"
 # RUN chown -R app .
+RUN mkdir /home/app/beforethebanners
+ADD ./app /home/app/beforethebanners.com/app
+ADD ./bin /home/app/beforethebanners.com/bin
+ADD ./config /home/app/beforethebanners.com/config
+ADD ./db /home/beforethebanners.com/db
+ADD ./lib /home/beforethebanners.com/lib
+RUN mkdir /home/beforethebanners.com/log
+RUN touch /home/beforethebanners.com/log/production.log
+ADD ./public /home/beforethebanners.com/public
+RUN mkdir /home/beforethebanners.com/tmp
+ADD ./vendor /home/beforethebanners.com/vendor
 
-ADD . /home/app/beforethebanners.com/
 WORKDIR /home/app/beforethebanners.com
 RUN bundle install --without development test
 RUN chown -R app:app /home/app
