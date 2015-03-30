@@ -3,7 +3,6 @@ production:
     default:
       uri: <%= ENV['DATABASE_URL'] %>
       options:
-        w: 1
         read: primary
         max_retries: 1
         retry_interval: 0
@@ -14,7 +13,6 @@ development:
       hosts:
         - localhost:27017
       options:
-        w: 1
         read: primary
         max_retries: 1
         retry_interval: 0
