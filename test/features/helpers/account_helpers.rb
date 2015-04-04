@@ -2,10 +2,14 @@ module FeatureHelpers
   module AccountHelpers
     def sign_out!
       visit dashboard_path
-      page.all("a", text: /Sign out/i).first.try :trigger, 'click'
-      sleep 0.1 # argh
-      must_be_on root_path
-      assert !page.has_content?(/Sign out/i)
+
+      if page.has_content?(/Sign out/i)
+        page.all("a", text: /Sign out/i).first.click
+        sleep 0.1 # argh
+        must_be_on root_path
+      end
+
+      must_be_signed_out
     end
 
     # pass signed up user into the block
@@ -54,6 +58,7 @@ module FeatureHelpers
       end
 
       the_flash_notice_must_be "Signed in successfully."
+      must_be_signed_in
 
       (yield and sign_out!) if block_given?
     end
@@ -78,6 +83,16 @@ module FeatureHelpers
       User.last.tap do |u|
         (yield(u) and sign_out!) if block_given?
       end
+    end
+
+    def must_be_signed_out
+      assert !page.has_content?(/Sign out/i)
+      assert find("a", text: /Sign in/i)
+    end
+
+    def must_be_signed_in
+      assert page.has_content?(/Sign out/i)
+      assert !page.has_content?(/Sign in/i)
     end
   end
 end

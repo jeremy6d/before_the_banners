@@ -1,4 +1,5 @@
 require_relative "../test_helper"
+require 'capybara/poltergeist'
 Dir.glob("#{Rails.root}/test/features/helpers/*\.rb") { |f| require f }
 
 class Capybara::Rails::TestCase
@@ -8,11 +9,13 @@ class Capybara::Rails::TestCase
   include ::FeatureHelpers::ProjectHelpers
   include ::FeatureHelpers::AccountHelpers
 
-  Capybara.default_driver = :webkit
+  
+  Capybara.javascript_driver = Capybara.current_driver = :poltergeist
   DatabaseCleaner.strategy = :truncation
 
   def setup
     # %x[bundle exec rake assets:precompile]
+    # page.driver.allow_url("fonts.googleapis.com")
     DatabaseCleaner.start
     super
   end
@@ -27,17 +30,14 @@ class Capybara::Rails::TestCase
   end
 
   def enter
-    saop and binding.pry
+    saop 
+    binding.pry
   end
 
   def screenshot!
-    if Capybara.current_driver == :webkit
-      screenshot_path = File.join(Rails.root, "tmp", "capybara", "#{Time.now.to_i}.png")
-      page.driver.save_screenshot screenshot_path
-      Launchy.open screenshot_path, application: "Safari"
-    else
-      puts "screenshot not supported by driver #{Capybara.current_driver}"
-    end
+    screenshot_path = File.join(Rails.root, "tmp", "capybara", "#{Time.now.to_i}.png")
+    page.driver.save_screenshot screenshot_path
+    Launchy.open screenshot_path, application: "Safari"
   end
 
   alias_method :ss, :screenshot!

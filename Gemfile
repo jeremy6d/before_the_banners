@@ -37,7 +37,8 @@ group :test do
   gem "database_cleaner"
   gem "capybara"
   gem "minitest-rails-capybara"
-  gem "capybara-webkit"
+  # gem "capybara-webkit"
+  gem "poltergeist"
   gem 'minitest-matchers'
   gem 'minitest-reporters'
   gem 'minitest-focus'
