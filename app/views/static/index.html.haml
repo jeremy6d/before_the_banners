@@ -3,6 +3,7 @@
   %head
     %title Before the Banners
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
     %meta{:name => "viewport", :content => "width=device-width; initial-scale=1.0; maximum-scale=1.0;"}
   %body{ :class=> "#{controller_name}"}
@@ -63,6 +64,5 @@
         .tagline Construction marketing for the projects that matter.
         %a{ :href => "mailto:info@beforethebanners.com"} info@beforethebanners.com
         .copyright © 2014 Before The Banners, Inc. All Rights Reserved.
-  = javascript_include_tag 'application', 'data-turbolinks-track' => true
-  :javascript
-    window.scrollTo(0,0);
+  / :javascript
+  /   window.scrollTo(0,0);

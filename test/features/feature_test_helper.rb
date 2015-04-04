@@ -13,6 +13,7 @@ class Capybara::Rails::TestCase
 
   def setup
     # %x[bundle exec rake assets:precompile]
+    page.driver.allow_url("fonts.googleapis.com")
     DatabaseCleaner.start
     super
   end

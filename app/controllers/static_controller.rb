@@ -3,7 +3,7 @@ class StaticController < ApplicationController
     @user = User.new
     @company = @user.build_company
 
-    render layout: "homepage"
+    render layout: false #"homepage"
 
     set_up_sign_up_form
   end
