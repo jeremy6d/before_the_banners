@@ -9,38 +9,38 @@ feature "Basic account activity" do
   #   # click_email_link_for "Confirm"
   #   # the_flash_notice_must_be "you confirmed"
   # end
-
+focus
   scenario "Password reset" do
     @user = sign_up!
     sign_out!
 
     visit("/")
-    find("a.sign-in", visible: false).click
-saop
-screenshot!
-    click_on "Forgot password"
+    click_on "Sign in"
+
+    click_on "Forgot your password?"
 
     fill_in "Email", with: @user.email
-    fill_in "Email Confirmation", with: @user.email
-    click_on "Submit"
+    click_on "Send me reset password instructions"
 
-    open_email_addresed_to @user.email
-    click_email_link_for "reset password"
+    open_email_addressed_to @user.email
+    click_email_link_for "Change my password"
 
-    fill_in "Password", with: "newpassword"
-    fill_in "Password confirmation", with: "newpassword"
-    click_on "Submit"
+    fill_in "New password", with: "newpassword"
+    fill_in "Confirm your new password", with: "newpassword"
+    click_on "Change my password"
 
-    the_flash_notice_must_be "Password successfully reset"
-    must_be_on root_path
+    the_flash_notice_must_be "Your password was changed successfully. You are now signed in."
+
+    must_be_on projects_path
     sign_out!
 
     visit("/")
-    click_on "Sign In"
-    fill_in "Email", with: user_email
+    click_on "Sign in"
+    fill_in "Email", with: @user.email
     fill_in "Password", with: "newpassword"
-
-    must_be_on dashboard_path
+    click_on "Sign in"
+saop
     the_flash_notice_must_be "Signed in successfully."
+    must_be_signed_in
   end
 end
