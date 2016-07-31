@@ -10,11 +10,14 @@ class Capybara::Rails::TestCase
   include ::FeatureHelpers::AccountHelpers
 
   
-  Capybara.javascript_driver = Capybara.current_driver = :poltergeist
+  Capybara.register_driver :poltergeist_debug do |app|
+    Capybara::Poltergeist::Driver.new(app, :inspector => true)
+  end
+
+  Capybara.javascript_driver = Capybara.current_driver = :poltergeist_debug
   DatabaseCleaner.strategy = :truncation
 
   def setup
-    # %x[bundle exec rake assets:precompile]
     # page.driver.allow_url("fonts.googleapis.com")
     DatabaseCleaner.start
     super
@@ -29,8 +32,9 @@ class Capybara::Rails::TestCase
     save_and_open_page
   end
 
-  def enter
+  def enter!
     saop 
+    screenshot!
     binding.pry
   end
 
@@ -53,6 +57,13 @@ class Capybara::Rails::TestCase
   end
 
   def must_be_on desired_path
-    assert page.current_path == desired_path
+    Timeout::timeout(5) do
+      while page.current_path != desired_path
+        sleep 0.5
+      end
+      return assert(true)
+    end
+
+    assert false, "expected #{desired_path}, got #{page.current_path}"
   end
 end

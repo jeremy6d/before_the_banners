@@ -9,7 +9,7 @@ feature "Basic account activity" do
   #   # click_email_link_for "Confirm"
   #   # the_flash_notice_must_be "you confirmed"
   # end
-focus
+
   scenario "Password reset" do
     @user = sign_up!
     sign_out!
@@ -39,7 +39,7 @@ focus
     fill_in "Email", with: @user.email
     fill_in "Password", with: "newpassword"
     click_on "Sign in"
-saop
+
     the_flash_notice_must_be "Signed in successfully."
     must_be_signed_in
   end

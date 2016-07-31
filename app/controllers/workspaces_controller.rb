@@ -12,6 +12,10 @@ class WorkspacesController < ApplicationController
     render nothing: true
   end
 
+  # def index
+  #   collection
+  # end
+
 protected
   def authorize_for_administration
     punt! unless current_user.authorized?(to: Authorization::ADMINISTER, on: parent)

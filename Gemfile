@@ -16,8 +16,8 @@ gem 'bourbon'
 gem 'neat'
 gem 'refills'
 gem 'mongoid'
-gem 'devise'
-gem 'devise_invitable', '~> 1.3.4'
+gem 'devise',           '~> 3.5.2'
+gem 'devise_invitable', '~> 1.6.0'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
@@ -62,4 +62,4 @@ end
 gem 'rails_12factor', group: :production
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
-ruby '2.2.0'
+ruby '2.3.1'
