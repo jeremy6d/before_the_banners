@@ -14,7 +14,7 @@ feature "Public browsing" do
     # ensure not signed in
     sign_out!
   end
-
+focus
   scenario "An unauthenticated visitor views the project page from a direct link" do
     # visitor directly accesses the URL of project page
     visit project_path(@project)

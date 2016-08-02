@@ -11,7 +11,7 @@ class Capybara::Rails::TestCase
 
   
   Capybara.register_driver :poltergeist_debug do |app|
-    Capybara::Poltergeist::Driver.new(app, :inspector => true)
+    Capybara::Poltergeist::Driver.new(app, :inspector => true,window_size: [1280, 600])
   end
 
   Capybara.javascript_driver = Capybara.current_driver = :poltergeist_debug

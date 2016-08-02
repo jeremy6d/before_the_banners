@@ -10,22 +10,22 @@ protected
 
   def configure_permitted_parameters
     %i(sign_up account_update).each do |type|
-      devise_parameter_sanitizer.for(type).concat [:first_name,
-                                                   :last_name,
-                                                   :email,
-                                                   :password,
-                                                   :password_confirmation,
-                                                   :avatar,
-                                                   :avatar_cache,
-                                                   company_attributes: [ :title ]]
+      devise_parameter_sanitizer.permit type, keys: [:first_name,
+                                                     :last_name,
+                                                     :email,
+                                                     :password,
+                                                     :password_confirmation,
+                                                     :avatar,
+                                                     :avatar_cache,
+                                                     company_attributes: [ :title ]]
     end
 
-    devise_parameter_sanitizer.for(:invite).concat [ :email, project_ids: [] ]
-    devise_parameter_sanitizer.for(:accept_invitation).concat [ :first_name, 
-                                                                :last_name,
-                                                                :password,
-                                                                :password_confirmation,
-                                                                company_attributes: [ :title ]]
+    devise_parameter_sanitizer.permit :invite, keys: [ :email, project_ids: [] ]
+    devise_parameter_sanitizer.permit :accept_invitation, keys: [ :first_name, 
+                                                                  :last_name,
+                                                                  :password,
+                                                                  :password_confirmation,
+                                                                  company_attributes: [ :title ]]
   end
 
   def punt! message = nil

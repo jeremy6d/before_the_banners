@@ -25,6 +25,6 @@ class Authorization
 
 protected
   def member_of_project?
-    errors[:base] << "Cannot authorize non-member" unless grantee.project_ids.include?(project_id)
+    errors[:base] << "Cannot authorize non-member" unless project.members.include? grantee
   end
 end

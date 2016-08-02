@@ -6,6 +6,7 @@ require "minitest/rails/capybara"
 require "minitest-matchers"
 require 'database_cleaner'
 require "minitest/reporters"
+require 'sucker_punch/testing/inline'
 Minitest::Reporters.use!
 
 Fabrication.configure do |config|
