@@ -1,11 +1,11 @@
 development:
-  clients:
+  sessions:
     default:
       database: btb_dev
       hosts:
         - localhost:27017
 test:
-  clients:
+  sessions:
     default:
       database: btb_test
       hosts:
@@ -15,4 +15,6 @@ test:
           mode: :primary
         max_pool_size: 1
 production:
-  env: <%= ENV['MONGODB_URI'] %>
+  sessions:
+    default:
+      uri: <%= ENV['MONGODB_URI'] %>
