@@ -15,4 +15,4 @@ test:
           mode: :primary
         max_pool_size: 1
 production:
-  env: <%= ENV['MONGOHQ_URL'] %>
+  env: <%= ENV['MONGODB_URI'] %>
